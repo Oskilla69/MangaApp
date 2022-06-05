@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "375285379693",
+    "project_id": "mangaapp-7bb62",
+    "storage_bucket": "mangaapp-7bb62.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:375285379693:android:5976ab86f4b720f9408564",
+        "android_client_info": {
+          "package_name": "com.oskilla.mangaapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "375285379693-mfush8eekupllk6mtfat8cif9ss9j240.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBgxmGnQ7vhrLo_8PKyua_CtLPdryFeBWk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "375285379693-mfush8eekupllk6mtfat8cif9ss9j240.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
