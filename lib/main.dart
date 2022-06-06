@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mangaapp/pages/home_page.dart';
 import 'package:mangaapp/pages/login_page.dart';
 import 'package:mangaapp/pages/manga_page.dart';
+import 'package:mangaapp/pages/settings_page.dart';
 import 'helpers/appcolours.dart';
 
 void main() async {
@@ -29,6 +30,7 @@ class Home extends StatelessWidget {
           HomePage.routeName: (context) => HomePage(),
           MangaPage.routeName: (context) => MangaPage(),
           LoginPage.routeName: (context) => LoginPage(),
+          SettingsPage.routeName: (context) => SettingsPage(),
           // '/manga': (c) => Builder(builder: (context) {
           //       return MangaPage();
           //     }),

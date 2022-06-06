@@ -1,15 +1,25 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mangaapp/pages/home_page.dart';
 import 'package:mangaapp/widgets/login/flutter_login.dart';
 
-class LoginPage extends StatelessWidget {
+// stateful for setting email variable
+class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
   static const String routeName = '/login';
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     final _auth = FirebaseAuth.instance;
+    final _firestore = FirebaseFirestore.instance;
+    String email = '';
     return Stack(
       clipBehavior: Clip.hardEdge,
       children: [
@@ -33,6 +43,8 @@ class LoginPage extends StatelessWidget {
           },
           onSignup: ((signupData) async {
             print("signing up");
+
+            email = signupData.name!;
             _auth
                 .createUserWithEmailAndPassword(
                     email: signupData.name!, password: signupData.password!)
@@ -68,23 +80,38 @@ class LoginPage extends StatelessWidget {
           },
           loginProviders: [
             LoginProvider(
-              icon: FontAwesomeIcons.google,
-              label: 'Google',
-              callback: () async {
-                return null;
-              },
-            ),
+                icon: FontAwesomeIcons.google,
+                label: 'Google',
+                callback: () async {
+                  return null;
+                },
+                providerNeedsSignUpCallback: () => Future.value(true)),
             LoginProvider(
                 callback: () async {
                   return null;
                 },
                 icon: FontAwesomeIcons.facebook,
-                label: 'Facebook'),
-            // LoginProvider(
-            //     callback: (() async {}),
-            //     icon: FontAwesomeIcons.discord,
-            //     label: 'Discord'),
+                label: 'Facebook',
+                providerNeedsSignUpCallback: () => Future.value(true)),
           ],
+          // additionalSignupFields: [
+          //   UserFormField(
+          //       keyName: 'Username',
+          //       icon: const Icon(FontAwesomeIcons.userLarge),
+          //       fieldValidator: (value) {
+          //         print('lalala' + email);
+          //         if (value!.isEmpty) {
+          //           return 'Username is empty';
+          //         }
+          //         _firestore.collection('profile').doc(email).set({
+          //           'email': email,
+          //           'username': value,
+          //           'profile_image':
+          //               'https://animecorner.me/wp-content/uploads/2022/01/roronoza-zoro-statue-in-japan.jpg'
+          //         });
+          //         return null;
+          //       })
+          // ],
           scrollable: true,
         )
       ],
