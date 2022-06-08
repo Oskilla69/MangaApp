@@ -54,8 +54,12 @@ class SubscribeOverlay extends ModalRoute<void> {
                 onTap: () {
                   print('subscribed!!!');
                 },
-                child: Row(
-                  children: [Icon(FontAwesomeIcons.joint), Text('Subscribe!')],
+                splashColor: Colors.black26,
+                child: Container(
+                  child: Row(children: [
+                    const Icon(FontAwesomeIcons.rightToBracket),
+                    const Text('Subscribe')
+                  ]),
                 ),
               ),
             )

@@ -52,8 +52,9 @@ class _SideMenuState extends State<SideMenu> {
   void getUsername(String? email) async {
     if (email != null) {
       final data = await _firestore.collection('profile').doc(email).get();
+      var name = data.data()?['username'];
       setState(() {
-        username = data.data()?['username'];
+        username = "Hello, $name.";
       });
     }
   }
