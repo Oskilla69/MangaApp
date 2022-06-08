@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mangaapp/pages/search_page.dart';
+import 'package:mangaapp/pages/login_page.dart';
 import 'package:mangaapp/widgets/side_menu.dart';
 import 'manga_page.dart';
 import 'package:mangaapp/dummy-data.dart';
@@ -46,7 +47,69 @@ class _HomePageState extends State<HomePage> {
     // // Height (without SafeArea)
     // var padding = MediaQuery.of(context).viewPadding;
     // double no = height - padding.top - padding.bottom;
-
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (loggedInUser != null) {
+        ScaffoldState().showBottomSheet((context) => BottomSheet(
+            onClosing: () {},
+            builder: (context) {
+              return Container(
+                height: MediaQuery.of(context).size.height * 0.5,
+                child: Column(
+                  children: [
+                    Container(
+                      height: MediaQuery.of(context).size.height * 0.1,
+                      child: Center(
+                        child: Text(
+                          'Welcome to MangaApp',
+                          style: TextStyle(
+                              fontSize: ScreenUtil().setSp(40),
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      height: MediaQuery.of(context).size.height * 0.1,
+                      child: Center(
+                        child: Text(
+                          'Please login to continue',
+                          style: TextStyle(
+                              fontSize: ScreenUtil().setSp(30),
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      height: MediaQuery.of(context).size.height * 0.1,
+                      child: Center(
+                        child: RaisedButton(
+                          onPressed: () {
+                            Navigator.pushNamed(context, LoginPage.routeName);
+                          },
+                          child: Text('Login'),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            }));
+        // ScaffoldMessenger.of(context).showMaterialBanner(MaterialBanner(
+        //     content: Text('Please sign in/sign up for the best experience.'),
+        //     actions: [
+        //       TextButton(
+        //           onPressed: () {
+        //             Navigator.pushNamed(context, LoginPage.routeName);
+        //             ScaffoldMessenger.of(context).hideCurrentMaterialBanner();
+        //           },
+        //           child: Text('Sign In/Up')),
+        //       TextButton(
+        //           onPressed: () {
+        //             ScaffoldMessenger.of(context).hideCurrentMaterialBanner();
+        //           },
+        //           child: Text('Close'))
+        //     ]));
+      }
+    });
     return Scaffold(
         appBar: AppBar(
           title: const Text('Manga App'),
@@ -60,7 +123,7 @@ class _HomePageState extends State<HomePage> {
             ),
           ],
         ),
-        drawer: SideMenu(),
+        drawer: const SideMenu(),
         body: OrientationBuilder(builder: (context, orientation) {
           return GridView.count(
               crossAxisCount: orientation == Orientation.portrait
