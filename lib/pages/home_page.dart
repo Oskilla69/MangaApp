@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mangaapp/pages/search_page.dart';
 import 'package:mangaapp/widgets/side_menu.dart';
 import 'manga_page.dart';
 import 'package:mangaapp/dummy-data.dart';
@@ -54,6 +55,7 @@ class _HomePageState extends State<HomePage> {
               icon: const Icon(Icons.search),
               onPressed: () {
                 print('clicked search!');
+                showSearch(context: context, delegate: SearchPageDelegate());
               },
             ),
           ],
