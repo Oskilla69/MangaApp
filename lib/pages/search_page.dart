@@ -1,12 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:mangaapp/pages/search_extra.dart';
+// import 'package:mangaapp/pages/search_extra.dart';
 
 // maybe have history. Who knows
 class SearchPageDelegate<T> extends SearchDelegate<T?> {
+  var test = 0;
+
+  Map<String, dynamic> filters = {
+    'genres': [],
+    'descending': true,
+    'sort': 'Best Match'
+  };
+
   @override
   List<Widget>? buildActions(BuildContext context) {
     return [
-      IconButton(onPressed: () {}, icon: const Icon(Icons.filter_list_rounded))
+      IconButton(
+        icon: const Icon(Icons.clear),
+        onPressed: () {
+          query = '';
+        },
+      ),
+      IconButton(
+          onPressed: () {
+            // showFilterDialog(context);
+            Navigator.push(context, SearchExtra(filters: filters));
+          },
+          icon: const Icon(Icons.filter_list_rounded)),
     ];
   }
 
@@ -27,11 +48,13 @@ class SearchPageDelegate<T> extends SearchDelegate<T?> {
 
   @override
   Widget buildSuggestions(BuildContext context) {
+    print('building again!');
+    print(filters);
     // TODO: check ListView.builder. Should I use? what about dynamic lists?
     return ListView(
       children: [
         ListTile(title: Text('1')),
-        ListTile(title: Text('2')),
+        ListTile(title: Text(test.toString())),
       ],
     );
   }

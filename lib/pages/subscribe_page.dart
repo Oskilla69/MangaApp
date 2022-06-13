@@ -5,7 +5,7 @@ class SubscribeOverlay extends ModalRoute<void> {
   static const routeName = '/subscribe_copy';
 
   @override
-  Duration get transitionDuration => Duration(milliseconds: 500);
+  Duration get transitionDuration => Duration(milliseconds: 0);
 
   @override
   bool get opaque => false;

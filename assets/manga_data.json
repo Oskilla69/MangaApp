@@ -1,0 +1,794 @@
+[
+    {
+        "title": "One Piece",
+        "author": "Echiiro Oda",
+        "rating": "5.0",
+        "genre": ["Action", "Adventure", "Fantasy", "Romance"],
+        "views": 9999999999,
+        "last_updated": "2022-06-12 12:00:00"
+    }
+    ,{
+        "title": "Listen Attentively",
+        "author": "Qing Shu",
+        "rating": "4.1",
+        "synopsis": "haha cool this is a synopsis xd! blah blah blah blah blah blah blah blha blah blah.",
+        "status": "completed",
+        "genre": [
+            "Fantasy",
+            "Shoujo Ai",
+            "Yuri"
+        ],
+        "views": 6100993,
+        "last_updated": "2022-06-11 10:39:00"
+    },
+    {
+        "title": "Shi Ni Aruki",
+        "author": "Ryouko",
+        "rating": "4.3",
+        "synopsis": "haha cool this is a synopsis xd! blah blah blah blah blah blah blah blha blah blah.",
+        "status": "completed",
+        "genre": [
+            "Harem",
+            "Shoujo",
+            "Mystery"
+        ],
+        "views": 5641009,
+        "last_updated": "2022-06-03 10:39:00"
+    },
+    {
+        "title": "Dragon Prince Yuan",
+        "author": "Tiancan Tudou",
+        "rating": "3.1",
+        "synopsis": "A wealthy man, Kurosu Tokimune, meets an unnatural end.\nWith his death, his family joins together to grieve, only to become suspects of a police investigation as to whether he was murdered.\nTheir primary suspect: the adopted daughter of the Kurosu family and first to discover his body, Kurosu Tokiko. The girl who shows no distress at her father's death.\nAnd as all suspicions point to her, the second unnatural death occurs...\nIt's always been this way.\nWherever Tokiko goes, people tend to die.",
+        "status": "completed",
+        "genre": [
+            "Shoujo Ai",
+            "Tragedy",
+            "Shounen"
+        ],
+        "views": 8152787,
+        "last_updated": "2022-05-13 10:39:00"
+    },
+    {
+        "title": "It's Hard Getting Married To A Prince",
+        "author": "Chen Guojian",
+        "rating": "2.5",
+        "synopsis": "haha cool this is a synopsis xd! blah blah blah blah blah blah blah blha blah blah.",
+        "status": "ongoing",
+        "genre": [
+            "Supernatural",
+            "Comedy",
+            "Psychological"
+        ],
+        "views": 5112288,
+        "last_updated": "2022-05-28 10:39:00"
+    },
+    {
+        "title": "Isshou Tsuzukerarenai Shigoto",
+        "author": "Yamada Yugi",
+        "rating": "3.1",
+        "synopsis": "haha cool this is a synopsis xd! blah blah blah blah blah blah blah blha blah blah.",
+        "status": "ongoing",
+        "genre": [
+            "Shounen",
+            "Psychological",
+            "Mature"
+        ],
+        "views": 2149102,
+        "last_updated": "2022-05-15 10:39:00"
+    },
+    {
+        "title": "The Many Weaknesses Of Ayaka The Yankee Jk",
+        "author": "Komaturi",
+        "rating": "4.7",
+        "synopsis": "A wealthy man, Kurosu Tokimune, meets an unnatural end.\nWith his death, his family joins together to grieve, only to become suspects of a police investigation as to whether he was murdered.\nTheir primary suspect: the adopted daughter of the Kurosu family and first to discover his body, Kurosu Tokiko. The girl who shows no distress at her father's death.\nAnd as all suspicions point to her, the second unnatural death occurs...\nIt's always been this way.\nWherever Tokiko goes, people tend to die.",
+        "status": "ongoing",
+        "genre": [
+            "School Life",
+            "Josei",
+            "Shoujo"
+        ],
+        "views": 6193734,
+        "last_updated": "2022-05-19 10:39:00"
+    },
+    {
+        "title": "The President's Valiant Wife",
+        "author": "Zhang Yue Culture",
+        "rating": "2.3",
+        "synopsis": "haha cool this is a synopsis xd! blah blah blah blah blah blah blah blha blah blah.",
+        "status": "completed",
+        "genre": [
+            "Sports",
+            "Sci-fi",
+            "Yuri"
+        ],
+        "views": 8918770,
+        "last_updated": "2022-05-18 10:39:00"
+    },
+    {
+        "title": "Sekai De Ichiban Yasashii Ongaku",
+        "author": "OZAWA Mari",
+        "rating": "4.7",
+        "synopsis": "haha cool this is a synopsis xd! blah blah blah blah blah blah blah blha blah blah.",
+        "status": "hiatus",
+        "genre": [
+            "Adventure",
+            "Yuri",
+            "Josei"
+        ],
+        "views": 3346444,
+        "last_updated": "2022-05-23 10:39:00"
+    },
+    {
+        "title": "Peek",
+        "author": "Big Friendly Teacher",
+        "rating": "3.6",
+        "synopsis": "A wealthy man, Kurosu Tokimune, meets an unnatural end.\nWith his death, his family joins together to grieve, only to become suspects of a police investigation as to whether he was murdered.\nTheir primary suspect: the adopted daughter of the Kurosu family and first to discover his body, Kurosu Tokiko. The girl who shows no distress at her father's death.\nAnd as all suspicions point to her, the second unnatural death occurs...\nIt's always been this way.\nWherever Tokiko goes, people tend to die.",
+        "status": "ongoing",
+        "genre": [
+            "Historical",
+            "Harem",
+            "Yaoi"
+        ],
+        "views": 3628861,
+        "last_updated": "2022-05-22 10:39:00"
+    },
+    {
+        "title": "Sound Asleep: Forgotten Memories",
+        "author": "BasementRaccoon",
+        "rating": "2.3",
+        "synopsis": "haha cool this is a synopsis xd! blah blah blah blah blah blah blah blha blah blah.",
+        "status": "ongoing",
+        "genre": [
+            "Yuri",
+            "Romance",
+            "Josei"
+        ],
+        "views": 2568798,
+        "last_updated": "2022-06-07 10:39:00"
+    },
+    {
+        "title": "Big Uncle’S Podcast Of Mysteries",
+        "author": "Big Uncle Boyang",
+        "rating": "3.1",
+        "synopsis": "A wealthy man, Kurosu Tokimune, meets an unnatural end.\nWith his death, his family joins together to grieve, only to become suspects of a police investigation as to whether he was murdered.\nTheir primary suspect: the adopted daughter of the Kurosu family and first to discover his body, Kurosu Tokiko. The girl who shows no distress at her father's death.\nAnd as all suspicions point to her, the second unnatural death occurs...\nIt's always been this way.\nWherever Tokiko goes, people tend to die.",
+        "status": "hiatus",
+        "genre": [
+            "Fantasy",
+            "Shoujo Ai",
+            "Shounen Ai"
+        ],
+        "views": 2567749,
+        "last_updated": "2022-06-04 10:39:00"
+    },
+    {
+        "title": "I Became The Ugly Lady",
+        "author": "정하임",
+        "rating": "4.5",
+        "synopsis": "A wealthy man, Kurosu Tokimune, meets an unnatural end.\nWith his death, his family joins together to grieve, only to become suspects of a police investigation as to whether he was murdered.\nTheir primary suspect: the adopted daughter of the Kurosu family and first to discover his body, Kurosu Tokiko. The girl who shows no distress at her father's death.\nAnd as all suspicions point to her, the second unnatural death occurs...\nIt's always been this way.\nWherever Tokiko goes, people tend to die.",
+        "status": "ongoing",
+        "genre": [
+            "Historical",
+            "Music",
+            "Supernatural"
+        ],
+        "views": 9357803,
+        "last_updated": "2022-05-26 10:39:00"
+    },
+    {
+        "title": "The Evil Prince's Incomparable Evil Princess",
+        "author": "Open Source A&C",
+        "rating": "3.8",
+        "synopsis": "haha cool this is a synopsis xd! blah blah blah blah blah blah blah blha blah blah.",
+        "status": "hiatus",
+        "genre": [
+            "Mystery",
+            "Harem",
+            "Mecha"
+        ],
+        "views": 4165393,
+        "last_updated": "2022-05-23 10:39:00"
+    },
+    {
+        "title": "My Apprentices Are All Female Devils",
+        "author": "Updating",
+        "rating": "4.5",
+        "synopsis": "haha cool this is a synopsis xd! blah blah blah blah blah blah blah blha blah blah.",
+        "status": "ongoing",
+        "genre": [
+            "Sci-fi",
+            "Yuri",
+            "Shoujo"
+        ],
+        "views": 8949067,
+        "last_updated": "2022-05-14 10:39:00"
+    },
+    {
+        "title": "9000 Years Old Empress",
+        "author": "Qi man (柒漫)",
+        "rating": "4.3",
+        "synopsis": "A wealthy man, Kurosu Tokimune, meets an unnatural end.\nWith his death, his family joins together to grieve, only to become suspects of a police investigation as to whether he was murdered.\nTheir primary suspect: the adopted daughter of the Kurosu family and first to discover his body, Kurosu Tokiko. The girl who shows no distress at her father's death.\nAnd as all suspicions point to her, the second unnatural death occurs...\nIt's always been this way.\nWherever Tokiko goes, people tend to die.",
+        "status": "hiatus",
+        "genre": [
+            "Horror",
+            "Psychological",
+            "Sports"
+        ],
+        "views": 7840144,
+        "last_updated": "2022-05-11 10:39:00"
+    },
+    {
+        "title": "After I Left You",
+        "author": "Chen Guojian",
+        "rating": "3.9",
+        "synopsis": "A wealthy man, Kurosu Tokimune, meets an unnatural end.\nWith his death, his family joins together to grieve, only to become suspects of a police investigation as to whether he was murdered.\nTheir primary suspect: the adopted daughter of the Kurosu family and first to discover his body, Kurosu Tokiko. The girl who shows no distress at her father's death.\nAnd as all suspicions point to her, the second unnatural death occurs...\nIt's always been this way.\nWherever Tokiko goes, people tend to die.",
+        "status": "ongoing",
+        "genre": [
+            "Tragedy",
+            "Horror",
+            "Action"
+        ],
+        "views": 8601660,
+        "last_updated": "2022-04-26 10:39:00"
+    },
+    {
+        "title": "Bijutsubu Girl",
+        "author": "Koikawa Hayato",
+        "rating": "4.6",
+        "synopsis": "haha cool this is a synopsis xd! blah blah blah blah blah blah blah blha blah blah.",
+        "status": "hiatus",
+        "genre": [
+            "Mature",
+            "Shounen Ai",
+            "Drama"
+        ],
+        "views": 8134615,
+        "last_updated": "2022-05-14 10:39:00"
+    },
+    {
+        "title": "The Ultimate Devil King",
+        "author": "Ailu Cat",
+        "rating": "3.1",
+        "synopsis": "haha cool this is a synopsis xd! blah blah blah blah blah blah blah blha blah blah.",
+        "status": "hiatus",
+        "genre": [
+            "Adventure",
+            "Slice of Life",
+            "Sports"
+        ],
+        "views": 7424141,
+        "last_updated": "2022-06-07 10:39:00"
+    },
+    {
+        "title": "The Insane Martial Arts World: Second To None",
+        "author": "Chen Guojian",
+        "rating": "3.8",
+        "synopsis": "A wealthy man, Kurosu Tokimune, meets an unnatural end.\nWith his death, his family joins together to grieve, only to become suspects of a police investigation as to whether he was murdered.\nTheir primary suspect: the adopted daughter of the Kurosu family and first to discover his body, Kurosu Tokiko. The girl who shows no distress at her father's death.\nAnd as all suspicions point to her, the second unnatural death occurs...\nIt's always been this way.\nWherever Tokiko goes, people tend to die.",
+        "status": "ongoing",
+        "genre": [
+            "Shounen Ai",
+            "Supernatural",
+            "Yaoi"
+        ],
+        "views": 7207240,
+        "last_updated": "2022-06-03 10:39:00"
+    },
+    {
+        "title": "The Spring-Autumn Apotheosis",
+        "author": "DXD A&C",
+        "rating": "3.7",
+        "synopsis": "haha cool this is a synopsis xd! blah blah blah blah blah blah blah blha blah blah.",
+        "status": "ongoing",
+        "genre": [
+            "Psychological",
+            "Shoujo Ai",
+            "Tragedy"
+        ],
+        "views": 5926058,
+        "last_updated": "2022-05-28 10:39:00"
+    },
+    {
+        "title": "Ice",
+        "author": "Updating",
+        "rating": "4",
+        "synopsis": "A wealthy man, Kurosu Tokimune, meets an unnatural end.\nWith his death, his family joins together to grieve, only to become suspects of a police investigation as to whether he was murdered.\nTheir primary suspect: the adopted daughter of the Kurosu family and first to discover his body, Kurosu Tokiko. The girl who shows no distress at her father's death.\nAnd as all suspicions point to her, the second unnatural death occurs...\nIt's always been this way.\nWherever Tokiko goes, people tend to die.",
+        "status": "completed",
+        "genre": [
+            "Shounen",
+            "Romance",
+            "Mystery"
+        ],
+        "views": 1824890,
+        "last_updated": "2022-06-13 10:39:00"
+    },
+    {
+        "title": "Crossdressing Pandemic",
+        "author": "Shinagawa Mikuzu",
+        "rating": "3.1",
+        "synopsis": "haha cool this is a synopsis xd! blah blah blah blah blah blah blah blha blah blah.",
+        "status": "ongoing",
+        "genre": [
+            "Yuri",
+            "Romance",
+            "Ecchi"
+        ],
+        "views": 2557684,
+        "last_updated": "2022-05-06 10:39:00"
+    },
+    {
+        "title": "Please Don't Come To The Villainess' Stationery Store!",
+        "author": "Yeo Ro-Eun (여로은),Jecheolmu (제철무),Min Jeolmi (민절미)",
+        "rating": "4.8",
+        "synopsis": "haha cool this is a synopsis xd! blah blah blah blah blah blah blah blha blah blah.",
+        "status": "ongoing",
+        "genre": [
+            "Slice of Life",
+            "Drama",
+            "Sports"
+        ],
+        "views": 2645915,
+        "last_updated": "2022-05-11 10:39:00"
+    },
+    {
+        "title": "Rainbow Amber",
+        "author": "木更木更",
+        "rating": "2",
+        "synopsis": "A wealthy man, Kurosu Tokimune, meets an unnatural end.\nWith his death, his family joins together to grieve, only to become suspects of a police investigation as to whether he was murdered.\nTheir primary suspect: the adopted daughter of the Kurosu family and first to discover his body, Kurosu Tokiko. The girl who shows no distress at her father's death.\nAnd as all suspicions point to her, the second unnatural death occurs...\nIt's always been this way.\nWherever Tokiko goes, people tend to die.",
+        "status": "completed",
+        "genre": [
+            "Mature",
+            "Horror",
+            "Mystery"
+        ],
+        "views": 7928060,
+        "last_updated": "2022-06-06 10:39:00"
+    },
+    {
+        "title": "Peerlessly Carefree",
+        "author": "Big Bear Company",
+        "rating": "2.8",
+        "synopsis": "haha cool this is a synopsis xd! blah blah blah blah blah blah blah blha blah blah.",
+        "status": "hiatus",
+        "genre": [
+            "Shounen Ai",
+            "Adventure",
+            "Romance"
+        ],
+        "views": 3388625,
+        "last_updated": "2022-04-29 10:39:00"
+    },
+    {
+        "title": "Against The Heavenly Lords",
+        "author": "Big Bear Company",
+        "rating": "4.2",
+        "synopsis": "haha cool this is a synopsis xd! blah blah blah blah blah blah blah blha blah blah.",
+        "status": "hiatus",
+        "genre": [
+            "Horror",
+            "Fantasy",
+            "Mature"
+        ],
+        "views": 6901100,
+        "last_updated": "2022-05-01 10:39:00"
+    },
+    {
+        "title": "Detective Conan",
+        "author": "Aoyama Gosho",
+        "rating": "4.6",
+        "synopsis": "haha cool this is a synopsis xd! blah blah blah blah blah blah blah blha blah blah.",
+        "status": "ongoing",
+        "genre": [
+            "Historical",
+            "Horror",
+            "Harem"
+        ],
+        "views": 2620920,
+        "last_updated": "2022-05-06 10:39:00"
+    },
+    {
+        "title": "The Great Level Up",
+        "author": "Chen Guojian",
+        "rating": "3.4",
+        "synopsis": "haha cool this is a synopsis xd! blah blah blah blah blah blah blah blha blah blah.",
+        "status": "ongoing",
+        "genre": [
+            "Slice of Life",
+            "Sports",
+            "Shoujo"
+        ],
+        "views": 9214360,
+        "last_updated": "2022-05-24 10:39:00"
+    },
+    {
+        "title": "Money + Magnets",
+        "author": "Big Bear Company",
+        "rating": "3.5",
+        "synopsis": "A wealthy man, Kurosu Tokimune, meets an unnatural end.\nWith his death, his family joins together to grieve, only to become suspects of a police investigation as to whether he was murdered.\nTheir primary suspect: the adopted daughter of the Kurosu family and first to discover his body, Kurosu Tokiko. The girl who shows no distress at her father's death.\nAnd as all suspicions point to her, the second unnatural death occurs...\nIt's always been this way.\nWherever Tokiko goes, people tend to die.",
+        "status": "completed",
+        "genre": [
+            "School Life",
+            "Tragedy",
+            "Slice of Life"
+        ],
+        "views": 2746074,
+        "last_updated": "2022-04-24 10:39:00"
+    },
+    {
+        "title": "A Story About Smoking At The Back Of The Supermarket",
+        "author": "Jinushi",
+        "rating": "4.8",
+        "synopsis": "A wealthy man, Kurosu Tokimune, meets an unnatural end.\nWith his death, his family joins together to grieve, only to become suspects of a police investigation as to whether he was murdered.\nTheir primary suspect: the adopted daughter of the Kurosu family and first to discover his body, Kurosu Tokiko. The girl who shows no distress at her father's death.\nAnd as all suspicions point to her, the second unnatural death occurs...\nIt's always been this way.\nWherever Tokiko goes, people tend to die.",
+        "status": "completed",
+        "genre": [
+            "Shoujo Ai",
+            "Supernatural",
+            "Horror"
+        ],
+        "views": 9612593,
+        "last_updated": "2022-06-11 10:39:00"
+    },
+    {
+        "title": "Debby The Corsifa Is Emulous",
+        "author": "Hirakata Masahiro",
+        "rating": "4.7",
+        "synopsis": "A wealthy man, Kurosu Tokimune, meets an unnatural end.\nWith his death, his family joins together to grieve, only to become suspects of a police investigation as to whether he was murdered.\nTheir primary suspect: the adopted daughter of the Kurosu family and first to discover his body, Kurosu Tokiko. The girl who shows no distress at her father's death.\nAnd as all suspicions point to her, the second unnatural death occurs...\nIt's always been this way.\nWherever Tokiko goes, people tend to die.",
+        "status": "completed",
+        "genre": [
+            "Adventure",
+            "Mature",
+            "Sci-fi"
+        ],
+        "views": 4378713,
+        "last_updated": "2022-05-22 10:39:00"
+    },
+    {
+        "title": "The Best Handyman",
+        "author": "Big Bear Company",
+        "rating": "3.7",
+        "synopsis": "A wealthy man, Kurosu Tokimune, meets an unnatural end.\nWith his death, his family joins together to grieve, only to become suspects of a police investigation as to whether he was murdered.\nTheir primary suspect: the adopted daughter of the Kurosu family and first to discover his body, Kurosu Tokiko. The girl who shows no distress at her father's death.\nAnd as all suspicions point to her, the second unnatural death occurs...\nIt's always been this way.\nWherever Tokiko goes, people tend to die.",
+        "status": "completed",
+        "genre": [
+            "Josei",
+            "Psychological",
+            "Tragedy"
+        ],
+        "views": 3026907,
+        "last_updated": "2022-06-11 10:39:00"
+    },
+    {
+        "title": "Tonikaku Cawaii",
+        "author": "Hata kenjiro",
+        "rating": "4.9",
+        "synopsis": "A wealthy man, Kurosu Tokimune, meets an unnatural end.\nWith his death, his family joins together to grieve, only to become suspects of a police investigation as to whether he was murdered.\nTheir primary suspect: the adopted daughter of the Kurosu family and first to discover his body, Kurosu Tokiko. The girl who shows no distress at her father's death.\nAnd as all suspicions point to her, the second unnatural death occurs...\nIt's always been this way.\nWherever Tokiko goes, people tend to die.",
+        "status": "hiatus",
+        "genre": [
+            "Tragedy",
+            "Shounen Ai",
+            "Harem"
+        ],
+        "views": 2041186,
+        "last_updated": "2022-05-30 10:39:00"
+    },
+    {
+        "title": "Our Pure And Ambiguous Romance",
+        "author": "Big Bear Company",
+        "rating": "3.6",
+        "synopsis": "A wealthy man, Kurosu Tokimune, meets an unnatural end.\nWith his death, his family joins together to grieve, only to become suspects of a police investigation as to whether he was murdered.\nTheir primary suspect: the adopted daughter of the Kurosu family and first to discover his body, Kurosu Tokiko. The girl who shows no distress at her father's death.\nAnd as all suspicions point to her, the second unnatural death occurs...\nIt's always been this way.\nWherever Tokiko goes, people tend to die.",
+        "status": "ongoing",
+        "genre": [
+            "Mecha",
+            "Supernatural",
+            "Action"
+        ],
+        "views": 8997414,
+        "last_updated": "2022-05-12 10:39:00"
+    },
+    {
+        "title": "Chromosome 47",
+        "author": "TaXue Comic",
+        "rating": "3.6",
+        "synopsis": "A wealthy man, Kurosu Tokimune, meets an unnatural end.\nWith his death, his family joins together to grieve, only to become suspects of a police investigation as to whether he was murdered.\nTheir primary suspect: the adopted daughter of the Kurosu family and first to discover his body, Kurosu Tokiko. The girl who shows no distress at her father's death.\nAnd as all suspicions point to her, the second unnatural death occurs...\nIt's always been this way.\nWherever Tokiko goes, people tend to die.",
+        "status": "completed",
+        "genre": [
+            "Comedy",
+            "Martial Arts",
+            "Supernatural"
+        ],
+        "views": 1364748,
+        "last_updated": "2022-04-26 10:39:00"
+    },
+    {
+        "title": "The Consort Who's A Bloodthirsty Doctor",
+        "author": "Chen Guojian",
+        "rating": "4.2",
+        "synopsis": "haha cool this is a synopsis xd! blah blah blah blah blah blah blah blha blah blah.",
+        "status": "ongoing",
+        "genre": [
+            "Music",
+            "Ecchi",
+            "Sports"
+        ],
+        "views": 4525284,
+        "last_updated": "2022-05-25 10:39:00"
+    },
+    {
+        "title": "Mercenary Enrollment",
+        "author": "YC",
+        "rating": "4.6",
+        "synopsis": "haha cool this is a synopsis xd! blah blah blah blah blah blah blah blha blah blah.",
+        "status": "hiatus",
+        "genre": [
+            "Romance",
+            "Romance",
+            "Adventure"
+        ],
+        "views": 362452,
+        "last_updated": "2022-05-10 10:39:00"
+    },
+    {
+        "title": "Secret Lady",
+        "author": "Angatou,Banana",
+        "rating": "4.8",
+        "synopsis": "haha cool this is a synopsis xd! blah blah blah blah blah blah blah blha blah blah.",
+        "status": "ongoing",
+        "genre": [
+            "Yuri",
+            "Shoujo",
+            "Sports"
+        ],
+        "views": 4433224,
+        "last_updated": "2022-05-07 10:39:00"
+    },
+    {
+        "title": "5500 Shades Of The Demon King",
+        "author": "Youndal / Moonto",
+        "rating": "4.2",
+        "synopsis": "A wealthy man, Kurosu Tokimune, meets an unnatural end.\nWith his death, his family joins together to grieve, only to become suspects of a police investigation as to whether he was murdered.\nTheir primary suspect: the adopted daughter of the Kurosu family and first to discover his body, Kurosu Tokiko. The girl who shows no distress at her father's death.\nAnd as all suspicions point to her, the second unnatural death occurs...\nIt's always been this way.\nWherever Tokiko goes, people tend to die.",
+        "status": "completed",
+        "genre": [
+            "Yuri",
+            "Drama",
+            "Music"
+        ],
+        "views": 9514272,
+        "last_updated": "2022-04-24 10:39:00"
+    },
+    {
+        "title": "Divine Perspective",
+        "author": "Tianjin Zhangyue Culture Tianjin Zhangyue Culture Communication Co. Ltd., 天津掌阅文化，天津掌阅文化传播有限公司",
+        "rating": "4.3",
+        "synopsis": "A wealthy man, Kurosu Tokimune, meets an unnatural end.\nWith his death, his family joins together to grieve, only to become suspects of a police investigation as to whether he was murdered.\nTheir primary suspect: the adopted daughter of the Kurosu family and first to discover his body, Kurosu Tokiko. The girl who shows no distress at her father's death.\nAnd as all suspicions point to her, the second unnatural death occurs...\nIt's always been this way.\nWherever Tokiko goes, people tend to die.",
+        "status": "completed",
+        "genre": [
+            "Historical",
+            "Shoujo",
+            "Action"
+        ],
+        "views": 7849280,
+        "last_updated": "2022-04-29 10:39:00"
+    },
+    {
+        "title": "Today, We Continue Our Lives Together Under The Same Roof",
+        "author": "Ayu Inui",
+        "rating": "4.1",
+        "synopsis": "A wealthy man, Kurosu Tokimune, meets an unnatural end.\nWith his death, his family joins together to grieve, only to become suspects of a police investigation as to whether he was murdered.\nTheir primary suspect: the adopted daughter of the Kurosu family and first to discover his body, Kurosu Tokiko. The girl who shows no distress at her father's death.\nAnd as all suspicions point to her, the second unnatural death occurs...\nIt's always been this way.\nWherever Tokiko goes, people tend to die.",
+        "status": "ongoing",
+        "genre": [
+            "Slice of Life",
+            "Martial Arts",
+            "School Life"
+        ],
+        "views": 1154729,
+        "last_updated": "2022-05-23 10:39:00"
+    },
+    {
+        "title": "All Rounder",
+        "author": "Updating",
+        "rating": "4.7",
+        "synopsis": "A wealthy man, Kurosu Tokimune, meets an unnatural end.\nWith his death, his family joins together to grieve, only to become suspects of a police investigation as to whether he was murdered.\nTheir primary suspect: the adopted daughter of the Kurosu family and first to discover his body, Kurosu Tokiko. The girl who shows no distress at her father's death.\nAnd as all suspicions point to her, the second unnatural death occurs...\nIt's always been this way.\nWherever Tokiko goes, people tend to die.",
+        "status": "completed",
+        "genre": [
+            "Fantasy",
+            "Historical",
+            "Shounen Ai"
+        ],
+        "views": 1294321,
+        "last_updated": "2022-05-08 10:39:00"
+    },
+    {
+        "title": "Sister To Vampire",
+        "author": "Akatsuki",
+        "rating": "4.5",
+        "synopsis": "haha cool this is a synopsis xd! blah blah blah blah blah blah blah blha blah blah.",
+        "status": "completed",
+        "genre": [
+            "Ecchi",
+            "Comedy",
+            "Mature"
+        ],
+        "views": 5491394,
+        "last_updated": "2022-05-09 10:39:00"
+    },
+    {
+        "title": "Itai Onee-San Wa Sukidesu Ka?",
+        "author": "Wakana",
+        "rating": "4.7",
+        "synopsis": "haha cool this is a synopsis xd! blah blah blah blah blah blah blah blha blah blah.",
+        "status": "hiatus",
+        "genre": [
+            "Martial Arts",
+            "Shounen Ai",
+            "Josei"
+        ],
+        "views": 6562664,
+        "last_updated": "2022-04-27 10:39:00"
+    },
+    {
+        "title": "Douyara Boku No Hanayome Wa Onna Kishidan Na You De.",
+        "author": "Nori Itsurou",
+        "rating": "4.4",
+        "synopsis": "A wealthy man, Kurosu Tokimune, meets an unnatural end.\nWith his death, his family joins together to grieve, only to become suspects of a police investigation as to whether he was murdered.\nTheir primary suspect: the adopted daughter of the Kurosu family and first to discover his body, Kurosu Tokiko. The girl who shows no distress at her father's death.\nAnd as all suspicions point to her, the second unnatural death occurs...\nIt's always been this way.\nWherever Tokiko goes, people tend to die.",
+        "status": "hiatus",
+        "genre": [
+            "Romance",
+            "Josei",
+            "Horror"
+        ],
+        "views": 8619836,
+        "last_updated": "2022-04-29 10:39:00"
+    },
+    {
+        "title": "Stardust Telepath",
+        "author": "Ookuma Rasuko",
+        "rating": "4.1",
+        "synopsis": "A wealthy man, Kurosu Tokimune, meets an unnatural end.\nWith his death, his family joins together to grieve, only to become suspects of a police investigation as to whether he was murdered.\nTheir primary suspect: the adopted daughter of the Kurosu family and first to discover his body, Kurosu Tokiko. The girl who shows no distress at her father's death.\nAnd as all suspicions point to her, the second unnatural death occurs...\nIt's always been this way.\nWherever Tokiko goes, people tend to die.",
+        "status": "hiatus",
+        "genre": [
+            "Yuri",
+            "Shounen Ai",
+            "Mecha"
+        ],
+        "views": 1044792,
+        "last_updated": "2022-04-29 10:39:00"
+    },
+    {
+        "title": "Jashin-Chan Dropkick",
+        "author": "Yukiwo",
+        "rating": "4.5",
+        "synopsis": "haha cool this is a synopsis xd! blah blah blah blah blah blah blah blha blah blah.",
+        "status": "completed",
+        "genre": [
+            "Yaoi",
+            "Tragedy",
+            "Mecha"
+        ],
+        "views": 5423601,
+        "last_updated": "2022-06-07 10:39:00"
+    },
+    {
+        "title": "Kimi No Nioi",
+        "author": "Hiwo Sagano",
+        "rating": "4.6",
+        "synopsis": "haha cool this is a synopsis xd! blah blah blah blah blah blah blah blha blah blah.",
+        "status": "hiatus",
+        "genre": [
+            "Romance",
+            "Yuri",
+            "Mecha"
+        ],
+        "views": 361551,
+        "last_updated": "2022-05-13 10:39:00"
+    },
+    {
+        "title": "Sei-Chan, Your Love Is Too Much!",
+        "author": "Segawa Sasa",
+        "rating": "4.6",
+        "synopsis": "haha cool this is a synopsis xd! blah blah blah blah blah blah blah blha blah blah.",
+        "status": "ongoing",
+        "genre": [
+            "Yaoi",
+            "Sci-fi",
+            "Slice of Life"
+        ],
+        "views": 827003,
+        "last_updated": "2022-05-04 10:39:00"
+    },
+    {
+        "title": "Amemiya-San",
+        "author": "Arawi Keiichi",
+        "rating": "5",
+        "synopsis": "haha cool this is a synopsis xd! blah blah blah blah blah blah blah blha blah blah.",
+        "status": "completed",
+        "genre": [
+            "Martial Arts",
+            "Adventure",
+            "Historical"
+        ],
+        "views": 3759841,
+        "last_updated": "2022-06-01 10:39:00"
+    },
+    {
+        "title": "The Devil's Domineering Love",
+        "author": "Chen Guojian",
+        "rating": "3.1",
+        "synopsis": "A wealthy man, Kurosu Tokimune, meets an unnatural end.\nWith his death, his family joins together to grieve, only to become suspects of a police investigation as to whether he was murdered.\nTheir primary suspect: the adopted daughter of the Kurosu family and first to discover his body, Kurosu Tokiko. The girl who shows no distress at her father's death.\nAnd as all suspicions point to her, the second unnatural death occurs...\nIt's always been this way.\nWherever Tokiko goes, people tend to die.",
+        "status": "ongoing",
+        "genre": [
+            "Comedy",
+            "Sci-fi",
+            "Sports"
+        ],
+        "views": 9137205,
+        "last_updated": "2022-06-07 10:39:00"
+    },
+    {
+        "title": "God Of Deception",
+        "author": "庸鬼",
+        "rating": "3.6",
+        "synopsis": "haha cool this is a synopsis xd! blah blah blah blah blah blah blah blha blah blah.",
+        "status": "hiatus",
+        "genre": [
+            "Harem",
+            "Tragedy",
+            "Mature"
+        ],
+        "views": 9570581,
+        "last_updated": "2022-05-01 10:39:00"
+    },
+    {
+        "title": "Moukin-Chan",
+        "author": "Akui Makoto",
+        "rating": "4.6",
+        "synopsis": "A wealthy man, Kurosu Tokimune, meets an unnatural end.\nWith his death, his family joins together to grieve, only to become suspects of a police investigation as to whether he was murdered.\nTheir primary suspect: the adopted daughter of the Kurosu family and first to discover his body, Kurosu Tokiko. The girl who shows no distress at her father's death.\nAnd as all suspicions point to her, the second unnatural death occurs...\nIt's always been this way.\nWherever Tokiko goes, people tend to die.",
+        "status": "hiatus",
+        "genre": [
+            "Slice of Life",
+            "Shounen Ai",
+            "Shoujo"
+        ],
+        "views": 9808835,
+        "last_updated": "2022-05-15 10:39:00"
+    },
+    {
+        "title": "Hunter X Hunter Full Color",
+        "author": "Togashi Yoshihiro",
+        "rating": "4.5",
+        "synopsis": "A wealthy man, Kurosu Tokimune, meets an unnatural end.\nWith his death, his family joins together to grieve, only to become suspects of a police investigation as to whether he was murdered.\nTheir primary suspect: the adopted daughter of the Kurosu family and first to discover his body, Kurosu Tokiko. The girl who shows no distress at her father's death.\nAnd as all suspicions point to her, the second unnatural death occurs...\nIt's always been this way.\nWherever Tokiko goes, people tend to die.",
+        "status": "hiatus",
+        "genre": [
+            "Psychological",
+            "Fantasy",
+            "Tragedy"
+        ],
+        "views": 8963820,
+        "last_updated": "2022-04-25 10:39:00"
+    },
+    {
+        "title": "Forty Millennia Of Cultivation",
+        "author": "SANFU A&C",
+        "rating": "2.5",
+        "synopsis": "A wealthy man, Kurosu Tokimune, meets an unnatural end.\nWith his death, his family joins together to grieve, only to become suspects of a police investigation as to whether he was murdered.\nTheir primary suspect: the adopted daughter of the Kurosu family and first to discover his body, Kurosu Tokiko. The girl who shows no distress at her father's death.\nAnd as all suspicions point to her, the second unnatural death occurs...\nIt's always been this way.\nWherever Tokiko goes, people tend to die.",
+        "status": "ongoing",
+        "genre": [
+            "Supernatural",
+            "Ecchi",
+            "Mature"
+        ],
+        "views": 9825972,
+        "last_updated": "2022-05-01 10:39:00"
+    },
+    {
+        "title": "Tensei Kenja No Isekai Raifu ~Daini No Shokugyo Wo Ete, Sekai Saikyou Ni Narimashita~",
+        "author": "Pon Jea, Shoto Shinko",
+        "rating": "4.7",
+        "synopsis": "haha cool this is a synopsis xd! blah blah blah blah blah blah blah blha blah blah.",
+        "status": "ongoing",
+        "genre": [
+            "Martial Arts",
+            "Romance",
+            "Historical"
+        ],
+        "views": 6282371,
+        "last_updated": "2022-05-23 10:39:00"
+    }
+]

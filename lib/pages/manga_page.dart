@@ -13,14 +13,14 @@ class MangaPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Manga mangaDetails =
-        ModalRoute.of(context)!.settings.arguments as Manga;
+    Map<String, dynamic> mangaDetails =
+        ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
     return ScreenUtilInit(builder: ((context, child) {
       return Scaffold(
         appBar: AppBar(
-          title: Text(mangaDetails.title),
+          title: Text(mangaDetails['title']),
         ),
-        body: Container(child: MangaSummary(mangaDetails)),
+        body: MangaSummary(mangaDetails),
       );
     }));
   }
