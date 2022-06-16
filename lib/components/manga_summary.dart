@@ -24,27 +24,7 @@ class MangaSummary extends StatelessWidget {
         childAspectRatio: 480.w / 440.w,
         padding: EdgeInsets.only(top: 20.h),
         children: [
-          FutureBuilder(
-              future: _storage.refFromURL(manga['cover']).getDownloadURL(),
-              builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
-                if (snapshot.connectionState == ConnectionState.done &&
-                    snapshot.hasData) {
-                  print('hey');
-                  return CachedNetworkImage(
-                      imageUrl: snapshot.data!,
-                      fit: BoxFit.contain,
-                      progressIndicatorBuilder:
-                          (context, url, downloadProgress) => Center(
-                              child: CircularProgressIndicator(
-                                  value: downloadProgress.progress)),
-                      errorWidget: (context, url, error) =>
-                          const Icon(Icons.error),
-                      width: 360.w,
-                      height: 440.h);
-                } else {
-                  return const Center(child: CircularProgressIndicator());
-                }
-              }),
+          buildCover(manga, orientation),
           Padding(
             padding: EdgeInsets.only(top: 10.h),
             child: Center(
@@ -88,5 +68,38 @@ class MangaSummary extends StatelessWidget {
         ],
       ));
     }));
+  }
+
+  Widget buildCover(Map<String, dynamic> manga, Orientation orientation) {
+    return CachedNetworkImage(
+        imageUrl: manga['cover'],
+        fit: BoxFit.contain,
+        progressIndicatorBuilder: (context, url, downloadProgress) => Center(
+            child: CircularProgressIndicator(value: downloadProgress.progress)),
+        errorWidget: (context, url, error) => const Icon(Icons.error),
+        width: 360.w,
+        height: 440.h);
+  }
+
+  Widget buildFutureCover(Map<String, dynamic> manga, Orientation orientation) {
+    return FutureBuilder(
+        future: _storage.refFromURL(manga['cover']).getDownloadURL(),
+        builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
+          if (snapshot.connectionState == ConnectionState.done &&
+              snapshot.hasData) {
+            return CachedNetworkImage(
+                imageUrl: snapshot.data!,
+                fit: BoxFit.contain,
+                progressIndicatorBuilder: (context, url, downloadProgress) =>
+                    Center(
+                        child: CircularProgressIndicator(
+                            value: downloadProgress.progress)),
+                errorWidget: (context, url, error) => const Icon(Icons.error),
+                width: 360.w,
+                height: 440.h);
+          } else {
+            return const Center(child: CircularProgressIndicator());
+          }
+        });
   }
 }

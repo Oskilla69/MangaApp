@@ -5,7 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mangaapp/helpers/app_constants.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:quiver/iterables.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+// import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class SearchExtra extends ModalRoute<void> {
   Map<String, dynamic> filters;

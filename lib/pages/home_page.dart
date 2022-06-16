@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mangaapp/components/home_page_grid.dart';
 import 'package:mangaapp/pages/search_page.dart';
 import 'package:mangaapp/pages/login_page.dart';
 import 'package:mangaapp/widgets/side_menu.dart';
@@ -60,7 +61,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   void pushMangaData() {
-    rootBundle.loadString('assets/manga_data.json').then((data) {
+    rootBundle.loadString('assets/manga_data.json').then((data) async {
       var covers = [
         'gs://mangaapp-7bb62.appspot.com/One_Piece,_Volume_61_Cover_(Japanese).jpeg',
         'gs://mangaapp-7bb62.appspot.com/Tokyo_Ghoul_volume_1_cover.jpeg',
@@ -76,7 +77,9 @@ class _HomePageState extends State<HomePage> {
           'genre': manga['genre'],
           'views': manga['views'],
           'last_updated': DateTime.parse(manga['last_updated']),
-          'cover': covers[Random().nextInt(2)]
+          'cover': await _storage
+              .refFromURL(covers[Random().nextInt(3)])
+              .getDownloadURL()
         });
       }
     });
@@ -185,18 +188,19 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
         drawer: const SideMenu(),
-        body: OrientationBuilder(builder: (context, orientation) {
-          List<Widget> mangaGrid = _buildMangaGrid(orientation);
-          return GridView.count(
-              controller: scrollController,
-              crossAxisCount: orientation == Orientation.portrait
-                  ? (1.sw / 200.w).round()
-                  : (1.sw / 120.w).round(),
-              childAspectRatio: orientation == Orientation.portrait
-                  ? 460.w / 690.h
-                  : 360.w / 1669.h,
-              children: mangaGrid);
-        }));
+        body: const InfiniteScrollGrid(sortby: 'last_updated')
+        // body: OrientationBuilder(builder: (context, orientation) {
+        //   List<Widget> mangaGrid = _buildMangaGrid(orientation);
+        //   return GridView.count(
+        //       controller: scrollController,
+        //       crossAxisCount: orientation == Orientation.portrait
+        //           ? (1.sw / 200.w).round()
+        //           : (1.sw / 120.w).round(),
+        //       childAspectRatio: orientation == Orientation.portrait
+        //           ? 460.w / 690.h
+        //           : 360.w / 1669.h,
+        //       children: mangaGrid);
+        );
   }
 
   List<Widget> _buildMangaGrid(orientation) {
