@@ -40,11 +40,9 @@ class _SideMenuState extends State<SideMenu> {
   @override
   Widget build(BuildContext context) {
     final _auth = FirebaseAuth.instance;
-    return SafeArea(
-      child: Drawer(
-        child: ListView(
-          children: [buildHeader(context), buildMenu(context, _auth)],
-        ),
+    return Drawer(
+      child: ListView(
+        children: [buildHeader(context), buildMenu(context, _auth)],
       ),
     );
   }

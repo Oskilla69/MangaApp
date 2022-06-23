@@ -22,3 +22,11 @@ List<dynamic> SORT_BY = [
   'Bookmarks',
   'Rating',
 ];
+
+enum SHARED_PREFERENCES { DATA_SAVER, VERTICAL_SCROLL, HORIZONTAL_SCROLL }
+
+extension Parse on SHARED_PREFERENCES {
+  String parse() {
+    return toString().split('.').last;
+  }
+}
