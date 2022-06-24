@@ -10,7 +10,7 @@ import 'package:mangaapp/pages/manga_page.dart';
 class InfiniteScrollGrid extends StatefulWidget {
   final String sortby;
   final String mode;
-  final List<String> bookmarks;
+  final List<dynamic> bookmarks;
 
   const InfiniteScrollGrid(
       {Key? key,

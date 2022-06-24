@@ -33,6 +33,7 @@ class _HomePageState extends State<HomePage> {
   final scrollController = ScrollController();
   final int limit = 10;
   bool dataSaver = false;
+  Map<String, dynamic>? userData;
 
   var mangas = [];
   User? loggedInUser;
@@ -91,11 +92,25 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  void getCurrentUser() {
+  Future<void> getCurrentUser() async {
     try {
       final user = _auth.currentUser;
       if (user != null) {
+        // setState(() async {
+        //   loggedInUser = user;
+        //   userData = await _firestore
+        //       .collection('profile')
+        //       .doc(loggedInUser?.email)
+        //       .get();
+        // });
         loggedInUser = user;
+        _firestore
+            .collection('profile')
+            .where('email', isEqualTo: loggedInUser?.email)
+            .get()
+            .then((value) {
+          userData = value.docs[0].data();
+        });
       }
     } catch (error) {
       debugPrint(error.toString());
@@ -182,7 +197,6 @@ class _HomePageState extends State<HomePage> {
               IconButton(
                 icon: const Icon(Icons.search),
                 onPressed: () {
-                  // print('clicked search!');
                   showSearch(context: context, delegate: SearchPageDelegate());
                 },
               ),
@@ -192,11 +206,19 @@ class _HomePageState extends State<HomePage> {
               Tab(child: Text('Bookmarks'))
             ]),
           ),
-          drawer: const SideMenu(),
+          drawer: userData == null
+              ? const SideMenu()
+              : SideMenu(
+                  email: userData!['email'],
+                  username: userData!['username'] ?? '',
+                ),
           body: TabBarView(children: [
             const InfiniteScrollGrid(mode: 'home'),
-            loggedInUser != null
-                ? const InfiniteScrollGrid(mode: 'bookmarks')
+            userData != null
+                ? InfiniteScrollGrid(
+                    mode: 'bookmarks',
+                    bookmarks: userData!['bookmarks'],
+                  )
                 : Center(
                     child: TextButton(
                     child: const Text('Login to get access to bookmarks.'),

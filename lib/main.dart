@@ -29,12 +29,13 @@ class Home extends StatelessWidget {
         //     fontFamily: 'Comic Sans'),
         initialRoute: HomePage.routeName,
         routes: {
-          HomePage.routeName: (context) => HomePage(),
+          HomePage.routeName: (context) => const HomePage(),
           MangaPage.routeName: (context) => MangaPage(),
-          LoginPage.routeName: (context) => LoginPage(),
-          AccountSettingsPage.routeName: (context) => AccountSettingsPage(),
+          LoginPage.routeName: (context) => const LoginPage(),
+          AccountSettingsPage.routeName: (context) =>
+              const AccountSettingsPage(),
           DisplayManga.routeName: (context) => DisplayManga(),
-          ProfilePage.routeName: (context) => ProfilePage(),
+          ProfilePage.routeName: (context) => const ProfilePage(),
           // '/manga': (c) => Builder(builder: (context) {
           //       return MangaPage();
           //     }),

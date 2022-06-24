@@ -1,45 +1,21 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mangaapp/pages/login_page.dart';
 import 'package:mangaapp/pages/profile_page.dart';
 import 'package:mangaapp/pages/account_settings_page.dart';
 import 'package:mangaapp/pages/subscribe_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SideMenu extends StatefulWidget {
-  final String? username;
+  final String username;
   final String? email;
-  const SideMenu({Key? key, this.username, this.email}) : super(key: key);
+  const SideMenu({Key? key, this.username = '', this.email}) : super(key: key);
 
   @override
   State<SideMenu> createState() => _SideMenuState();
 }
 
 class _SideMenuState extends State<SideMenu> {
-  final _auth = FirebaseAuth.instance;
-  final _firestore = FirebaseFirestore.instance;
-  User? currentUser;
-  String username = 'Hello';
-
-  @override
-  void initState() {
-    super.initState();
-    getCurrentUser();
-    getUsername(currentUser?.email);
-  }
-
-  void getCurrentUser() {
-    try {
-      final user = _auth.currentUser;
-      if (user != null) {
-        currentUser = user;
-      }
-    } catch (error) {
-      debugPrint(error.toString());
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     final auth = FirebaseAuth.instance;
@@ -50,20 +26,12 @@ class _SideMenuState extends State<SideMenu> {
     );
   }
 
-  void getUsername(String? email) async {
-    if (email != null) {
-      final data = await _firestore.collection('profile').doc(email).get();
-      var name = data.data()?['username'];
-      setState(() {
-        username = "Hello, $name.";
-      });
-    }
-  }
-
   Widget buildHeader(BuildContext context) {
     return UserAccountsDrawerHeader(
-        accountName: Text(username),
-        accountEmail: Text(currentUser?.email ?? 'Sign Up for More Features!'));
+        accountName: widget.username.isNotEmpty
+            ? Text("Hello, ${widget.username}")
+            : const Text("Hello"),
+        accountEmail: Text(widget.email ?? 'Sign Up for More Features!'));
   }
 
   Widget buildMenu(BuildContext context, FirebaseAuth auth) {
@@ -106,12 +74,14 @@ class _SideMenuState extends State<SideMenu> {
   }
 
   Widget _buildAuthTile(FirebaseAuth auth) {
-    return currentUser != null
+    return widget.email != null
         ? ListTile(
             leading: const Icon(Icons.logout),
             title: const Text('Logout'),
             onTap: () {
               auth.signOut();
+              SharedPreferences.getInstance()
+                  .then((preferences) => preferences.clear());
               Navigator.of(context).pushNamed(LoginPage.routeName);
             })
         : ListTile(
