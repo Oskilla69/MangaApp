@@ -21,7 +21,8 @@ class SlidingAppBar extends StatelessWidget implements PreferredSizeWidget {
     return SizedBox(
       height: 80.h,
       child: SlideTransition(
-        position: Tween<Offset>(begin: Offset.zero, end: Offset(0, -1)).animate(
+        position:
+            Tween<Offset>(begin: Offset.zero, end: const Offset(0, -1)).animate(
           CurvedAnimation(parent: controller, curve: Curves.fastOutSlowIn),
         ),
         child: child,

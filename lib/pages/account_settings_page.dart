@@ -3,17 +3,17 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mangaapp/helpers/app_constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class SettingsPage extends StatefulWidget {
-  const SettingsPage({Key? key}) : super(key: key);
+class AccountSettingsPage extends StatefulWidget {
+  const AccountSettingsPage({Key? key}) : super(key: key);
   static const routeName = '/settings';
 
   @override
-  State<SettingsPage> createState() => _SettingsPageState();
+  State<AccountSettingsPage> createState() => _AccountSettingsPageState();
 }
 
-class _SettingsPageState extends State<SettingsPage> {
+class _AccountSettingsPageState extends State<AccountSettingsPage> {
   bool dataSaver = false;
-  bool verticalScroll = false;
+  bool verticalScroll = true;
 
   @override
   void initState() {
@@ -26,7 +26,7 @@ class _SettingsPageState extends State<SettingsPage> {
     setState(() {
       dataSaver = prefs.getBool(SHARED_PREFERENCES.DATA_SAVER.parse()) ?? false;
       verticalScroll =
-          prefs.getBool(SHARED_PREFERENCES.VERTICAL_SCROLL.parse()) ?? false;
+          prefs.getBool(SHARED_PREFERENCES.VERTICAL_SCROLL.parse()) ?? true;
     });
   }
 
@@ -93,6 +93,7 @@ class _SettingsPageState extends State<SettingsPage> {
       child: InkWell(
         onTap: () => _setVerticalDirection(vertical),
         splashColor: Colors.black26,
+        splashFactory: InkRipple.splashFactory,
         child: Column(
           children: [
             Ink.image(

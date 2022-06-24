@@ -2,12 +2,13 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mangaapp/pages/display_manga.dart';
 import 'package:mangaapp/widgets/read_more.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../helpers/app_constants.dart';
 
 class MangaSummary extends StatefulWidget {
   // const MangaSummary({Key? key}) : super(key: key);
@@ -22,6 +23,7 @@ class _MangaSummaryState extends State<MangaSummary> {
   final _storage = FirebaseStorage.instance;
 
   final _firestore = FirebaseFirestore.instance;
+  bool dataSaver = false;
   // List<QueryDocumentSnapshot<Map<String, dynamic>>> chapters = [];
 
   List<Widget> chapters = [];
@@ -50,6 +52,14 @@ class _MangaSummaryState extends State<MangaSummary> {
         });
       },
     );
+    _loadPreferences();
+  }
+
+  Future<void> _loadPreferences() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      dataSaver = prefs.getBool(SHARED_PREFERENCES.DATA_SAVER.parse()) ?? false;
+    });
   }
 
   @override

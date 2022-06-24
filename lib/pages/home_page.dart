@@ -10,11 +10,12 @@ import 'package:flutter/services.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mangaapp/components/home_page_grid.dart';
+import 'package:mangaapp/helpers/app_constants.dart';
 import 'package:mangaapp/pages/search_page.dart';
 import 'package:mangaapp/pages/login_page.dart';
 import 'package:mangaapp/widgets/side_menu.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'manga_page.dart';
-import 'package:http/http.dart' as http;
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -31,6 +32,7 @@ class _HomePageState extends State<HomePage> {
   bool hasMore = true;
   final scrollController = ScrollController();
   final int limit = 10;
+  bool dataSaver = false;
 
   var mangas = [];
   User? loggedInUser;
@@ -44,9 +46,48 @@ class _HomePageState extends State<HomePage> {
     scrollController.addListener(() {
       if (scrollController.position.maxScrollExtent ==
           scrollController.offset) {
-        print('loading...');
         appendManga();
       }
+    });
+    _loadPreferences();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (loggedInUser == null) {
+        showModalBottomSheet<void>(
+            context: context,
+            builder: (BuildContext context) {
+              return SizedBox(
+                height: 0.32.sh,
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 40.w),
+                        child: Text(
+                          'Login/Sign up to get access to even more features!',
+                          style: Theme.of(context).textTheme.headline5,
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 20.h,
+                      ),
+                      ElevatedButton(
+                          onPressed: () {
+                            Navigator.pushNamed(context, LoginPage.routeName);
+                          },
+                          child: const Text('Login/Sign Up'))
+                    ]),
+              );
+            });
+      }
+    });
+  }
+
+  Future<void> _loadPreferences() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      dataSaver = prefs.getBool(SHARED_PREFERENCES.DATA_SAVER.parse()) ?? false;
     });
   }
 
@@ -132,103 +173,51 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    // double width = MediaQuery.of(context).size.width;
-    // double height = MediaQuery.of(context).size.height;
-    // pushMangaData();
-    // // Height (without SafeArea)
-    // var padding = MediaQuery.of(context).viewPadding;
-    // double no = height - padding.top - padding.bottom;
-
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (loggedInUser == null) {
-        ScaffoldState().showBottomSheet((context) => BottomSheet(
-            onClosing: () {},
-            builder: (context) {
-              return SizedBox(
-                height: MediaQuery.of(context).size.height * 0.5,
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.1,
-                      child: Center(
-                        child: Text(
-                          'Welcome to MangaApp',
-                          style: TextStyle(
-                              fontSize: ScreenUtil().setSp(40),
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.1,
-                      child: Center(
-                        child: Text(
-                          'Please login to continue',
-                          style: TextStyle(
-                              fontSize: ScreenUtil().setSp(30),
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.1,
-                      child: Center(
-                        child: ElevatedButton(
-                          onPressed: () {
-                            Navigator.pushNamed(context, LoginPage.routeName);
-                          },
-                          child: const Text('Login'),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              );
-            }));
-        // ScaffoldMessenger.of(context).showMaterialBanner(MaterialBanner(
-        //     content: Text('Please sign in/sign up for the best experience.'),
-        //     actions: [
-        //       TextButton(
-        //           onPressed: () {
-        //             Navigator.pushNamed(context, LoginPage.routeName);
-        //             ScaffoldMessenger.of(context).hideCurrentMaterialBanner();
-        //           },
-        //           child: Text('Sign In/Up')),
-        //       TextButton(
-        //           onPressed: () {
-        //             ScaffoldMessenger.of(context).hideCurrentMaterialBanner();
-        //           },
-        //           child: Text('Close'))
-        //     ]));
-      }
-    });
-    return Scaffold(
-        appBar: AppBar(
-          title: const Text('Manga App'),
-          actions: [
-            IconButton(
-              icon: const Icon(Icons.search),
-              onPressed: () {
-                // print('clicked search!');
-                showSearch(context: context, delegate: SearchPageDelegate());
-              },
-            ),
-          ],
-        ),
-        drawer: const SideMenu(),
-        body: const InfiniteScrollGrid(sortby: 'last_updated')
-        // body: OrientationBuilder(builder: (context, orientation) {
-        //   List<Widget> mangaGrid = _buildMangaGrid(orientation);
-        //   return GridView.count(
-        //       controller: scrollController,
-        //       crossAxisCount: orientation == Orientation.portrait
-        //           ? (1.sw / 200.w).round()
-        //           : (1.sw / 120.w).round(),
-        //       childAspectRatio: orientation == Orientation.portrait
-        //           ? 460.w / 690.h
-        //           : 360.w / 1669.h,
-        //       children: mangaGrid);
-        );
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+          appBar: AppBar(
+            title: const Text('Manga App'),
+            actions: [
+              IconButton(
+                icon: const Icon(Icons.search),
+                onPressed: () {
+                  // print('clicked search!');
+                  showSearch(context: context, delegate: SearchPageDelegate());
+                },
+              ),
+            ],
+            bottom: const TabBar(tabs: [
+              Tab(child: Text('Home')),
+              Tab(child: Text('Bookmarks'))
+            ]),
+          ),
+          drawer: const SideMenu(),
+          body: TabBarView(children: [
+            const InfiniteScrollGrid(mode: 'home'),
+            loggedInUser != null
+                ? const InfiniteScrollGrid(mode: 'bookmarks')
+                : Center(
+                    child: TextButton(
+                    child: const Text('Login to get access to bookmarks.'),
+                    onPressed: () {
+                      Navigator.pushNamed(context, LoginPage.routeName);
+                    },
+                  ))
+          ])
+          // body: OrientationBuilder(builder: (context, orientation) {
+          //   List<Widget> mangaGrid = _buildMangaGrid(orientation);
+          //   return GridView.count(
+          //       controller: scrollController,
+          //       crossAxisCount: orientation == Orientation.portrait
+          //           ? (1.sw / 200.w).round()
+          //           : (1.sw / 120.w).round(),
+          //       childAspectRatio: orientation == Orientation.portrait
+          //           ? 460.w / 690.h
+          //           : 360.w / 1669.h,
+          //       children: mangaGrid);
+          ),
+    );
   }
 
   List<Widget> _buildMangaGrid(orientation) {

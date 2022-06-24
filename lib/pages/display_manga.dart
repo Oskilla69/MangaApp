@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:mangaapp/components/sliding_app_bar.dart';
+import 'package:mangaapp/helpers/app_constants.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class DisplayManga extends StatefulWidget {
   DisplayManga({Key? key}) : super(key: key);
@@ -18,6 +20,8 @@ class _DisplayMangaState extends State<DisplayManga>
   bool _showAppBar = false;
 
   late final AnimationController _controller;
+  bool dataSaver = false;
+  bool verticalScroll = true;
 
   @override
   void initState() {
@@ -26,6 +30,16 @@ class _DisplayMangaState extends State<DisplayManga>
       vsync: this,
       duration: const Duration(milliseconds: 400),
     );
+    _loadPreferences();
+  }
+
+  Future<void> _loadPreferences() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      dataSaver = prefs.getBool(SHARED_PREFERENCES.DATA_SAVER.parse()) ?? false;
+      verticalScroll =
+          prefs.getBool(SHARED_PREFERENCES.VERTICAL_SCROLL.parse()) ?? true;
+    });
   }
 
   @override
@@ -51,7 +65,9 @@ class _DisplayMangaState extends State<DisplayManga>
               // onDoubleTap: () {
               //   print('zoom in');
               // },
-              child: _buildVerticalScroll(mangaPages)),
+              child: verticalScroll
+                  ? _buildVerticalScroll(mangaPages)
+                  : _buildHorizontalScroll(mangaPages)),
           SlidingAppBar(
             controller: _controller,
             visible: _showAppBar,
@@ -73,6 +89,7 @@ class _DisplayMangaState extends State<DisplayManga>
 
   Widget _buildHorizontalScroll(Map<String, dynamic> mangaPages) {
     return ListView(
+        reverse: true,
         scrollDirection: Axis.horizontal,
         children: mangaPages['pages'].map<Widget>(
           (pageUrl) {

@@ -2,15 +2,21 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:mangaapp/pages/manga_page.dart';
 
 class InfiniteScrollGrid extends StatefulWidget {
-  const InfiniteScrollGrid({Key? key, required String sortby})
+  final String sortby;
+  final String mode;
+  final List<String> bookmarks;
+
+  const InfiniteScrollGrid(
+      {Key? key,
+      this.sortby = 'last_updated',
+      required this.mode,
+      this.bookmarks = const []})
       : super(key: key);
 
   @override
@@ -22,12 +28,13 @@ class _InfiniteScrollGridState extends State<InfiniteScrollGrid> {
   final _storage = FirebaseStorage.instance;
   final _firestore = FirebaseFirestore.instance;
   final limit = 10;
-  String sortby = 'last_updated';
 
   @override
   void initState() {
     _pagingController.addPageRequestListener((pageKey) {
-      _fetchPage(pageKey);
+      widget.mode == 'home'
+          ? _fetchHomePage(pageKey)
+          : _fetchBookmarks(pageKey);
     });
     super.initState();
   }
@@ -38,20 +45,46 @@ class _InfiniteScrollGridState extends State<InfiniteScrollGrid> {
     super.dispose();
   }
 
-  void _fetchPage(int page) {
+  void _fetchBookmarks(int page) {
     try {
       _firestore
           .collection('manga')
-          .orderBy(sortby)
+          .where("title", whereIn: widget.bookmarks)
+          .orderBy(widget.sortby)
           .startAt([page])
-          .limit(limit)
+          .limitToLast(limit)
           .get()
           .then((res) {
             var newMangas = res.docs.map((manga) => manga.data());
             if (newMangas.length < limit) {
-              _pagingController.appendLastPage(newMangas.toList());
+              _pagingController
+                  .appendLastPage(newMangas.toList().reversed.toList());
             } else {
-              _pagingController.appendPage(newMangas.toList(), page + limit);
+              _pagingController.appendPage(
+                  newMangas.toList().reversed.toList(), page + limit);
+            }
+          });
+    } catch (error) {
+      _pagingController.error = error;
+    }
+  }
+
+  void _fetchHomePage(int page) {
+    try {
+      _firestore
+          .collection('manga')
+          .orderBy(widget.sortby)
+          .startAt([page])
+          .limitToLast(limit)
+          .get()
+          .then((res) {
+            var newMangas = res.docs.map((manga) => manga.data());
+            if (newMangas.length < limit) {
+              _pagingController
+                  .appendLastPage(newMangas.toList().reversed.toList());
+            } else {
+              _pagingController.appendPage(
+                  newMangas.toList().reversed.toList(), page + limit);
             }
           });
     } catch (error) {

@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names
+
 const GENRE_ROMANCE = 'Romance';
 const GENRE_DRAMA = 'Drama';
 const GENRE_COMEDY = 'Comedy';
@@ -23,7 +25,8 @@ List<dynamic> SORT_BY = [
   'Rating',
 ];
 
-enum SHARED_PREFERENCES { DATA_SAVER, VERTICAL_SCROLL, HORIZONTAL_SCROLL }
+// ignore: camel_case_types
+enum SHARED_PREFERENCES { DATA_SAVER, VERTICAL_SCROLL }
 
 extension Parse on SHARED_PREFERENCES {
   String parse() {
