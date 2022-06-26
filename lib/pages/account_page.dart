@@ -72,8 +72,8 @@ class _AccountPageState extends State<AccountPage> {
                             if (currProfilePic != currImage) {
                               profile.setProfilePic(currImage, true);
                               currProfilePic = currImage;
-                            } else if (currUsername !=
-                                usernameController.text) {
+                            }
+                            if (currUsername != usernameController.text) {
                               profile.setUsername(
                                   usernameController.text, true);
                               currUsername = usernameController.text;
