@@ -28,7 +28,6 @@ class _LoginPageState extends State<LoginPage> {
           title: 'MangaApp',
           navigateBackAfterRecovery: true,
           onLogin: ((loginData) async {
-            print("logging in");
             try {
               final user = await _auth.signInWithEmailAndPassword(
                   email: loginData.name, password: loginData.password);
@@ -42,9 +41,13 @@ class _LoginPageState extends State<LoginPage> {
             Navigator.of(context).pushNamed(HomePage.routeName);
           },
           onSignup: ((signupData) async {
-            print("signing up");
-
             email = signupData.name!;
+            _firestore.collection('profile').doc(email).set({
+              'bookmarks': [""],
+              'email': email,
+              'profile_image': null,
+              "username": email
+            });
             _auth
                 .createUserWithEmailAndPassword(
                     email: signupData.name!, password: signupData.password!)

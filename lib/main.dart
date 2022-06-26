@@ -4,15 +4,22 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mangaapp/pages/home_page.dart';
 import 'package:mangaapp/pages/login_page.dart';
 import 'package:mangaapp/pages/manga_page.dart';
-import 'package:mangaapp/pages/profile_page.dart';
+import 'package:mangaapp/pages/account_page.dart';
 import 'package:mangaapp/pages/account_settings_page.dart';
 import 'package:mangaapp/pages/display_manga.dart';
+import 'package:mangaapp/providers/profile_model.dart';
+import 'package:provider/provider.dart';
 import 'helpers/appcolours.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(const Home());
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider(create: ((context) {
+      ProfileModel pfModel = ProfileModel();
+      return pfModel;
+    })),
+  ], child: const Home()));
 }
 
 class Home extends StatelessWidget {
@@ -35,7 +42,7 @@ class Home extends StatelessWidget {
           AccountSettingsPage.routeName: (context) =>
               const AccountSettingsPage(),
           DisplayManga.routeName: (context) => DisplayManga(),
-          ProfilePage.routeName: (context) => const ProfilePage(),
+          AccountPage.routeName: (context) => const AccountPage(),
           // '/manga': (c) => Builder(builder: (context) {
           //       return MangaPage();
           //     }),

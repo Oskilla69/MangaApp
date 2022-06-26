@@ -74,7 +74,7 @@ class _InfiniteScrollGridState extends State<InfiniteScrollGrid> {
       _firestore
           .collection('manga')
           .orderBy(widget.sortby)
-          .startAt([page])
+          .startAt([_pagingController.itemList![-1]])
           .limitToLast(limit)
           .get()
           .then((res) {
@@ -100,7 +100,27 @@ class _InfiniteScrollGridState extends State<InfiniteScrollGrid> {
             return PagedGridView(
               pagingController: _pagingController,
               builderDelegate: PagedChildBuilderDelegate(
-                  itemBuilder: ((context, dynamic manga, index) {
+                  noItemsFoundIndicatorBuilder: (context) {
+                return Column(
+                  children: [
+                    SizedBox(
+                      height: orientation == Orientation.portrait ? 20.h : 40.h,
+                    ),
+                    Text(
+                      'No bookmarks yet.',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: orientation == Orientation.portrait
+                              ? 16.h
+                              : 36.h),
+                    ),
+                    Text(
+                      'Come back after you have bookmarked some manga!',
+                      style: Theme.of(context).textTheme.bodyText2,
+                    ),
+                  ],
+                );
+              }, itemBuilder: ((context, dynamic manga, index) {
                 return GestureDetector(
                     onTap: () {
                       Navigator.pushNamed(context, MangaPage.routeName,

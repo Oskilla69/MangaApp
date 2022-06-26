@@ -9,11 +9,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mangaapp/components/home_page_grid.dart';
+// import 'package:mangaapp/components/home_page_grid.dart';
+import 'package:mangaapp/components/infinite_scroll/infinite_scroll_grid.dart';
 import 'package:mangaapp/helpers/app_constants.dart';
 import 'package:mangaapp/pages/search_page.dart';
 import 'package:mangaapp/pages/login_page.dart';
+import 'package:mangaapp/providers/profile_model.dart';
 import 'package:mangaapp/widgets/side_menu.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'manga_page.dart';
 
@@ -51,6 +54,11 @@ class _HomePageState extends State<HomePage> {
       }
     });
     _loadPreferences();
+
+    ChangeNotifierProvider(
+      create: ((context) => ProfileModel()),
+    );
+
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (loggedInUser == null) {
         showModalBottomSheet<void>(
@@ -106,10 +114,10 @@ class _HomePageState extends State<HomePage> {
         loggedInUser = user;
         _firestore
             .collection('profile')
-            .where('email', isEqualTo: loggedInUser?.email)
+            .doc(loggedInUser?.email)
             .get()
             .then((value) {
-          userData = value.docs[0].data();
+          userData = value.data();
         });
       }
     } catch (error) {
@@ -188,6 +196,13 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final profileProvider = Provider.of<ProfileModel>(context, listen: false);
+
+    profileProvider.setEmail(userData?['email'] ?? '', false);
+    profileProvider.setUsername(userData?['username'] ?? '', false);
+    profileProvider.setProfilePic(
+        userData?['profile_image'] ?? 'assets/images/logo.jpeg', false);
+
     return DefaultTabController(
       length: 2,
       child: Scaffold(
@@ -206,12 +221,7 @@ class _HomePageState extends State<HomePage> {
               Tab(child: Text('Bookmarks'))
             ]),
           ),
-          drawer: userData == null
-              ? const SideMenu()
-              : SideMenu(
-                  email: userData!['email'],
-                  username: userData!['username'] ?? '',
-                ),
+          drawer: SideMenu(),
           body: TabBarView(children: [
             const InfiniteScrollGrid(mode: 'home'),
             userData != null
