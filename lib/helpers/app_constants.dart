@@ -26,7 +26,7 @@ List<dynamic> SORT_BY = [
 ];
 
 // ignore: camel_case_types
-enum SHARED_PREFERENCES { DATA_SAVER, VERTICAL_SCROLL }
+enum SHARED_PREFERENCES { DATA_SAVER, VERTICAL_SCROLL, NOTIFICATIONS }
 
 extension Parse on SHARED_PREFERENCES {
   String parse() {

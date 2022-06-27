@@ -13,6 +13,7 @@ class AccountSettingsPage extends StatefulWidget {
 
 class _AccountSettingsPageState extends State<AccountSettingsPage> {
   bool dataSaver = false;
+  bool notifications = true;
   bool verticalScroll = true;
 
   @override
@@ -27,6 +28,8 @@ class _AccountSettingsPageState extends State<AccountSettingsPage> {
       dataSaver = prefs.getBool(SHARED_PREFERENCES.DATA_SAVER.parse()) ?? false;
       verticalScroll =
           prefs.getBool(SHARED_PREFERENCES.VERTICAL_SCROLL.parse()) ?? true;
+      notifications =
+          prefs.getBool(SHARED_PREFERENCES.NOTIFICATIONS.parse()) ?? true;
     });
   }
 
@@ -43,6 +46,14 @@ class _AccountSettingsPageState extends State<AccountSettingsPage> {
     setState(() {
       verticalScroll = val;
       prefs.setBool(SHARED_PREFERENCES.VERTICAL_SCROLL.parse(), val);
+    });
+  }
+
+  Future<void> _setNotifications(val) async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      notifications = val;
+      prefs.setBool(SHARED_PREFERENCES.NOTIFICATIONS.parse(), val);
     });
   }
 
@@ -74,6 +85,13 @@ class _AccountSettingsPageState extends State<AccountSettingsPage> {
               title: const Text('Data saver mode'),
               value: dataSaver,
               onChanged: _setDataSaver),
+        ),
+        Tooltip(
+          message: 'Get notifications on the latest manga updates',
+          child: SwitchListTile(
+              title: const Text('Notifications'),
+              value: notifications,
+              onChanged: _setNotifications),
         ),
         ListTile(
           leading: const Icon(Icons.delete_forever),
