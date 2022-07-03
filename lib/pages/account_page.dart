@@ -1,9 +1,14 @@
+import 'dart:io';
+
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:mangaapp/helpers/firebase_storage.dart';
 import 'package:mangaapp/providers/profile_model.dart';
 import 'package:provider/provider.dart';
 
@@ -24,6 +29,7 @@ class _AccountPageState extends State<AccountPage> {
 
   late String currImage = Provider.of<ProfileModel>(context).profilePic;
   bool changesMade = false;
+  bool _exists = false;
 
   @override
   Widget build(BuildContext context) {
@@ -68,22 +74,28 @@ class _AccountPageState extends State<AccountPage> {
               actions: changesMade
                   ? [
                       TextButton(
-                          onPressed: () {
-                            if (currProfilePic != currImage) {
-                              profile.setProfilePic(currImage, true);
-                              currProfilePic = currImage;
-                            }
-                            if (currUsername != usernameController.text) {
-                              profile.setUsername(
-                                  usernameController.text, true);
-                              currUsername = usernameController.text;
-                              _firestore
-                                  .collection('profile')
-                                  .doc(profile.email)
-                                  .update({'username': currUsername});
-                            }
-
-                            changesMade = false;
+                          onPressed: () async {
+                            await showDialog(
+                                barrierDismissible: false,
+                                context: context,
+                                builder: (context) {
+                                  handleSave(
+                                      currProfilePic, currUsername, profile);
+                                  // return const Dialog(
+                                  //   // The background color
+                                  //   backgroundColor: Colors.transparent,
+                                  //   insetPadding: EdgeInsets.all(0),
+                                  //   child: Center(
+                                  //       child: LinearProgressIndicator()),
+                                  // );
+                                  return FirebaseStorageDialog(
+                                      profile: profile,
+                                      currImage: currImage,
+                                      onSuccess: () {
+                                        print('ahhhhh');
+                                      },
+                                      onFailure: () {});
+                                });
                           },
                           child: const Text('Save'))
                     ]
@@ -125,16 +137,95 @@ class _AccountPageState extends State<AccountPage> {
                 onChanged: (value) {
                   setState(() {
                     changesMade = true;
+                    _exists = false;
                   });
                 },
-                decoration: const InputDecoration(
-                    labelText: 'Username', border: OutlineInputBorder()),
+                decoration: InputDecoration(
+                    labelText: 'Username',
+                    border: const OutlineInputBorder(),
+                    errorText: _exists ? 'Username already exists.' : null),
               )
             ]),
           ),
         ),
       );
     });
+  }
+
+  void handleSave(
+    String currProfilePic,
+    String? currUsername,
+    ProfileModel profile,
+  ) {
+    if (currProfilePic != currImage &&
+        currUsername != usernameController.text) {
+      checkDuplicate(usernameController.text).then((unique) {
+        if (unique) {
+          handleUpload(_storage, profile, currImage, currUsername, _firestore,
+              () {
+            setState(() {
+              changesMade = false;
+            });
+            profile.setProfilePic(currImage, true);
+            profile.setUsername(usernameController.text, true);
+            currProfilePic = currImage;
+            currUsername = usernameController.text;
+
+            Navigator.of(context).pop();
+          }, () {
+            Navigator.of(context).pop();
+          });
+        } else {
+          setState(() {
+            _exists = true;
+          });
+
+          Navigator.of(context).pop();
+        }
+      });
+    } else if (currProfilePic != currImage) {
+      handleUpload(_storage, profile, currImage, null, _firestore, () {
+        profile.setProfilePic(currImage, true);
+        currProfilePic = currImage;
+        setState(() {
+          changesMade = false;
+        });
+
+        Navigator.of(context).pop();
+      }, () {
+        Navigator.of(context).pop();
+      });
+    } else if (currUsername != usernameController.text) {
+      checkDuplicate(usernameController.text).then((unique) {
+        if (unique) {
+          _firestore
+              .collection('profile')
+              .doc(profile.email)
+              .update({'username': currUsername});
+          setState(() {
+            changesMade = false;
+          });
+          profile.setUsername(usernameController.text, true);
+          currUsername = usernameController.text;
+
+          Navigator.of(context).pop();
+        } else {
+          setState(() {
+            _exists = true;
+          });
+
+          Navigator.of(context).pop();
+        }
+      });
+    }
+  }
+
+  Future<bool> checkDuplicate(String currUsername) async {
+    QuerySnapshot<Map<String, dynamic>> checkVal = await _firestore
+        .collection('profile')
+        .where('username', isEqualTo: currUsername)
+        .get();
+    return checkVal.docs.isEmpty;
   }
 
   Widget _getProfileImage() {
@@ -150,7 +241,10 @@ class _AccountPageState extends State<AccountPage> {
 
   // TODO: consider other test cases. Haven't thought about it yet
   ImageProvider<Object> _displayImage() {
-    return AssetImage(currImage);
+    dynamic provider = currImage.startsWith('https://')
+        ? CachedNetworkImageProvider(currImage)
+        : AssetImage(currImage);
+    return provider;
   }
 
   Future<void> _getImage() async {
