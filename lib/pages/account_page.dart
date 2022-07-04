@@ -81,20 +81,20 @@ class _AccountPageState extends State<AccountPage> {
                                 builder: (context) {
                                   handleSave(
                                       currProfilePic, currUsername, profile);
-                                  // return const Dialog(
-                                  //   // The background color
-                                  //   backgroundColor: Colors.transparent,
-                                  //   insetPadding: EdgeInsets.all(0),
-                                  //   child: Center(
-                                  //       child: LinearProgressIndicator()),
-                                  // );
-                                  return FirebaseStorageDialog(
-                                      profile: profile,
-                                      currImage: currImage,
-                                      onSuccess: () {
-                                        print('ahhhhh');
-                                      },
-                                      onFailure: () {});
+                                  return const Dialog(
+                                    // The background color
+                                    backgroundColor: Colors.transparent,
+                                    insetPadding: EdgeInsets.all(0),
+                                    child: Center(
+                                        child: LinearProgressIndicator()),
+                                  );
+                                  // return FirebaseStorageDialog(
+                                  //     profile: profile,
+                                  //     currImage: currImage,
+                                  //     onSuccess: () {
+                                  //       print('ahhhhh');
+                                  //     },
+                                  //     onFailure: () {});
                                 });
                           },
                           child: const Text('Save'))
@@ -250,8 +250,7 @@ class _AccountPageState extends State<AccountPage> {
   Future<void> _getImage() async {
     try {
       final XFile? image = await _imagePicker.pickImage(
-        source: ImageSource.gallery,
-      );
+          source: ImageSource.gallery, imageQuality: 25);
       setState(() {
         if (currImage != image!.path) {
           changesMade = true;

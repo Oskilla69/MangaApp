@@ -97,7 +97,7 @@ class ReadMoreState extends State<ReadMore> {
     final locale = widget.locale ?? Localizations.maybeLocaleOf(context);
 
     final colorClickableText =
-        widget.colorClickableText ?? Theme.of(context).accentColor;
+        widget.colorClickableText ?? Theme.of(context).colorScheme.secondary;
     final _defaultLessStyle = widget.lessStyle ??
         effectiveTextStyle?.copyWith(color: colorClickableText);
     final _defaultMoreStyle = widget.moreStyle ??
