@@ -53,6 +53,7 @@ dependencies:
   infinite_scroll_pagination: ^3.2.0
   flutterfire_ui: ^0.4.1+2
   image_picker: ^0.8.5+3
+  custom_refresh_indicator: ^1.2.1
 
 dev_dependencies:
   flutter_test:

@@ -202,6 +202,7 @@ class _HomePageState extends State<HomePage> {
     profileProvider.setUsername(userData?['username'] ?? '', false);
     profileProvider.setProfilePic(
         userData?['profile_image'] ?? 'assets/images/logo.jpeg', false);
+    profileProvider.addBookmarks(userData?['bookmarks'] ?? []);
 
     return DefaultTabController(
       length: 2,

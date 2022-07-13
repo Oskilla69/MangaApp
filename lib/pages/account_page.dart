@@ -144,7 +144,13 @@ class _AccountPageState extends State<AccountPage> {
                     labelText: 'Username',
                     border: const OutlineInputBorder(),
                     errorText: _exists ? 'Username already exists.' : null),
-              )
+              ),
+              ListTile(
+                leading: const Icon(Icons.delete_forever),
+                title: const Text('Delete Account'),
+                textColor: Colors.red,
+                onTap: () {},
+              ),
             ]),
           ),
         ),

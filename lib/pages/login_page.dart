@@ -48,11 +48,15 @@ class _LoginPageState extends State<LoginPage> {
               'profile_image': null,
               "username": email
             });
-            _auth
-                .createUserWithEmailAndPassword(
-                    email: signupData.name!, password: signupData.password!)
-                .then((value) => null)
-                .catchError((error) => debugPrint(error));
+            var currError = null;
+
+            try {
+              await _auth.createUserWithEmailAndPassword(
+                  email: signupData.name!, password: signupData.password!);
+            } catch (error) {
+              print(error);
+              return Future<String>.value(error.toString().split('] ').last);
+            }
           }),
           onRecoverPassword: (recoverPassword) {
             print('on recover password');

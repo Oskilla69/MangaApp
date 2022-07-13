@@ -29,7 +29,6 @@ class _MangaSummaryState extends State<MangaSummary> {
   List<Widget> chapters = [];
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _firestore
         .collection('manga')
@@ -45,7 +44,10 @@ class _MangaSummaryState extends State<MangaSummary> {
               title: Text('Chapter ${chapter['chapter']}'),
               onTap: () {
                 Navigator.pushNamed(context, DisplayManga.routeName,
-                    arguments: chapter.data());
+                    arguments: {
+                      'chapter': chapter.data(),
+                      'title': widget.manga['title']
+                    });
               },
             );
           }).toList();
@@ -98,7 +100,7 @@ class _MangaSummaryState extends State<MangaSummary> {
       children: [
         buildCover(manga),
         Padding(
-          padding: EdgeInsets.only(left: 8.w),
+          padding: EdgeInsets.only(left: 18.w, right: 18.w),
           child: Column(
             children: [
               ...buildSummary(context),
@@ -136,13 +138,13 @@ class _MangaSummaryState extends State<MangaSummary> {
   List<Widget> buildSummary(BuildContext context) {
     return [
       Text('Title - ${widget.manga['title']}',
-          textAlign: TextAlign.left,
+          textAlign: TextAlign.center,
           style: Theme.of(context).textTheme.titleLarge),
       Text('Author - ${widget.manga['author']}', textAlign: TextAlign.left),
       Text('Status - ${widget.manga['status']}', textAlign: TextAlign.left),
       ReadMore(
         'Synopsis - ${widget.manga['synopsis']}',
-        trimLines: 2,
+        trimLines: 3,
         colorClickableText: Colors.blue,
         style: Theme.of(context).textTheme.bodyText2,
         trimMode: TrimMode.Line,

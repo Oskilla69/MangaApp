@@ -92,13 +92,7 @@ class _AccountSettingsPageState extends State<AccountSettingsPage> {
               title: const Text('Notifications'),
               value: notifications,
               onChanged: _setNotifications),
-        ),
-        ListTile(
-          leading: const Icon(Icons.delete_forever),
-          title: const Text('Delete Account'),
-          textColor: Colors.red,
-          onTap: () {},
-        ),
+        )
       ]),
     );
   }
