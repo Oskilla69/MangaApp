@@ -25,7 +25,7 @@ class _LoginPageState extends State<LoginPage> {
       children: [
         FlutterLogin(
           logo: const AssetImage('assets/images/logo.jpeg'),
-          title: 'MangaApp',
+          title: 'Muhnga',
           navigateBackAfterRecovery: true,
           onLogin: ((loginData) async {
             try {
@@ -86,20 +86,20 @@ class _LoginPageState extends State<LoginPage> {
             return null;
           },
           loginProviders: [
-            LoginProvider(
-                icon: FontAwesomeIcons.google,
-                label: 'Google',
-                callback: () async {
-                  return null;
-                },
-                providerNeedsSignUpCallback: () => Future.value(true)),
-            LoginProvider(
-                callback: () async {
-                  return null;
-                },
-                icon: FontAwesomeIcons.facebook,
-                label: 'Facebook',
-                providerNeedsSignUpCallback: () => Future.value(true)),
+            // LoginProvider(
+            //     icon: FontAwesomeIcons.google,
+            //     label: 'Google',
+            //     callback: () async {
+            //       return null;
+            //     },
+            //     providerNeedsSignUpCallback: () => Future.value(true)),
+            // LoginProvider(
+            //     callback: () async {
+            //       return null;
+            //     },
+            //     icon: FontAwesomeIcons.facebook,
+            //     label: 'Facebook',
+            //     providerNeedsSignUpCallback: () => Future.value(true)),
           ],
           // additionalSignupFields: [
           //   UserFormField(

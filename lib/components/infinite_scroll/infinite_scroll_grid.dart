@@ -33,6 +33,9 @@ class _InfiniteScrollGridState extends State<InfiniteScrollGrid> {
   }
 
   Widget _fetchBookmarks() {
+    if (widget.bookmarks.isEmpty) {
+      return buildEmptyBookmarks();
+    }
     final query = _firestore
         .collection('manga')
         .where("title", whereIn: widget.bookmarks)
@@ -46,25 +49,29 @@ class _InfiniteScrollGridState extends State<InfiniteScrollGrid> {
     return buildGrid(query);
   }
 
+  Widget buildEmptyBookmarks() {
+    return Center(
+      child: Column(
+        children: [
+          SizedBox(height: 0.32.sh),
+          Text('No bookmarks yet.',
+              style: Theme.of(context).textTheme.titleLarge),
+          Text(
+            "Come back when you've added some bookmarks!",
+            style: Theme.of(context).textTheme.bodyText2,
+          )
+        ],
+      ),
+    );
+  }
+
   Widget buildGrid(query) {
     return OrientationBuilder(builder: (context, orientation) {
       return FirestoreQueryBuilder<Map<String, dynamic>>(
           query: query,
           builder: (context, snapshot, _) {
-            if (snapshot.docs.length <= 1) {
-              return Center(
-                child: Column(
-                  children: [
-                    SizedBox(height: 0.32.sh),
-                    Text('No bookmarks yet.',
-                        style: Theme.of(context).textTheme.titleLarge),
-                    Text(
-                      "Come back when you've added some bookmarks!",
-                      style: Theme.of(context).textTheme.bodyText2,
-                    )
-                  ],
-                ),
-              );
+            if (snapshot.docs.isEmpty) {
+              return buildEmptyBookmarks();
             }
             if (snapshot.isFetching) {
               return const Center(child: CircularProgressIndicator());

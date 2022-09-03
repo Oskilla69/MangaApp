@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:mangaapp/pages/account_page_no_user.dart';
 import 'package:mangaapp/pages/login_page.dart';
 import 'package:mangaapp/pages/account_page.dart';
 import 'package:mangaapp/pages/account_settings_page.dart';
@@ -54,7 +55,11 @@ class SideMenu extends StatelessWidget {
           leading: const Icon(Icons.account_circle),
           title: const Text('Account'),
           onTap: () {
-            Navigator.pushNamed(context, AccountPage.routeName);
+            if (_auth.currentUser == null) {
+              Navigator.pushNamed(context, AccountPageNoUser.routeName);
+            } else {
+              Navigator.pushNamed(context, AccountPage.routeName);
+            }
           },
         ),
         ListTile(

@@ -73,7 +73,7 @@ class _AccountSettingsPageState extends State<AccountSettingsPage> {
             buildOrientationToggles(
                 'Scroll Left', 'assets/images/scroll_left.png', context, false),
             buildOrientationToggles(
-                'Scroll Down', 'assets/images/scroll_down.jpeg', context, true)
+                'Scroll Down', 'assets/images/scroll_down.png', context, true)
           ],
         ),
         // TODO: decide on tooltip?

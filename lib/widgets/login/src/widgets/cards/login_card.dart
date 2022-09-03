@@ -429,6 +429,34 @@ class _LoginCardState extends State<_LoginCard> with TickerProviderStateMixin {
     );
   }
 
+  // CUSTOM BACK BUTTON IN LOGIN
+  Widget _buildBackButton(ThemeData theme, LoginTheme loginTheme) {
+    final calculatedTextColor =
+        (theme.cardTheme.color!.computeLuminance() < 0.5)
+            ? Colors.white
+            : theme.primaryColor;
+    return FadeIn(
+      controller: widget.loadingController,
+      offset: .5,
+      curve: _textButtonLoadingAnimationInterval,
+      fadeDirection: FadeDirection.topToBottom,
+      child: MaterialButton(
+        disabledTextColor: theme.primaryColor,
+        onPressed: () {
+          Navigator.pushReplacementNamed(context, HomePage.routeName);
+        },
+        padding: loginTheme.authButtonPadding ??
+            const EdgeInsets.symmetric(horizontal: 30.0, vertical: 8.0),
+        materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        textColor: loginTheme.switchAuthTextColor ?? calculatedTextColor,
+        child: const AnimatedText(
+          text: "BACK",
+          textRotation: AnimatedTextRotation.down,
+        ),
+      ),
+    );
+  }
+
   // Widget _buildProvidersLogInButton(ThemeData theme, LoginMessages messages,
   //     Auth auth, LoginTheme loginTheme) {
   //   return Row(
@@ -650,6 +678,7 @@ class _LoginCardState extends State<_LoginCard> with TickerProviderStateMixin {
                     : SizedBox.fromSize(
                         size: const Size.fromHeight(10),
                       ),
+                _buildBackButton(theme, loginTheme),
                 auth.loginProviders.isNotEmpty && !widget.hideProvidersTitle
                     ? _buildProvidersTitleFirst(messages)
                     : Container(),

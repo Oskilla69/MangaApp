@@ -24,7 +24,7 @@ class _MangaPageState extends State<MangaPage> {
 
   @override
   Widget build(BuildContext context) {
-    final profileProvider = Provider.of<ProfileModel>(context, listen: false);
+    final profileProvider = Provider.of<ProfileModel>(context, listen: true);
     List<dynamic> bookmarks = profileProvider.bookmarks;
     return ScreenUtilInit(builder: ((context, child) {
       return Scaffold(
@@ -33,37 +33,33 @@ class _MangaPageState extends State<MangaPage> {
             actions: [
               bookmarks.contains(widget.mangaDetails['title'])
                   ? IconButton(
-                      onPressed: () {
-                        print('delete');
+                      onPressed: () async {
                         if (profileProvider.email.isNotEmpty) {
-                          profileProvider
-                              .removeBookmark(widget.mangaDetails['title']);
-                          _firestore
+                          await _firestore
                               .collection('profile')
                               .doc(profileProvider.email)
                               .update({
                             'bookmarks': FieldValue.arrayRemove(
                                 [widget.mangaDetails['title']])
                           });
-                          setState(() {});
+                          profileProvider.removeBookmark(
+                              widget.mangaDetails['title'], true);
                         }
                       },
                       icon: const Icon(Icons.bookmark_remove))
                   : IconButton(
-                      onPressed: () {
+                      onPressed: () async {
                         if (profileProvider.email.isNotEmpty) {
-                          profileProvider
-                              .addBookmark(widget.mangaDetails['title']);
-                          _firestore
+                          await _firestore
                               .collection('profile')
                               .doc(profileProvider.email)
                               .update({
                             'bookmarks': FieldValue.arrayUnion(
                                 [widget.mangaDetails['title']])
                           });
-                          setState(() {});
+                          profileProvider.addBookmark(
+                              widget.mangaDetails['title'], true);
                         }
-                        print('hi');
                       },
                       icon: const Icon(Icons.bookmark_add_outlined))
             ],

@@ -1,6 +1,9 @@
+import 'package:algolia/algolia.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mangaapp/pages/account_page_no_user.dart';
 import 'package:mangaapp/pages/comments_page.dart';
 import 'package:mangaapp/pages/home_page.dart';
 import 'package:mangaapp/pages/login_page.dart';
@@ -12,9 +15,17 @@ import 'package:mangaapp/providers/profile_model.dart';
 import 'package:provider/provider.dart';
 import 'helpers/appcolours.dart';
 
+class Application {
+  static final Algolia algolia = Algolia.init(
+    applicationId: dotenv.env['ALGOLIA_APP_ID']!,
+    apiKey: dotenv.env['ALGOLIA_SEARCH_API_KEY']!,
+  );
+}
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  await dotenv.load(fileName: '.env');
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(create: ((context) {
       ProfileModel pfModel = ProfileModel();
@@ -58,6 +69,8 @@ class Home extends StatelessWidget {
             page = const AccountSettingsPage();
           } else if (settings.name == AccountPage.routeName) {
             page = const AccountPage();
+          } else if (settings.name == AccountPageNoUser.routeName) {
+            page = const AccountPageNoUser();
           } else if (settings.name == MangaPage.routeName) {
             var data = settings.arguments as Map<String, dynamic>;
             page = MangaPage(

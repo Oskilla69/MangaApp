@@ -155,21 +155,15 @@ class _HomePageState extends State<HomePage> {
               .set({
             'chapter': i,
             'pages': [
-              "https://firebasestorage.googleapis.com/v0/b/mangaapp-7bb62.appspot.com/o/test%2Fop_tcb_1052morning_001.png?alt=media&token=647659a7-d17f-4206-9b65-5f322a0620e4",
-              "https://firebasestorage.googleapis.com/v0/b/mangaapp-7bb62.appspot.com/o/test%2Fop_tcb_1052morning_002.png?alt=media&token=6163bf0c-610c-4adb-9fa5-631c127e4f32",
-              "https://firebasestorage.googleapis.com/v0/b/mangaapp-7bb62.appspot.com/o/test%2Fop_tcb_1052morning_003.png?alt=media&token=28826eb0-4558-42fb-afd6-26862b49e386",
-              "https://firebasestorage.googleapis.com/v0/b/mangaapp-7bb62.appspot.com/o/test%2Fop_tcb_1052morning_004.png?alt=media&token=1af5bc54-7ffa-4d4c-adc9-898e09219354",
-              "https://firebasestorage.googleapis.com/v0/b/mangaapp-7bb62.appspot.com/o/test%2Fop_tcb_1052morning_005.png?alt=media&token=00fa95ab-f438-498e-b286-02cd42ae668b",
-              "https://firebasestorage.googleapis.com/v0/b/mangaapp-7bb62.appspot.com/o/test%2Fop_tcb_1052morning_006.png?alt=media&token=53a7c949-3afd-415b-85d8-3b02d730a674",
-              "https://firebasestorage.googleapis.com/v0/b/mangaapp-7bb62.appspot.com/o/test%2Fop_tcb_1052morning_007.png?alt=media&token=882cb9b7-27ea-4e25-812a-8d77eb930920",
-              "https://firebasestorage.googleapis.com/v0/b/mangaapp-7bb62.appspot.com/o/test%2Fop_tcb_1052morning_008.png?alt=media&token=89cf9e6a-ebee-47e6-96a7-2150c9919d43",
-              "https://firebasestorage.googleapis.com/v0/b/mangaapp-7bb62.appspot.com/o/test%2Fop_1051_tcb_009v2.png?alt=media&token=98207459-3207-4c3b-a094-923254aec1f2",
-              "https://firebasestorage.googleapis.com/v0/b/mangaapp-7bb62.appspot.com/o/test%2Fop_tcb_1052morning_010.png?alt=media&token=647e27b3-118a-4764-9b8c-44c096774888",
-              "https://firebasestorage.googleapis.com/v0/b/mangaapp-7bb62.appspot.com/o/test%2Fop_tcb_1052morning_011.png?alt=media&token=c2996f1f-48fd-4fe8-8a9c-d4b3b83141e0",
-              "https://firebasestorage.googleapis.com/v0/b/mangaapp-7bb62.appspot.com/o/test%2Fop_tcb_1052morning_012.png?alt=media&token=214299da-7d5a-4103-8d0d-b7c5889a5f3e",
-              "https://firebasestorage.googleapis.com/v0/b/mangaapp-7bb62.appspot.com/o/test%2Fop_tcb_1052morning_013.png?alt=media&token=c31341a8-8a67-4387-b79e-1da068f2296a",
-              "https://firebasestorage.googleapis.com/v0/b/mangaapp-7bb62.appspot.com/o/test%2Fop_tcb_1052morning_014.png?alt=media&token=f368d43f-e7ae-4cb8-af50-10da92f585b0",
-              "https://firebasestorage.googleapis.com/v0/b/mangaapp-7bb62.appspot.com/o/test%2Fop_tcb_1052morning_015.png?alt=media&token=7cc4b518-bd45-4e72-adb8-e4282ddcdf75",
+              "https://firebasestorage.googleapis.com/v0/b/mangaapp-7bb62.appspot.com/o/demo%2Fdrawisland.png?alt=media&token=2f7ad50b-63c0-4c53-ac8a-c9fb51b4ebfa",
+              "https://firebasestorage.googleapis.com/v0/b/mangaapp-7bb62.appspot.com/o/demo%2Fdrawisland%20(1).png?alt=media&token=a200219b-0f09-4e1a-9bd5-65766d556add",
+              "https://firebasestorage.googleapis.com/v0/b/mangaapp-7bb62.appspot.com/o/demo%2Fdrawisland%20(2).png?alt=media&token=6137f729-7721-4020-aba3-a85cd58258fb",
+              "https://firebasestorage.googleapis.com/v0/b/mangaapp-7bb62.appspot.com/o/demo%2Fdrawisland%20(3).png?alt=media&token=8640029c-1657-48b6-b768-106d688fcab7",
+              "https://firebasestorage.googleapis.com/v0/b/mangaapp-7bb62.appspot.com/o/demo%2Fdrawisland%20(4).png?alt=media&token=ed88acf9-10bc-466f-88e1-66e1165915e4",
+              "https://firebasestorage.googleapis.com/v0/b/mangaapp-7bb62.appspot.com/o/demo%2Fdrawisland%20(5).png?alt=media&token=d6933342-8e6d-4db2-b9b0-17c06ffaeee3",
+              "https://firebasestorage.googleapis.com/v0/b/mangaapp-7bb62.appspot.com/o/demo%2Fdrawisland%20(6).png?alt=media&token=b33d6ad0-7862-4444-8b1b-ce0a3eec95f8",
+              "https://firebasestorage.googleapis.com/v0/b/mangaapp-7bb62.appspot.com/o/demo%2Fdrawisland%20(7).png?alt=media&token=65dc715d-571f-422c-b0f6-537ac20e24a1",
+              "https://firebasestorage.googleapis.com/v0/b/mangaapp-7bb62.appspot.com/o/demo%2Fdrawisland%20(8).png?alt=media&token=fa06e558-466e-4956-8a81-8644b84da91b"
             ]
           });
         }
@@ -196,19 +190,19 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final profileProvider = Provider.of<ProfileModel>(context, listen: false);
+    final profileProvider = Provider.of<ProfileModel>(context, listen: true);
 
     profileProvider.setEmail(userData?['email'] ?? '', false);
     profileProvider.setUsername(userData?['username'] ?? '', false);
     profileProvider.setProfilePic(
         userData?['profile_image'] ?? 'assets/images/logo.jpeg', false);
-    profileProvider.addBookmarks(userData?['bookmarks'] ?? []);
+    profileProvider.addBookmarks(userData?['bookmarks'] ?? [], false);
 
     return DefaultTabController(
       length: 2,
       child: Scaffold(
           appBar: AppBar(
-            title: const Text('Manga App'),
+            title: const Text('Home'),
             actions: [
               IconButton(
                 icon: const Icon(Icons.search),
@@ -228,7 +222,7 @@ class _HomePageState extends State<HomePage> {
             userData != null
                 ? InfiniteScrollGrid(
                     mode: 'bookmarks',
-                    bookmarks: userData!['bookmarks'],
+                    bookmarks: profileProvider.bookmarks,
                   )
                 : Center(
                     child: TextButton(

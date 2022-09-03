@@ -27,16 +27,25 @@ class ProfileModel extends ChangeNotifier {
     }
   }
 
-  void addBookmark(String manga) {
+  void addBookmark(String manga, bool notify) {
     _bookmarks.add(manga);
+    if (notify) {
+      notifyListeners();
+    }
   }
 
-  void addBookmarks(List<dynamic> manga) {
+  void addBookmarks(List<dynamic> manga, bool notify) {
     _bookmarks.addAll(manga);
+    if (notify) {
+      notifyListeners();
+    }
   }
 
-  void removeBookmark(String manga) {
+  void removeBookmark(String manga, bool notify) {
     _bookmarks.remove(manga);
+    if (notify) {
+      notifyListeners();
+    }
   }
 
   // set username(String username) {
