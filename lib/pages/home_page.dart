@@ -127,24 +127,22 @@ class _HomePageState extends State<HomePage> {
 
   void pushMangaData() {
     rootBundle.loadString('assets/manga_data.json').then((data) async {
-      var covers = [
-        'gs://mangaapp-7bb62.appspot.com/One_Piece,_Volume_61_Cover_(Japanese).jpeg',
-        'gs://mangaapp-7bb62.appspot.com/Tokyo_Ghoul_volume_1_cover.jpeg',
-        'gs://mangaapp-7bb62.appspot.com/525.jpeg'
-      ];
+      // var covers = [
+      //   'gs://mangaapp-7bb62.appspot.com/One_Piece,_Volume_61_Cover_(Japanese).jpeg',
+      //   'gs://mangaapp-7bb62.appspot.com/Tokyo_Ghoul_volume_1_cover.jpeg',
+      //   'gs://mangaapp-7bb62.appspot.com/525.jpeg'
+      // ];
       for (var manga in json.decode(data)) {
         _firestore.collection('manga').doc(manga['title']).set({
           'author': manga['author'],
-          'rating': double.parse(manga['rating']),
+          'rating': manga['rating'],
           'synopsis': manga['synopsis'],
           'title': manga['title'],
           'status': manga['status'],
           'genre': manga['genre'],
           'views': manga['views'],
+          'cover': await _storage.refFromURL(manga['cover']).getDownloadURL(),
           'last_updated': DateTime.parse(manga['last_updated']),
-          'cover': await _storage
-              .refFromURL(covers[Random().nextInt(3)])
-              .getDownloadURL()
         });
         for (var i = 1; i < (Random().nextInt(8) + 3); i++) {
           _firestore

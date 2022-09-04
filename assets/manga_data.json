@@ -2,15 +2,22 @@
     {
         "title": "One Piece",
         "author": "Echiiro Oda",
-        "rating": "5.0",
-        "genre": ["Action", "Adventure", "Fantasy", "Romance"],
+        "rating": 5.0,
+        "genre": [
+            "Action",
+            "Adventure",
+            "Fantasy",
+            "Romance"
+        ],
         "views": 9999999999,
-        "last_updated": "2022-06-12 12:00:00"
-    }
-    ,{
+        "last_updated": "2022-06-12T12:00:00",
+        "cover": "gs://mangaapp-7bb62.appspot.com/Tokyo_Ghoul_volume_1_cover.jpeg",
+        "last_updated_timestamp": 1654999200.0
+    },
+    {
         "title": "Listen Attentively",
         "author": "Qing Shu",
-        "rating": "4.1",
+        "rating": 4.1,
         "synopsis": "haha cool this is a synopsis xd! blah blah blah blah blah blah blah blha blah blah.",
         "status": "completed",
         "genre": [
@@ -19,12 +26,14 @@
             "Yuri"
         ],
         "views": 6100993,
-        "last_updated": "2022-06-11 10:39:00"
+        "last_updated": "2022-06-11T10:39:00",
+        "cover": "gs://mangaapp-7bb62.appspot.com/Tokyo_Ghoul_volume_1_cover.jpeg",
+        "last_updated_timestamp": 1654907940.0
     },
     {
         "title": "Shi Ni Aruki",
         "author": "Ryouko",
-        "rating": "4.3",
+        "rating": 4.3,
         "synopsis": "haha cool this is a synopsis xd! blah blah blah blah blah blah blah blha blah blah.",
         "status": "completed",
         "genre": [
@@ -33,12 +42,14 @@
             "Mystery"
         ],
         "views": 5641009,
-        "last_updated": "2022-06-03 10:39:00"
+        "last_updated": "2022-06-03T10:39:00",
+        "cover": "gs://mangaapp-7bb62.appspot.com/One_Piece,_Volume_61_Cover_(Japanese).jpeg",
+        "last_updated_timestamp": 1654216740.0
     },
     {
         "title": "Dragon Prince Yuan",
         "author": "Tiancan Tudou",
-        "rating": "3.1",
+        "rating": 3.1,
         "synopsis": "A wealthy man, Kurosu Tokimune, meets an unnatural end.\nWith his death, his family joins together to grieve, only to become suspects of a police investigation as to whether he was murdered.\nTheir primary suspect: the adopted daughter of the Kurosu family and first to discover his body, Kurosu Tokiko. The girl who shows no distress at her father's death.\nAnd as all suspicions point to her, the second unnatural death occurs...\nIt's always been this way.\nWherever Tokiko goes, people tend to die.",
         "status": "completed",
         "genre": [
@@ -47,12 +58,14 @@
             "Shounen"
         ],
         "views": 8152787,
-        "last_updated": "2022-05-13 10:39:00"
+        "last_updated": "2022-05-13T10:39:00",
+        "cover": "gs://mangaapp-7bb62.appspot.com/One_Piece,_Volume_61_Cover_(Japanese).jpeg",
+        "last_updated_timestamp": 1652402340.0
     },
     {
         "title": "It's Hard Getting Married To A Prince",
         "author": "Chen Guojian",
-        "rating": "2.5",
+        "rating": 2.5,
         "synopsis": "haha cool this is a synopsis xd! blah blah blah blah blah blah blah blha blah blah.",
         "status": "ongoing",
         "genre": [
@@ -61,12 +74,14 @@
             "Psychological"
         ],
         "views": 5112288,
-        "last_updated": "2022-05-28 10:39:00"
+        "last_updated": "2022-05-28T10:39:00",
+        "cover": "gs://mangaapp-7bb62.appspot.com/Tokyo_Ghoul_volume_1_cover.jpeg",
+        "last_updated_timestamp": 1653698340.0
     },
     {
         "title": "Isshou Tsuzukerarenai Shigoto",
         "author": "Yamada Yugi",
-        "rating": "3.1",
+        "rating": 3.1,
         "synopsis": "haha cool this is a synopsis xd! blah blah blah blah blah blah blah blha blah blah.",
         "status": "ongoing",
         "genre": [
@@ -75,12 +90,14 @@
             "Mature"
         ],
         "views": 2149102,
-        "last_updated": "2022-05-15 10:39:00"
+        "last_updated": "2022-05-15T10:39:00",
+        "cover": "gs://mangaapp-7bb62.appspot.com/Tokyo_Ghoul_volume_1_cover.jpeg",
+        "last_updated_timestamp": 1652575140.0
     },
     {
         "title": "The Many Weaknesses Of Ayaka The Yankee Jk",
         "author": "Komaturi",
-        "rating": "4.7",
+        "rating": 4.7,
         "synopsis": "A wealthy man, Kurosu Tokimune, meets an unnatural end.\nWith his death, his family joins together to grieve, only to become suspects of a police investigation as to whether he was murdered.\nTheir primary suspect: the adopted daughter of the Kurosu family and first to discover his body, Kurosu Tokiko. The girl who shows no distress at her father's death.\nAnd as all suspicions point to her, the second unnatural death occurs...\nIt's always been this way.\nWherever Tokiko goes, people tend to die.",
         "status": "ongoing",
         "genre": [
@@ -89,12 +106,14 @@
             "Shoujo"
         ],
         "views": 6193734,
-        "last_updated": "2022-05-19 10:39:00"
+        "last_updated": "2022-05-19T10:39:00",
+        "cover": "gs://mangaapp-7bb62.appspot.com/Tokyo_Ghoul_volume_1_cover.jpeg",
+        "last_updated_timestamp": 1652920740.0
     },
     {
         "title": "The President's Valiant Wife",
         "author": "Zhang Yue Culture",
-        "rating": "2.3",
+        "rating": 2.3,
         "synopsis": "haha cool this is a synopsis xd! blah blah blah blah blah blah blah blha blah blah.",
         "status": "completed",
         "genre": [
@@ -103,12 +122,14 @@
             "Yuri"
         ],
         "views": 8918770,
-        "last_updated": "2022-05-18 10:39:00"
+        "last_updated": "2022-05-18T10:39:00",
+        "cover": "gs://mangaapp-7bb62.appspot.com/525.jpeg",
+        "last_updated_timestamp": 1652834340.0
     },
     {
         "title": "Sekai De Ichiban Yasashii Ongaku",
         "author": "OZAWA Mari",
-        "rating": "4.7",
+        "rating": 4.7,
         "synopsis": "haha cool this is a synopsis xd! blah blah blah blah blah blah blah blha blah blah.",
         "status": "hiatus",
         "genre": [
@@ -117,12 +138,14 @@
             "Josei"
         ],
         "views": 3346444,
-        "last_updated": "2022-05-23 10:39:00"
+        "last_updated": "2022-05-23T10:39:00",
+        "cover": "gs://mangaapp-7bb62.appspot.com/525.jpeg",
+        "last_updated_timestamp": 1653266340.0
     },
     {
         "title": "Peek",
         "author": "Big Friendly Teacher",
-        "rating": "3.6",
+        "rating": 3.6,
         "synopsis": "A wealthy man, Kurosu Tokimune, meets an unnatural end.\nWith his death, his family joins together to grieve, only to become suspects of a police investigation as to whether he was murdered.\nTheir primary suspect: the adopted daughter of the Kurosu family and first to discover his body, Kurosu Tokiko. The girl who shows no distress at her father's death.\nAnd as all suspicions point to her, the second unnatural death occurs...\nIt's always been this way.\nWherever Tokiko goes, people tend to die.",
         "status": "ongoing",
         "genre": [
@@ -131,12 +154,14 @@
             "Yaoi"
         ],
         "views": 3628861,
-        "last_updated": "2022-05-22 10:39:00"
+        "last_updated": "2022-05-22T10:39:00",
+        "cover": "gs://mangaapp-7bb62.appspot.com/525.jpeg",
+        "last_updated_timestamp": 1653179940.0
     },
     {
         "title": "Sound Asleep: Forgotten Memories",
         "author": "BasementRaccoon",
-        "rating": "2.3",
+        "rating": 2.3,
         "synopsis": "haha cool this is a synopsis xd! blah blah blah blah blah blah blah blha blah blah.",
         "status": "ongoing",
         "genre": [
@@ -145,12 +170,14 @@
             "Josei"
         ],
         "views": 2568798,
-        "last_updated": "2022-06-07 10:39:00"
+        "last_updated": "2022-06-07T10:39:00",
+        "cover": "gs://mangaapp-7bb62.appspot.com/525.jpeg",
+        "last_updated_timestamp": 1654562340.0
     },
     {
-        "title": "Big Uncle’S Podcast Of Mysteries",
+        "title": "Big Uncle\u2019S Podcast Of Mysteries",
         "author": "Big Uncle Boyang",
-        "rating": "3.1",
+        "rating": 3.1,
         "synopsis": "A wealthy man, Kurosu Tokimune, meets an unnatural end.\nWith his death, his family joins together to grieve, only to become suspects of a police investigation as to whether he was murdered.\nTheir primary suspect: the adopted daughter of the Kurosu family and first to discover his body, Kurosu Tokiko. The girl who shows no distress at her father's death.\nAnd as all suspicions point to her, the second unnatural death occurs...\nIt's always been this way.\nWherever Tokiko goes, people tend to die.",
         "status": "hiatus",
         "genre": [
@@ -159,12 +186,14 @@
             "Shounen Ai"
         ],
         "views": 2567749,
-        "last_updated": "2022-06-04 10:39:00"
+        "last_updated": "2022-06-04T10:39:00",
+        "cover": "gs://mangaapp-7bb62.appspot.com/Tokyo_Ghoul_volume_1_cover.jpeg",
+        "last_updated_timestamp": 1654303140.0
     },
     {
         "title": "I Became The Ugly Lady",
-        "author": "정하임",
-        "rating": "4.5",
+        "author": "\uc815\ud558\uc784",
+        "rating": 4.5,
         "synopsis": "A wealthy man, Kurosu Tokimune, meets an unnatural end.\nWith his death, his family joins together to grieve, only to become suspects of a police investigation as to whether he was murdered.\nTheir primary suspect: the adopted daughter of the Kurosu family and first to discover his body, Kurosu Tokiko. The girl who shows no distress at her father's death.\nAnd as all suspicions point to her, the second unnatural death occurs...\nIt's always been this way.\nWherever Tokiko goes, people tend to die.",
         "status": "ongoing",
         "genre": [
@@ -173,12 +202,14 @@
             "Supernatural"
         ],
         "views": 9357803,
-        "last_updated": "2022-05-26 10:39:00"
+        "last_updated": "2022-05-26T10:39:00",
+        "cover": "gs://mangaapp-7bb62.appspot.com/Tokyo_Ghoul_volume_1_cover.jpeg",
+        "last_updated_timestamp": 1653525540.0
     },
     {
         "title": "The Evil Prince's Incomparable Evil Princess",
         "author": "Open Source A&C",
-        "rating": "3.8",
+        "rating": 3.8,
         "synopsis": "haha cool this is a synopsis xd! blah blah blah blah blah blah blah blha blah blah.",
         "status": "hiatus",
         "genre": [
@@ -187,12 +218,14 @@
             "Mecha"
         ],
         "views": 4165393,
-        "last_updated": "2022-05-23 10:39:00"
+        "last_updated": "2022-05-23T10:39:00",
+        "cover": "gs://mangaapp-7bb62.appspot.com/525.jpeg",
+        "last_updated_timestamp": 1653266340.0
     },
     {
         "title": "My Apprentices Are All Female Devils",
         "author": "Updating",
-        "rating": "4.5",
+        "rating": 4.5,
         "synopsis": "haha cool this is a synopsis xd! blah blah blah blah blah blah blah blha blah blah.",
         "status": "ongoing",
         "genre": [
@@ -201,12 +234,14 @@
             "Shoujo"
         ],
         "views": 8949067,
-        "last_updated": "2022-05-14 10:39:00"
+        "last_updated": "2022-05-14T10:39:00",
+        "cover": "gs://mangaapp-7bb62.appspot.com/525.jpeg",
+        "last_updated_timestamp": 1652488740.0
     },
     {
         "title": "9000 Years Old Empress",
-        "author": "Qi man (柒漫)",
-        "rating": "4.3",
+        "author": "Qi man (\u67d2\u6f2b)",
+        "rating": 4.3,
         "synopsis": "A wealthy man, Kurosu Tokimune, meets an unnatural end.\nWith his death, his family joins together to grieve, only to become suspects of a police investigation as to whether he was murdered.\nTheir primary suspect: the adopted daughter of the Kurosu family and first to discover his body, Kurosu Tokiko. The girl who shows no distress at her father's death.\nAnd as all suspicions point to her, the second unnatural death occurs...\nIt's always been this way.\nWherever Tokiko goes, people tend to die.",
         "status": "hiatus",
         "genre": [
@@ -215,12 +250,14 @@
             "Sports"
         ],
         "views": 7840144,
-        "last_updated": "2022-05-11 10:39:00"
+        "last_updated": "2022-05-11T10:39:00",
+        "cover": "gs://mangaapp-7bb62.appspot.com/One_Piece,_Volume_61_Cover_(Japanese).jpeg",
+        "last_updated_timestamp": 1652229540.0
     },
     {
         "title": "After I Left You",
         "author": "Chen Guojian",
-        "rating": "3.9",
+        "rating": 3.9,
         "synopsis": "A wealthy man, Kurosu Tokimune, meets an unnatural end.\nWith his death, his family joins together to grieve, only to become suspects of a police investigation as to whether he was murdered.\nTheir primary suspect: the adopted daughter of the Kurosu family and first to discover his body, Kurosu Tokiko. The girl who shows no distress at her father's death.\nAnd as all suspicions point to her, the second unnatural death occurs...\nIt's always been this way.\nWherever Tokiko goes, people tend to die.",
         "status": "ongoing",
         "genre": [
@@ -229,12 +266,14 @@
             "Action"
         ],
         "views": 8601660,
-        "last_updated": "2022-04-26 10:39:00"
+        "last_updated": "2022-04-26T10:39:00",
+        "cover": "gs://mangaapp-7bb62.appspot.com/One_Piece,_Volume_61_Cover_(Japanese).jpeg",
+        "last_updated_timestamp": 1650933540.0
     },
     {
         "title": "Bijutsubu Girl",
         "author": "Koikawa Hayato",
-        "rating": "4.6",
+        "rating": 4.6,
         "synopsis": "haha cool this is a synopsis xd! blah blah blah blah blah blah blah blha blah blah.",
         "status": "hiatus",
         "genre": [
@@ -243,12 +282,14 @@
             "Drama"
         ],
         "views": 8134615,
-        "last_updated": "2022-05-14 10:39:00"
+        "last_updated": "2022-05-14T10:39:00",
+        "cover": "gs://mangaapp-7bb62.appspot.com/Tokyo_Ghoul_volume_1_cover.jpeg",
+        "last_updated_timestamp": 1652488740.0
     },
     {
         "title": "The Ultimate Devil King",
         "author": "Ailu Cat",
-        "rating": "3.1",
+        "rating": 3.1,
         "synopsis": "haha cool this is a synopsis xd! blah blah blah blah blah blah blah blha blah blah.",
         "status": "hiatus",
         "genre": [
@@ -257,12 +298,14 @@
             "Sports"
         ],
         "views": 7424141,
-        "last_updated": "2022-06-07 10:39:00"
+        "last_updated": "2022-06-07T10:39:00",
+        "cover": "gs://mangaapp-7bb62.appspot.com/Tokyo_Ghoul_volume_1_cover.jpeg",
+        "last_updated_timestamp": 1654562340.0
     },
     {
         "title": "The Insane Martial Arts World: Second To None",
         "author": "Chen Guojian",
-        "rating": "3.8",
+        "rating": 3.8,
         "synopsis": "A wealthy man, Kurosu Tokimune, meets an unnatural end.\nWith his death, his family joins together to grieve, only to become suspects of a police investigation as to whether he was murdered.\nTheir primary suspect: the adopted daughter of the Kurosu family and first to discover his body, Kurosu Tokiko. The girl who shows no distress at her father's death.\nAnd as all suspicions point to her, the second unnatural death occurs...\nIt's always been this way.\nWherever Tokiko goes, people tend to die.",
         "status": "ongoing",
         "genre": [
@@ -271,12 +314,14 @@
             "Yaoi"
         ],
         "views": 7207240,
-        "last_updated": "2022-06-03 10:39:00"
+        "last_updated": "2022-06-03T10:39:00",
+        "cover": "gs://mangaapp-7bb62.appspot.com/Tokyo_Ghoul_volume_1_cover.jpeg",
+        "last_updated_timestamp": 1654216740.0
     },
     {
         "title": "The Spring-Autumn Apotheosis",
         "author": "DXD A&C",
-        "rating": "3.7",
+        "rating": 3.7,
         "synopsis": "haha cool this is a synopsis xd! blah blah blah blah blah blah blah blha blah blah.",
         "status": "ongoing",
         "genre": [
@@ -285,12 +330,14 @@
             "Tragedy"
         ],
         "views": 5926058,
-        "last_updated": "2022-05-28 10:39:00"
+        "last_updated": "2022-05-28T10:39:00",
+        "cover": "gs://mangaapp-7bb62.appspot.com/525.jpeg",
+        "last_updated_timestamp": 1653698340.0
     },
     {
         "title": "Ice",
         "author": "Updating",
-        "rating": "4",
+        "rating": 4.0,
         "synopsis": "A wealthy man, Kurosu Tokimune, meets an unnatural end.\nWith his death, his family joins together to grieve, only to become suspects of a police investigation as to whether he was murdered.\nTheir primary suspect: the adopted daughter of the Kurosu family and first to discover his body, Kurosu Tokiko. The girl who shows no distress at her father's death.\nAnd as all suspicions point to her, the second unnatural death occurs...\nIt's always been this way.\nWherever Tokiko goes, people tend to die.",
         "status": "completed",
         "genre": [
@@ -299,12 +346,14 @@
             "Mystery"
         ],
         "views": 1824890,
-        "last_updated": "2022-06-13 10:39:00"
+        "last_updated": "2022-06-13T10:39:00",
+        "cover": "gs://mangaapp-7bb62.appspot.com/Tokyo_Ghoul_volume_1_cover.jpeg",
+        "last_updated_timestamp": 1655080740.0
     },
     {
         "title": "Crossdressing Pandemic",
         "author": "Shinagawa Mikuzu",
-        "rating": "3.1",
+        "rating": 3.1,
         "synopsis": "haha cool this is a synopsis xd! blah blah blah blah blah blah blah blha blah blah.",
         "status": "ongoing",
         "genre": [
@@ -313,12 +362,14 @@
             "Ecchi"
         ],
         "views": 2557684,
-        "last_updated": "2022-05-06 10:39:00"
+        "last_updated": "2022-05-06T10:39:00",
+        "cover": "gs://mangaapp-7bb62.appspot.com/One_Piece,_Volume_61_Cover_(Japanese).jpeg",
+        "last_updated_timestamp": 1651797540.0
     },
     {
         "title": "Please Don't Come To The Villainess' Stationery Store!",
-        "author": "Yeo Ro-Eun (여로은),Jecheolmu (제철무),Min Jeolmi (민절미)",
-        "rating": "4.8",
+        "author": "Yeo Ro-Eun (\uc5ec\ub85c\uc740),Jecheolmu (\uc81c\ucca0\ubb34),Min Jeolmi (\ubbfc\uc808\ubbf8)",
+        "rating": 4.8,
         "synopsis": "haha cool this is a synopsis xd! blah blah blah blah blah blah blah blha blah blah.",
         "status": "ongoing",
         "genre": [
@@ -327,12 +378,14 @@
             "Sports"
         ],
         "views": 2645915,
-        "last_updated": "2022-05-11 10:39:00"
+        "last_updated": "2022-05-11T10:39:00",
+        "cover": "gs://mangaapp-7bb62.appspot.com/Tokyo_Ghoul_volume_1_cover.jpeg",
+        "last_updated_timestamp": 1652229540.0
     },
     {
         "title": "Rainbow Amber",
-        "author": "木更木更",
-        "rating": "2",
+        "author": "\u6728\u66f4\u6728\u66f4",
+        "rating": 2.0,
         "synopsis": "A wealthy man, Kurosu Tokimune, meets an unnatural end.\nWith his death, his family joins together to grieve, only to become suspects of a police investigation as to whether he was murdered.\nTheir primary suspect: the adopted daughter of the Kurosu family and first to discover his body, Kurosu Tokiko. The girl who shows no distress at her father's death.\nAnd as all suspicions point to her, the second unnatural death occurs...\nIt's always been this way.\nWherever Tokiko goes, people tend to die.",
         "status": "completed",
         "genre": [
@@ -341,12 +394,14 @@
             "Mystery"
         ],
         "views": 7928060,
-        "last_updated": "2022-06-06 10:39:00"
+        "last_updated": "2022-06-06T10:39:00",
+        "cover": "gs://mangaapp-7bb62.appspot.com/Tokyo_Ghoul_volume_1_cover.jpeg",
+        "last_updated_timestamp": 1654475940.0
     },
     {
         "title": "Peerlessly Carefree",
         "author": "Big Bear Company",
-        "rating": "2.8",
+        "rating": 2.8,
         "synopsis": "haha cool this is a synopsis xd! blah blah blah blah blah blah blah blha blah blah.",
         "status": "hiatus",
         "genre": [
@@ -355,12 +410,14 @@
             "Romance"
         ],
         "views": 3388625,
-        "last_updated": "2022-04-29 10:39:00"
+        "last_updated": "2022-04-29T10:39:00",
+        "cover": "gs://mangaapp-7bb62.appspot.com/525.jpeg",
+        "last_updated_timestamp": 1651192740.0
     },
     {
         "title": "Against The Heavenly Lords",
         "author": "Big Bear Company",
-        "rating": "4.2",
+        "rating": 4.2,
         "synopsis": "haha cool this is a synopsis xd! blah blah blah blah blah blah blah blha blah blah.",
         "status": "hiatus",
         "genre": [
@@ -369,12 +426,14 @@
             "Mature"
         ],
         "views": 6901100,
-        "last_updated": "2022-05-01 10:39:00"
+        "last_updated": "2022-05-01T10:39:00",
+        "cover": "gs://mangaapp-7bb62.appspot.com/Tokyo_Ghoul_volume_1_cover.jpeg",
+        "last_updated_timestamp": 1651365540.0
     },
     {
         "title": "Detective Conan",
         "author": "Aoyama Gosho",
-        "rating": "4.6",
+        "rating": 4.6,
         "synopsis": "haha cool this is a synopsis xd! blah blah blah blah blah blah blah blha blah blah.",
         "status": "ongoing",
         "genre": [
@@ -383,12 +442,14 @@
             "Harem"
         ],
         "views": 2620920,
-        "last_updated": "2022-05-06 10:39:00"
+        "last_updated": "2022-05-06T10:39:00",
+        "cover": "gs://mangaapp-7bb62.appspot.com/One_Piece,_Volume_61_Cover_(Japanese).jpeg",
+        "last_updated_timestamp": 1651797540.0
     },
     {
         "title": "The Great Level Up",
         "author": "Chen Guojian",
-        "rating": "3.4",
+        "rating": 3.4,
         "synopsis": "haha cool this is a synopsis xd! blah blah blah blah blah blah blah blha blah blah.",
         "status": "ongoing",
         "genre": [
@@ -397,12 +458,14 @@
             "Shoujo"
         ],
         "views": 9214360,
-        "last_updated": "2022-05-24 10:39:00"
+        "last_updated": "2022-05-24T10:39:00",
+        "cover": "gs://mangaapp-7bb62.appspot.com/525.jpeg",
+        "last_updated_timestamp": 1653352740.0
     },
     {
         "title": "Money + Magnets",
         "author": "Big Bear Company",
-        "rating": "3.5",
+        "rating": 3.5,
         "synopsis": "A wealthy man, Kurosu Tokimune, meets an unnatural end.\nWith his death, his family joins together to grieve, only to become suspects of a police investigation as to whether he was murdered.\nTheir primary suspect: the adopted daughter of the Kurosu family and first to discover his body, Kurosu Tokiko. The girl who shows no distress at her father's death.\nAnd as all suspicions point to her, the second unnatural death occurs...\nIt's always been this way.\nWherever Tokiko goes, people tend to die.",
         "status": "completed",
         "genre": [
@@ -411,12 +474,14 @@
             "Slice of Life"
         ],
         "views": 2746074,
-        "last_updated": "2022-04-24 10:39:00"
+        "last_updated": "2022-04-24T10:39:00",
+        "cover": "gs://mangaapp-7bb62.appspot.com/Tokyo_Ghoul_volume_1_cover.jpeg",
+        "last_updated_timestamp": 1650760740.0
     },
     {
         "title": "A Story About Smoking At The Back Of The Supermarket",
         "author": "Jinushi",
-        "rating": "4.8",
+        "rating": 4.8,
         "synopsis": "A wealthy man, Kurosu Tokimune, meets an unnatural end.\nWith his death, his family joins together to grieve, only to become suspects of a police investigation as to whether he was murdered.\nTheir primary suspect: the adopted daughter of the Kurosu family and first to discover his body, Kurosu Tokiko. The girl who shows no distress at her father's death.\nAnd as all suspicions point to her, the second unnatural death occurs...\nIt's always been this way.\nWherever Tokiko goes, people tend to die.",
         "status": "completed",
         "genre": [
@@ -425,12 +490,14 @@
             "Horror"
         ],
         "views": 9612593,
-        "last_updated": "2022-06-11 10:39:00"
+        "last_updated": "2022-06-11T10:39:00",
+        "cover": "gs://mangaapp-7bb62.appspot.com/525.jpeg",
+        "last_updated_timestamp": 1654907940.0
     },
     {
         "title": "Debby The Corsifa Is Emulous",
         "author": "Hirakata Masahiro",
-        "rating": "4.7",
+        "rating": 4.7,
         "synopsis": "A wealthy man, Kurosu Tokimune, meets an unnatural end.\nWith his death, his family joins together to grieve, only to become suspects of a police investigation as to whether he was murdered.\nTheir primary suspect: the adopted daughter of the Kurosu family and first to discover his body, Kurosu Tokiko. The girl who shows no distress at her father's death.\nAnd as all suspicions point to her, the second unnatural death occurs...\nIt's always been this way.\nWherever Tokiko goes, people tend to die.",
         "status": "completed",
         "genre": [
@@ -439,12 +506,14 @@
             "Sci-fi"
         ],
         "views": 4378713,
-        "last_updated": "2022-05-22 10:39:00"
+        "last_updated": "2022-05-22T10:39:00",
+        "cover": "gs://mangaapp-7bb62.appspot.com/One_Piece,_Volume_61_Cover_(Japanese).jpeg",
+        "last_updated_timestamp": 1653179940.0
     },
     {
         "title": "The Best Handyman",
         "author": "Big Bear Company",
-        "rating": "3.7",
+        "rating": 3.7,
         "synopsis": "A wealthy man, Kurosu Tokimune, meets an unnatural end.\nWith his death, his family joins together to grieve, only to become suspects of a police investigation as to whether he was murdered.\nTheir primary suspect: the adopted daughter of the Kurosu family and first to discover his body, Kurosu Tokiko. The girl who shows no distress at her father's death.\nAnd as all suspicions point to her, the second unnatural death occurs...\nIt's always been this way.\nWherever Tokiko goes, people tend to die.",
         "status": "completed",
         "genre": [
@@ -453,12 +522,14 @@
             "Tragedy"
         ],
         "views": 3026907,
-        "last_updated": "2022-06-11 10:39:00"
+        "last_updated": "2022-06-11T10:39:00",
+        "cover": "gs://mangaapp-7bb62.appspot.com/525.jpeg",
+        "last_updated_timestamp": 1654907940.0
     },
     {
         "title": "Tonikaku Cawaii",
         "author": "Hata kenjiro",
-        "rating": "4.9",
+        "rating": 4.9,
         "synopsis": "A wealthy man, Kurosu Tokimune, meets an unnatural end.\nWith his death, his family joins together to grieve, only to become suspects of a police investigation as to whether he was murdered.\nTheir primary suspect: the adopted daughter of the Kurosu family and first to discover his body, Kurosu Tokiko. The girl who shows no distress at her father's death.\nAnd as all suspicions point to her, the second unnatural death occurs...\nIt's always been this way.\nWherever Tokiko goes, people tend to die.",
         "status": "hiatus",
         "genre": [
@@ -467,12 +538,14 @@
             "Harem"
         ],
         "views": 2041186,
-        "last_updated": "2022-05-30 10:39:00"
+        "last_updated": "2022-05-30T10:39:00",
+        "cover": "gs://mangaapp-7bb62.appspot.com/525.jpeg",
+        "last_updated_timestamp": 1653871140.0
     },
     {
         "title": "Our Pure And Ambiguous Romance",
         "author": "Big Bear Company",
-        "rating": "3.6",
+        "rating": 3.6,
         "synopsis": "A wealthy man, Kurosu Tokimune, meets an unnatural end.\nWith his death, his family joins together to grieve, only to become suspects of a police investigation as to whether he was murdered.\nTheir primary suspect: the adopted daughter of the Kurosu family and first to discover his body, Kurosu Tokiko. The girl who shows no distress at her father's death.\nAnd as all suspicions point to her, the second unnatural death occurs...\nIt's always been this way.\nWherever Tokiko goes, people tend to die.",
         "status": "ongoing",
         "genre": [
@@ -481,12 +554,14 @@
             "Action"
         ],
         "views": 8997414,
-        "last_updated": "2022-05-12 10:39:00"
+        "last_updated": "2022-05-12T10:39:00",
+        "cover": "gs://mangaapp-7bb62.appspot.com/Tokyo_Ghoul_volume_1_cover.jpeg",
+        "last_updated_timestamp": 1652315940.0
     },
     {
         "title": "Chromosome 47",
         "author": "TaXue Comic",
-        "rating": "3.6",
+        "rating": 3.6,
         "synopsis": "A wealthy man, Kurosu Tokimune, meets an unnatural end.\nWith his death, his family joins together to grieve, only to become suspects of a police investigation as to whether he was murdered.\nTheir primary suspect: the adopted daughter of the Kurosu family and first to discover his body, Kurosu Tokiko. The girl who shows no distress at her father's death.\nAnd as all suspicions point to her, the second unnatural death occurs...\nIt's always been this way.\nWherever Tokiko goes, people tend to die.",
         "status": "completed",
         "genre": [
@@ -495,12 +570,14 @@
             "Supernatural"
         ],
         "views": 1364748,
-        "last_updated": "2022-04-26 10:39:00"
+        "last_updated": "2022-04-26T10:39:00",
+        "cover": "gs://mangaapp-7bb62.appspot.com/One_Piece,_Volume_61_Cover_(Japanese).jpeg",
+        "last_updated_timestamp": 1650933540.0
     },
     {
         "title": "The Consort Who's A Bloodthirsty Doctor",
         "author": "Chen Guojian",
-        "rating": "4.2",
+        "rating": 4.2,
         "synopsis": "haha cool this is a synopsis xd! blah blah blah blah blah blah blah blha blah blah.",
         "status": "ongoing",
         "genre": [
@@ -509,12 +586,14 @@
             "Sports"
         ],
         "views": 4525284,
-        "last_updated": "2022-05-25 10:39:00"
+        "last_updated": "2022-05-25T10:39:00",
+        "cover": "gs://mangaapp-7bb62.appspot.com/One_Piece,_Volume_61_Cover_(Japanese).jpeg",
+        "last_updated_timestamp": 1653439140.0
     },
     {
         "title": "Mercenary Enrollment",
         "author": "YC",
-        "rating": "4.6",
+        "rating": 4.6,
         "synopsis": "haha cool this is a synopsis xd! blah blah blah blah blah blah blah blha blah blah.",
         "status": "hiatus",
         "genre": [
@@ -523,12 +602,14 @@
             "Adventure"
         ],
         "views": 362452,
-        "last_updated": "2022-05-10 10:39:00"
+        "last_updated": "2022-05-10T10:39:00",
+        "cover": "gs://mangaapp-7bb62.appspot.com/525.jpeg",
+        "last_updated_timestamp": 1652143140.0
     },
     {
         "title": "Secret Lady",
         "author": "Angatou,Banana",
-        "rating": "4.8",
+        "rating": 4.8,
         "synopsis": "haha cool this is a synopsis xd! blah blah blah blah blah blah blah blha blah blah.",
         "status": "ongoing",
         "genre": [
@@ -537,12 +618,14 @@
             "Sports"
         ],
         "views": 4433224,
-        "last_updated": "2022-05-07 10:39:00"
+        "last_updated": "2022-05-07T10:39:00",
+        "cover": "gs://mangaapp-7bb62.appspot.com/Tokyo_Ghoul_volume_1_cover.jpeg",
+        "last_updated_timestamp": 1651883940.0
     },
     {
         "title": "5500 Shades Of The Demon King",
         "author": "Youndal / Moonto",
-        "rating": "4.2",
+        "rating": 4.2,
         "synopsis": "A wealthy man, Kurosu Tokimune, meets an unnatural end.\nWith his death, his family joins together to grieve, only to become suspects of a police investigation as to whether he was murdered.\nTheir primary suspect: the adopted daughter of the Kurosu family and first to discover his body, Kurosu Tokiko. The girl who shows no distress at her father's death.\nAnd as all suspicions point to her, the second unnatural death occurs...\nIt's always been this way.\nWherever Tokiko goes, people tend to die.",
         "status": "completed",
         "genre": [
@@ -551,12 +634,14 @@
             "Music"
         ],
         "views": 9514272,
-        "last_updated": "2022-04-24 10:39:00"
+        "last_updated": "2022-04-24T10:39:00",
+        "cover": "gs://mangaapp-7bb62.appspot.com/One_Piece,_Volume_61_Cover_(Japanese).jpeg",
+        "last_updated_timestamp": 1650760740.0
     },
     {
         "title": "Divine Perspective",
-        "author": "Tianjin Zhangyue Culture Tianjin Zhangyue Culture Communication Co. Ltd., 天津掌阅文化，天津掌阅文化传播有限公司",
-        "rating": "4.3",
+        "author": "Tianjin Zhangyue Culture Tianjin Zhangyue Culture Communication Co. Ltd., \u5929\u6d25\u638c\u9605\u6587\u5316\uff0c\u5929\u6d25\u638c\u9605\u6587\u5316\u4f20\u64ad\u6709\u9650\u516c\u53f8",
+        "rating": 4.3,
         "synopsis": "A wealthy man, Kurosu Tokimune, meets an unnatural end.\nWith his death, his family joins together to grieve, only to become suspects of a police investigation as to whether he was murdered.\nTheir primary suspect: the adopted daughter of the Kurosu family and first to discover his body, Kurosu Tokiko. The girl who shows no distress at her father's death.\nAnd as all suspicions point to her, the second unnatural death occurs...\nIt's always been this way.\nWherever Tokiko goes, people tend to die.",
         "status": "completed",
         "genre": [
@@ -565,12 +650,14 @@
             "Action"
         ],
         "views": 7849280,
-        "last_updated": "2022-04-29 10:39:00"
+        "last_updated": "2022-04-29T10:39:00",
+        "cover": "gs://mangaapp-7bb62.appspot.com/One_Piece,_Volume_61_Cover_(Japanese).jpeg",
+        "last_updated_timestamp": 1651192740.0
     },
     {
         "title": "Today, We Continue Our Lives Together Under The Same Roof",
         "author": "Ayu Inui",
-        "rating": "4.1",
+        "rating": 4.1,
         "synopsis": "A wealthy man, Kurosu Tokimune, meets an unnatural end.\nWith his death, his family joins together to grieve, only to become suspects of a police investigation as to whether he was murdered.\nTheir primary suspect: the adopted daughter of the Kurosu family and first to discover his body, Kurosu Tokiko. The girl who shows no distress at her father's death.\nAnd as all suspicions point to her, the second unnatural death occurs...\nIt's always been this way.\nWherever Tokiko goes, people tend to die.",
         "status": "ongoing",
         "genre": [
@@ -579,12 +666,14 @@
             "School Life"
         ],
         "views": 1154729,
-        "last_updated": "2022-05-23 10:39:00"
+        "last_updated": "2022-05-23T10:39:00",
+        "cover": "gs://mangaapp-7bb62.appspot.com/Tokyo_Ghoul_volume_1_cover.jpeg",
+        "last_updated_timestamp": 1653266340.0
     },
     {
         "title": "All Rounder",
         "author": "Updating",
-        "rating": "4.7",
+        "rating": 4.7,
         "synopsis": "A wealthy man, Kurosu Tokimune, meets an unnatural end.\nWith his death, his family joins together to grieve, only to become suspects of a police investigation as to whether he was murdered.\nTheir primary suspect: the adopted daughter of the Kurosu family and first to discover his body, Kurosu Tokiko. The girl who shows no distress at her father's death.\nAnd as all suspicions point to her, the second unnatural death occurs...\nIt's always been this way.\nWherever Tokiko goes, people tend to die.",
         "status": "completed",
         "genre": [
@@ -593,12 +682,14 @@
             "Shounen Ai"
         ],
         "views": 1294321,
-        "last_updated": "2022-05-08 10:39:00"
+        "last_updated": "2022-05-08T10:39:00",
+        "cover": "gs://mangaapp-7bb62.appspot.com/Tokyo_Ghoul_volume_1_cover.jpeg",
+        "last_updated_timestamp": 1651970340.0
     },
     {
         "title": "Sister To Vampire",
         "author": "Akatsuki",
-        "rating": "4.5",
+        "rating": 4.5,
         "synopsis": "haha cool this is a synopsis xd! blah blah blah blah blah blah blah blha blah blah.",
         "status": "completed",
         "genre": [
@@ -607,12 +698,14 @@
             "Mature"
         ],
         "views": 5491394,
-        "last_updated": "2022-05-09 10:39:00"
+        "last_updated": "2022-05-09T10:39:00",
+        "cover": "gs://mangaapp-7bb62.appspot.com/Tokyo_Ghoul_volume_1_cover.jpeg",
+        "last_updated_timestamp": 1652056740.0
     },
     {
         "title": "Itai Onee-San Wa Sukidesu Ka?",
         "author": "Wakana",
-        "rating": "4.7",
+        "rating": 4.7,
         "synopsis": "haha cool this is a synopsis xd! blah blah blah blah blah blah blah blha blah blah.",
         "status": "hiatus",
         "genre": [
@@ -621,12 +714,14 @@
             "Josei"
         ],
         "views": 6562664,
-        "last_updated": "2022-04-27 10:39:00"
+        "last_updated": "2022-04-27T10:39:00",
+        "cover": "gs://mangaapp-7bb62.appspot.com/Tokyo_Ghoul_volume_1_cover.jpeg",
+        "last_updated_timestamp": 1651019940.0
     },
     {
         "title": "Douyara Boku No Hanayome Wa Onna Kishidan Na You De.",
         "author": "Nori Itsurou",
-        "rating": "4.4",
+        "rating": 4.4,
         "synopsis": "A wealthy man, Kurosu Tokimune, meets an unnatural end.\nWith his death, his family joins together to grieve, only to become suspects of a police investigation as to whether he was murdered.\nTheir primary suspect: the adopted daughter of the Kurosu family and first to discover his body, Kurosu Tokiko. The girl who shows no distress at her father's death.\nAnd as all suspicions point to her, the second unnatural death occurs...\nIt's always been this way.\nWherever Tokiko goes, people tend to die.",
         "status": "hiatus",
         "genre": [
@@ -635,12 +730,14 @@
             "Horror"
         ],
         "views": 8619836,
-        "last_updated": "2022-04-29 10:39:00"
+        "last_updated": "2022-04-29T10:39:00",
+        "cover": "gs://mangaapp-7bb62.appspot.com/One_Piece,_Volume_61_Cover_(Japanese).jpeg",
+        "last_updated_timestamp": 1651192740.0
     },
     {
         "title": "Stardust Telepath",
         "author": "Ookuma Rasuko",
-        "rating": "4.1",
+        "rating": 4.1,
         "synopsis": "A wealthy man, Kurosu Tokimune, meets an unnatural end.\nWith his death, his family joins together to grieve, only to become suspects of a police investigation as to whether he was murdered.\nTheir primary suspect: the adopted daughter of the Kurosu family and first to discover his body, Kurosu Tokiko. The girl who shows no distress at her father's death.\nAnd as all suspicions point to her, the second unnatural death occurs...\nIt's always been this way.\nWherever Tokiko goes, people tend to die.",
         "status": "hiatus",
         "genre": [
@@ -649,12 +746,14 @@
             "Mecha"
         ],
         "views": 1044792,
-        "last_updated": "2022-04-29 10:39:00"
+        "last_updated": "2022-04-29T10:39:00",
+        "cover": "gs://mangaapp-7bb62.appspot.com/Tokyo_Ghoul_volume_1_cover.jpeg",
+        "last_updated_timestamp": 1651192740.0
     },
     {
         "title": "Jashin-Chan Dropkick",
         "author": "Yukiwo",
-        "rating": "4.5",
+        "rating": 4.5,
         "synopsis": "haha cool this is a synopsis xd! blah blah blah blah blah blah blah blha blah blah.",
         "status": "completed",
         "genre": [
@@ -663,12 +762,14 @@
             "Mecha"
         ],
         "views": 5423601,
-        "last_updated": "2022-06-07 10:39:00"
+        "last_updated": "2022-06-07T10:39:00",
+        "cover": "gs://mangaapp-7bb62.appspot.com/525.jpeg",
+        "last_updated_timestamp": 1654562340.0
     },
     {
         "title": "Kimi No Nioi",
         "author": "Hiwo Sagano",
-        "rating": "4.6",
+        "rating": 4.6,
         "synopsis": "haha cool this is a synopsis xd! blah blah blah blah blah blah blah blha blah blah.",
         "status": "hiatus",
         "genre": [
@@ -677,12 +778,14 @@
             "Mecha"
         ],
         "views": 361551,
-        "last_updated": "2022-05-13 10:39:00"
+        "last_updated": "2022-05-13T10:39:00",
+        "cover": "gs://mangaapp-7bb62.appspot.com/One_Piece,_Volume_61_Cover_(Japanese).jpeg",
+        "last_updated_timestamp": 1652402340.0
     },
     {
         "title": "Sei-Chan, Your Love Is Too Much!",
         "author": "Segawa Sasa",
-        "rating": "4.6",
+        "rating": 4.6,
         "synopsis": "haha cool this is a synopsis xd! blah blah blah blah blah blah blah blha blah blah.",
         "status": "ongoing",
         "genre": [
@@ -691,12 +794,14 @@
             "Slice of Life"
         ],
         "views": 827003,
-        "last_updated": "2022-05-04 10:39:00"
+        "last_updated": "2022-05-04T10:39:00",
+        "cover": "gs://mangaapp-7bb62.appspot.com/Tokyo_Ghoul_volume_1_cover.jpeg",
+        "last_updated_timestamp": 1651624740.0
     },
     {
         "title": "Amemiya-San",
         "author": "Arawi Keiichi",
-        "rating": "5",
+        "rating": 5.0,
         "synopsis": "haha cool this is a synopsis xd! blah blah blah blah blah blah blah blha blah blah.",
         "status": "completed",
         "genre": [
@@ -705,12 +810,14 @@
             "Historical"
         ],
         "views": 3759841,
-        "last_updated": "2022-06-01 10:39:00"
+        "last_updated": "2022-06-01T10:39:00",
+        "cover": "gs://mangaapp-7bb62.appspot.com/525.jpeg",
+        "last_updated_timestamp": 1654043940.0
     },
     {
         "title": "The Devil's Domineering Love",
         "author": "Chen Guojian",
-        "rating": "3.1",
+        "rating": 3.1,
         "synopsis": "A wealthy man, Kurosu Tokimune, meets an unnatural end.\nWith his death, his family joins together to grieve, only to become suspects of a police investigation as to whether he was murdered.\nTheir primary suspect: the adopted daughter of the Kurosu family and first to discover his body, Kurosu Tokiko. The girl who shows no distress at her father's death.\nAnd as all suspicions point to her, the second unnatural death occurs...\nIt's always been this way.\nWherever Tokiko goes, people tend to die.",
         "status": "ongoing",
         "genre": [
@@ -719,12 +826,14 @@
             "Sports"
         ],
         "views": 9137205,
-        "last_updated": "2022-06-07 10:39:00"
+        "last_updated": "2022-06-07T10:39:00",
+        "cover": "gs://mangaapp-7bb62.appspot.com/525.jpeg",
+        "last_updated_timestamp": 1654562340.0
     },
     {
         "title": "God Of Deception",
-        "author": "庸鬼",
-        "rating": "3.6",
+        "author": "\u5eb8\u9b3c",
+        "rating": 3.6,
         "synopsis": "haha cool this is a synopsis xd! blah blah blah blah blah blah blah blha blah blah.",
         "status": "hiatus",
         "genre": [
@@ -733,12 +842,14 @@
             "Mature"
         ],
         "views": 9570581,
-        "last_updated": "2022-05-01 10:39:00"
+        "last_updated": "2022-05-01T10:39:00",
+        "cover": "gs://mangaapp-7bb62.appspot.com/Tokyo_Ghoul_volume_1_cover.jpeg",
+        "last_updated_timestamp": 1651365540.0
     },
     {
         "title": "Moukin-Chan",
         "author": "Akui Makoto",
-        "rating": "4.6",
+        "rating": 4.6,
         "synopsis": "A wealthy man, Kurosu Tokimune, meets an unnatural end.\nWith his death, his family joins together to grieve, only to become suspects of a police investigation as to whether he was murdered.\nTheir primary suspect: the adopted daughter of the Kurosu family and first to discover his body, Kurosu Tokiko. The girl who shows no distress at her father's death.\nAnd as all suspicions point to her, the second unnatural death occurs...\nIt's always been this way.\nWherever Tokiko goes, people tend to die.",
         "status": "hiatus",
         "genre": [
@@ -747,12 +858,14 @@
             "Shoujo"
         ],
         "views": 9808835,
-        "last_updated": "2022-05-15 10:39:00"
+        "last_updated": "2022-05-15T10:39:00",
+        "cover": "gs://mangaapp-7bb62.appspot.com/525.jpeg",
+        "last_updated_timestamp": 1652575140.0
     },
     {
         "title": "Hunter X Hunter Full Color",
         "author": "Togashi Yoshihiro",
-        "rating": "4.5",
+        "rating": 4.5,
         "synopsis": "A wealthy man, Kurosu Tokimune, meets an unnatural end.\nWith his death, his family joins together to grieve, only to become suspects of a police investigation as to whether he was murdered.\nTheir primary suspect: the adopted daughter of the Kurosu family and first to discover his body, Kurosu Tokiko. The girl who shows no distress at her father's death.\nAnd as all suspicions point to her, the second unnatural death occurs...\nIt's always been this way.\nWherever Tokiko goes, people tend to die.",
         "status": "hiatus",
         "genre": [
@@ -761,12 +874,14 @@
             "Tragedy"
         ],
         "views": 8963820,
-        "last_updated": "2022-04-25 10:39:00"
+        "last_updated": "2022-04-25T10:39:00",
+        "cover": "gs://mangaapp-7bb62.appspot.com/Tokyo_Ghoul_volume_1_cover.jpeg",
+        "last_updated_timestamp": 1650847140.0
     },
     {
         "title": "Forty Millennia Of Cultivation",
         "author": "SANFU A&C",
-        "rating": "2.5",
+        "rating": 2.5,
         "synopsis": "A wealthy man, Kurosu Tokimune, meets an unnatural end.\nWith his death, his family joins together to grieve, only to become suspects of a police investigation as to whether he was murdered.\nTheir primary suspect: the adopted daughter of the Kurosu family and first to discover his body, Kurosu Tokiko. The girl who shows no distress at her father's death.\nAnd as all suspicions point to her, the second unnatural death occurs...\nIt's always been this way.\nWherever Tokiko goes, people tend to die.",
         "status": "ongoing",
         "genre": [
@@ -775,12 +890,14 @@
             "Mature"
         ],
         "views": 9825972,
-        "last_updated": "2022-05-01 10:39:00"
+        "last_updated": "2022-05-01T10:39:00",
+        "cover": "gs://mangaapp-7bb62.appspot.com/525.jpeg",
+        "last_updated_timestamp": 1651365540.0
     },
     {
         "title": "Tensei Kenja No Isekai Raifu ~Daini No Shokugyo Wo Ete, Sekai Saikyou Ni Narimashita~",
         "author": "Pon Jea, Shoto Shinko",
-        "rating": "4.7",
+        "rating": 4.7,
         "synopsis": "haha cool this is a synopsis xd! blah blah blah blah blah blah blah blha blah blah.",
         "status": "ongoing",
         "genre": [
@@ -789,6 +906,8 @@
             "Historical"
         ],
         "views": 6282371,
-        "last_updated": "2022-05-23 10:39:00"
+        "last_updated": "2022-05-23T10:39:00",
+        "cover": "gs://mangaapp-7bb62.appspot.com/525.jpeg",
+        "last_updated_timestamp": 1653266340.0
     }
 ]

@@ -39,10 +39,10 @@ class SearchExtra extends ModalRoute<void> {
   ) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Search Settings'),
+          title: const Center(child: Text('Search Settings')),
           actions: [
             IconButton(
-              icon: Icon(Icons.check),
+              icon: const Icon(Icons.check),
               onPressed: () {
                 // searchCallback(context, filters);
                 Navigator.pop(context);
@@ -92,7 +92,7 @@ class SearchExtra extends ModalRoute<void> {
                   }
                   print(filters);
                 },
-                icon: Icon(Icons.abc_outlined),
+                icon: const Icon(Icons.abc_outlined),
                 label: Text(genre),
               ),
             );
