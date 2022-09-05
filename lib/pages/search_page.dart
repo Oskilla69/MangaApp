@@ -24,17 +24,32 @@ class SearchPageDelegate<T> extends SearchDelegate<T?> {
     'sort': 'Best Match'
   };
 
+  String buildAlgoliaFilters(List filters) {
+    if (filters.isEmpty) {
+      return "";
+    } else if (filters.length == 1) {
+      return 'genre: ${filters[0]}';
+    } else {
+      String query = "";
+      for (int i = 0; i < filters.length; i++) {
+        if (i == (filters.length - 1)) {
+          query += 'genre: ${filters[i]}';
+        } else {
+          query += 'genres: ${filters[i]} OR';
+        }
+      }
+      return query;
+    }
+  }
+
   Future<AlgoliaQuerySnapshot> getSearchResults(String searchQuery) async {
     Algolia algolia = Application.algolia;
-    String filters = filters['genres'].length < 2 ? 'genre: ${filters['genres']}' : filters['genres'].forEach((element) {
-      return 'genre'
-    });
+    String algoliaFilters = buildAlgoliaFilters(filters['genres']);
+
     AlgoliaQuery query = algolia.instance
         .index('manga')
         .query(searchQuery)
-        .facetFilter(filters['genres'].map((genre) {
-          return 'genre: $genre';
-        }));
+        .facetFilter(algoliaFilters);
     AlgoliaQuerySnapshot snap = await query.getObjects();
     return snap;
   }
@@ -75,6 +90,7 @@ class SearchPageDelegate<T> extends SearchDelegate<T?> {
   @override
   Widget buildSuggestions(BuildContext context) {
     print(filters);
+    print(buildAlgoliaFilters(filters['genres']));
     return FutureBuilder(
         future: getSearchResults(query),
         builder: (BuildContext context,
