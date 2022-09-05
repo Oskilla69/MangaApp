@@ -14,7 +14,7 @@ import 'package:mangaapp/pages/search_extra.dart';
 // import 'package:mangaapp/pages/search_extra.dart';
 
 // maybe have history. Who knows
-class SearchPageDelegate<T> extends SearchDelegate<T?> {
+class SearchPageDelegate extends SearchDelegate<int?> {
   var test = 0;
   final _storage = FirebaseStorage.instance;
 
@@ -24,28 +24,19 @@ class SearchPageDelegate<T> extends SearchDelegate<T?> {
     'sort': 'Best Match'
   };
 
-  String buildAlgoliaFilters(List filters) {
+  List<String> buildAlgoliaFilters(List filters) {
     if (filters.isEmpty) {
-      return "";
-    } else if (filters.length == 1) {
-      return 'genre: ${filters[0]}';
+      return [""];
     } else {
-      String query = "";
-      for (int i = 0; i < filters.length; i++) {
-        if (i == (filters.length - 1)) {
-          query += 'genre: ${filters[i]}';
-        } else {
-          query += 'genres: ${filters[i]} OR';
-        }
-      }
-      return query;
+      return filters.map((e) {
+        return 'genre:$e';
+      }).toList();
     }
   }
 
   Future<AlgoliaQuerySnapshot> getSearchResults(String searchQuery) async {
     Algolia algolia = Application.algolia;
-    String algoliaFilters = buildAlgoliaFilters(filters['genres']);
-
+    List<String> algoliaFilters = buildAlgoliaFilters(filters['genres']);
     AlgoliaQuery query = algolia.instance
         .index('manga')
         .query(searchQuery)
@@ -66,7 +57,12 @@ class SearchPageDelegate<T> extends SearchDelegate<T?> {
       IconButton(
           onPressed: () {
             // showFilterDialog(context);
-            Navigator.push(context, SearchExtra(filters: filters));
+            Navigator.push<int>(context, SearchExtra(filters: filters))
+                .then((value) {
+              if (value == 1) {
+                query = query;
+              }
+            });
           },
           icon: const Icon(Icons.filter_list_rounded)),
     ];
@@ -89,8 +85,6 @@ class SearchPageDelegate<T> extends SearchDelegate<T?> {
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    print(filters);
-    print(buildAlgoliaFilters(filters['genres']));
     return FutureBuilder(
         future: getSearchResults(query),
         builder: (BuildContext context,
@@ -141,9 +135,13 @@ class SearchPageDelegate<T> extends SearchDelegate<T?> {
                       leadingWidget = const Text('Error');
                     }
                     return SearchListItem(
-                        title: element.data['title'],
-                        leading: leadingWidget,
-                        synopsis: element.data['synopsis']);
+                      title: element.data['title'],
+                      leading: leadingWidget,
+                      synopsis: element.data['synopsis'],
+                      onClick: () {
+                        close(context, 0);
+                      },
+                    );
                   },
                 );
               }).toList();

@@ -44,7 +44,7 @@ class SubscribeOverlay extends ModalRoute<void> {
               ),
             ),
             Ink.image(
-              image: AssetImage('assets/images/zoro.jpeg'),
+              image: const AssetImage('assets/images/dino.png'),
               height: 200,
               width: 200,
             ),
@@ -55,11 +55,13 @@ class SubscribeOverlay extends ModalRoute<void> {
                   print('subscribed!!!');
                 },
                 splashColor: Colors.black26,
-                child: Container(
-                  child: Row(children: [
-                    const Icon(FontAwesomeIcons.rightToBracket),
-                    const Text('Subscribe')
-                  ]),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: const [
+                    Icon(FontAwesomeIcons.rightToBracket),
+                    Text('Subscribe')
+                  ],
                 ),
               ),
             )

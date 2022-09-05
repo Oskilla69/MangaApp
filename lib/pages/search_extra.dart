@@ -4,10 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mangaapp/helpers/app_constants.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mangaapp/pages/search_page.dart';
 import 'package:quiver/iterables.dart';
 // import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
-class SearchExtra extends ModalRoute<void> {
+class SearchExtra extends ModalRoute<int> {
   Map<String, dynamic> filters;
 
   SearchExtra({super.settings, super.filter, required this.filters});
@@ -45,7 +46,7 @@ class SearchExtra extends ModalRoute<void> {
               icon: const Icon(Icons.check),
               onPressed: () {
                 // searchCallback(context, filters);
-                Navigator.pop(context);
+                Navigator.pop(context, 1);
               },
             ),
           ],
@@ -157,10 +158,10 @@ class SearchExtra extends ModalRoute<void> {
             }).toList());
       }).toList());
     }));
-
-    return filters['sort'] == SORT_BY[0]
-        ? [...genreRows, sortByRows]
-        : [...genreRows, sortOrderRow, sortByRows];
+    return genreRows;
+    // return filters['sort'] == SORT_BY[0]
+    //     ? [...genreRows, sortByRows]
+    //     : [...genreRows, sortOrderRow, sortByRows];
     // var sortByRow = StatefulBuilder(builder: (context, setState) {
     //   return
     // });

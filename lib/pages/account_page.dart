@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
@@ -24,12 +25,30 @@ class _AccountPageState extends State<AccountPage> {
   final ImagePicker _imagePicker = ImagePicker();
   final _storage = FirebaseStorage.instance;
   final _firestore = FirebaseFirestore.instance;
+  final _auth = FirebaseAuth.instance;
   late TextEditingController usernameController =
       TextEditingController(text: Provider.of<ProfileModel>(context).username);
 
-  late String currImage = Provider.of<ProfileModel>(context).profilePic;
+  // late String currImage = Provider.of<ProfileModel>(context).profilePic;
+  late String currImage = 'assets/images/black.jpeg';
   bool changesMade = false;
   bool _exists = false;
+
+  @override
+  void initState() {
+    super.initState();
+    loadUserDetails();
+  }
+
+  void loadUserDetails() async {
+    User? currUser = _auth.currentUser;
+    DocumentSnapshot<Map<String, dynamic>> userDetails =
+        await _firestore.collection('profile').doc(currUser!.email).get();
+    setState(() {
+      currImage = userDetails.get('profile_image');
+    });
+    usernameController.text = userDetails.get('username');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -167,7 +186,8 @@ class _AccountPageState extends State<AccountPage> {
         currUsername != usernameController.text) {
       checkDuplicate(usernameController.text).then((unique) {
         if (unique) {
-          handleUpload(_storage, profile, currImage, currUsername, _firestore,
+          handleUpload(
+              _storage, profile, currImage, usernameController.text, _firestore,
               () {
             setState(() {
               changesMade = false;
@@ -207,7 +227,7 @@ class _AccountPageState extends State<AccountPage> {
           _firestore
               .collection('profile')
               .doc(profile.email)
-              .update({'username': currUsername});
+              .update({'username': usernameController.text});
           setState(() {
             changesMade = false;
           });

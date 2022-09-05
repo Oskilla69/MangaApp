@@ -12,10 +12,12 @@ class SearchListItem extends StatefulWidget {
     required this.title,
     required this.leading,
     required this.synopsis,
+    required this.onClick,
   }) : super(key: key);
 
   final String title;
   final Widget leading;
+  final Function onClick;
   final String? synopsis;
 
   @override
@@ -30,6 +32,7 @@ class _SearchListItemState extends State<SearchListItem> {
     return GestureDetector(
       onTap: () {
         _firestore.collection('manga').doc(widget.title).get().then((manga) {
+          widget.onClick();
           Navigator.pushNamed(context, MangaPage.routeName,
               arguments: manga.data());
         });

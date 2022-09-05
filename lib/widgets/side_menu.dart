@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mangaapp/pages/account_page_no_user.dart';
@@ -13,16 +14,49 @@ import 'package:shared_preferences/shared_preferences.dart';
 class SideMenu extends StatelessWidget {
   SideMenu({Key? key}) : super(key: key);
   final _auth = FirebaseAuth.instance;
+  final _firestore = FirebaseFirestore.instance;
 
   @override
   Widget build(BuildContext context) {
     return Drawer(
         child: Consumer<ProfileModel>(builder: (context, profile, child) {
       return ListView(children: [
-        buildHeader(context, profile),
+        // buildHeader(context, profile),
+        buildHeaderFirebase(context),
         buildMenu(context, profile)
       ]);
     }));
+  }
+
+  Widget buildHeaderFirebase(context) {
+    User? currUser = _auth.currentUser;
+    return currUser != null
+        ? FutureBuilder(
+            future: _firestore.collection('profile').doc(currUser.email).get(),
+            builder: ((BuildContext context,
+                AsyncSnapshot<DocumentSnapshot<Map<String, dynamic>>>
+                    snapshot) {
+              if (snapshot.connectionState == ConnectionState.done &&
+                  snapshot.hasData) {
+                return UserAccountsDrawerHeader(
+                    currentAccountPicture: CircleAvatar(
+                        backgroundImage: CachedNetworkImageProvider(
+                            snapshot.data!.get('profile_image'))),
+                    accountName:
+                        Text('Hello, ${snapshot.data!.get('username')}'),
+                    accountEmail: Text(snapshot.data!.get('email')));
+              } else if (snapshot.connectionState == ConnectionState.waiting ||
+                  !snapshot.hasData) {
+                return const Center(child: CircularProgressIndicator());
+              } else {
+                return const Text('Error');
+              }
+            }))
+        : const UserAccountsDrawerHeader(
+            currentAccountPicture: CircleAvatar(
+                backgroundImage: AssetImage('assets/images/logo.jpeg')),
+            accountName: Text("Hello"),
+            accountEmail: Text('Sign Up for More Features!'));
   }
 
   Widget buildHeader(BuildContext context, ProfileModel profile) {

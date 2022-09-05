@@ -19,7 +19,7 @@ class SlidingAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     visible ? controller.reverse() : controller.forward();
     return SizedBox(
-      height: 80.h,
+      height: 104,
       child: SlideTransition(
         position:
             Tween<Offset>(begin: Offset.zero, end: const Offset(0, -1)).animate(
