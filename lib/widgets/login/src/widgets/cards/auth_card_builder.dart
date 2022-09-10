@@ -6,7 +6,7 @@ import 'dart:math';
 import 'package:another_transformer_page_view/another_transformer_page_view.dart';
 import 'package:flutter/material.dart';
 import 'package:mangaapp/pages/account_page.dart';
-import 'package:mangaapp/pages/home_page.dart';
+import 'package:mangaapp/home_page/screens/home_page.dart';
 import 'package:mangaapp/widgets/login/flutter_login.dart';
 import 'package:mangaapp/widgets/login/src/constants.dart';
 import 'package:mangaapp/widgets/login/src/dart_helper.dart';

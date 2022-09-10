@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:math';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -9,16 +8,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-// import 'package:mangaapp/components/home_page_grid.dart';
-import 'package:mangaapp/components/infinite_scroll/infinite_scroll_grid.dart';
 import 'package:mangaapp/helpers/app_constants.dart';
+import 'package:mangaapp/home_page/screens/bookmarks.dart';
+import 'package:mangaapp/home_page/screens/landing.dart';
 import 'package:mangaapp/pages/search_page.dart';
 import 'package:mangaapp/pages/login_page.dart';
 import 'package:mangaapp/providers/profile_model.dart';
 import 'package:mangaapp/widgets/side_menu.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'manga_page.dart';
+import '../../pages/manga_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -216,32 +215,20 @@ class _HomePageState extends State<HomePage> {
           ),
           drawer: SideMenu(),
           body: TabBarView(children: [
-            const InfiniteScrollGrid(mode: 'home'),
+            Landing(),
             userData != null
-                ? InfiniteScrollGrid(
-                    mode: 'bookmarks',
-                    bookmarks: profileProvider.bookmarks,
-                  )
+                ? Bookmarks()
                 : Center(
                     child: TextButton(
-                    child: const Text('Login to get access to bookmarks.'),
+                    child: const Text(
+                      'Login to get access to bookmarks.',
+                      textAlign: TextAlign.center,
+                    ),
                     onPressed: () {
                       Navigator.pushNamed(context, LoginPage.routeName);
                     },
                   ))
-          ])
-          // body: OrientationBuilder(builder: (context, orientation) {
-          //   List<Widget> mangaGrid = _buildMangaGrid(orientation);
-          //   return GridView.count(
-          //       controller: scrollController,
-          //       crossAxisCount: orientation == Orientation.portrait
-          //           ? (1.sw / 200.w).round()
-          //           : (1.sw / 120.w).round(),
-          //       childAspectRatio: orientation == Orientation.portrait
-          //           ? 460.w / 690.h
-          //           : 360.w / 1669.h,
-          //       children: mangaGrid);
-          ),
+          ])),
     );
   }
 

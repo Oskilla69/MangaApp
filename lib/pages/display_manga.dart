@@ -7,7 +7,7 @@ import 'package:mangaapp/helpers/app_constants.dart';
 import 'package:mangaapp/pages/account_settings_page.dart';
 import 'package:mangaapp/pages/comment_page.dart';
 import 'package:mangaapp/pages/comments_page.dart';
-import 'package:mangaapp/pages/home_page.dart';
+import 'package:mangaapp/home_page/screens/home_page.dart';
 import 'package:mangaapp/pages/manga_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

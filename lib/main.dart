@@ -5,13 +5,14 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mangaapp/pages/account_page_no_user.dart';
 import 'package:mangaapp/pages/comments_page.dart';
-import 'package:mangaapp/pages/home_page.dart';
+import 'package:mangaapp/home_page/screens/home_page.dart';
 import 'package:mangaapp/pages/login_page.dart';
 import 'package:mangaapp/pages/manga_page.dart';
 import 'package:mangaapp/pages/account_page.dart';
 import 'package:mangaapp/pages/account_settings_page.dart';
 import 'package:mangaapp/pages/display_manga.dart';
 import 'package:mangaapp/providers/profile_model.dart';
+import 'package:mangaapp/shared/hex_color.dart';
 import 'package:provider/provider.dart';
 import 'helpers/appcolours.dart';
 
@@ -41,7 +42,23 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScreenUtilInit(builder: (context, child) {
       return MaterialApp(
-        theme: ThemeData.dark().copyWith(),
+        theme: ThemeData.dark().copyWith(
+            cardTheme: const CardTheme(elevation: 0, color: Colors.transparent),
+            scaffoldBackgroundColor: HexColor.fromHex('#1a1a1a'),
+            bottomAppBarColor: HexColor.fromHex("#979797"),
+            textTheme: const TextTheme(
+                titleSmall: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                    fontFamily: "Poppins"),
+                titleMedium: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                    fontFamily: "Poppins"),
+                titleLarge: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w600,
+                    fontFamily: "Poppins"))),
         // theme: ThemeData(
         //     scaffoldBackgroundColor: Color.fromARGB(115, 72, 71, 71),
         //     primaryColor: BG,
