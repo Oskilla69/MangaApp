@@ -5,6 +5,6 @@ class User {
   String? id;
   String? username;
   bool? subscribed;
-  List<Manga>? bookmarks;
+  List<Manga>? favourites;
   List<Chapter>? history;
 }

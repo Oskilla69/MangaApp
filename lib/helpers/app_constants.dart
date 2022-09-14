@@ -21,7 +21,7 @@ List<dynamic> SORT_BY = [
   'Total Views',
   'Update Date',
   'Follows',
-  'Bookmarks',
+  'Favorites',
   'Rating',
 ];
 

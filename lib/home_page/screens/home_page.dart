@@ -1,23 +1,24 @@
 import 'dart:convert';
 import 'dart:math';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mangaapp/helpers/app_constants.dart';
-import 'package:mangaapp/home_page/screens/bookmarks.dart';
+import 'package:mangaapp/home_page/screens/favourites.dart';
 import 'package:mangaapp/home_page/screens/landing.dart';
+import 'package:mangaapp/home_page/screens/user_settings.dart';
 import 'package:mangaapp/pages/search_page.dart';
 import 'package:mangaapp/pages/login_page.dart';
 import 'package:mangaapp/providers/profile_model.dart';
+import 'package:mangaapp/shared/muhnga_colors.dart';
+import 'package:mangaapp/shared/muhnga_icon_button.dart';
 import 'package:mangaapp/widgets/side_menu.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../../pages/manga_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -36,9 +37,6 @@ class _HomePageState extends State<HomePage> {
   final int limit = 10;
   bool dataSaver = false;
   Map<String, dynamic>? userData;
-
-  var mangas = [];
-  User? loggedInUser;
 
   @override
   void initState() {
@@ -91,6 +89,37 @@ class _HomePageState extends State<HomePage> {
       }
     });
   }
+
+  var mangas = [];
+  static final List displays = [
+    (context, userData) => Landing(),
+    () => null,
+    (context, userData) {
+      return userData != null
+          ? Favourites()
+          : Center(
+              child: TextButton(
+              child: const Text(
+                'Login to get access to favorites.',
+                textAlign: TextAlign.center,
+              ),
+              onPressed: () {
+                Navigator.pushNamed(context, LoginPage.routeName);
+              },
+            ));
+    },
+    (context, userData) {
+      return const AccountSettings();
+    }
+  ];
+  static final List<String> displayTitles = [
+    'Home',
+    'Search',
+    'Favorites',
+    'Settings'
+  ];
+  int currIndex = 0;
+  User? loggedInUser;
 
   Future<void> _loadPreferences() async {
     final prefs = await SharedPreferences.getInstance();
@@ -185,6 +214,19 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  void onIconTapped(int index) {
+    if (index == 1) {
+      showSearch(
+        context: context,
+        delegate: SearchPageDelegate(),
+      );
+    } else {
+      setState(() {
+        currIndex = index;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final profileProvider = Provider.of<ProfileModel>(context, listen: true);
@@ -193,121 +235,70 @@ class _HomePageState extends State<HomePage> {
     profileProvider.setUsername(userData?['username'] ?? '', false);
     profileProvider.setProfilePic(
         userData?['profile_image'] ?? 'assets/images/logo.jpeg', false);
-    profileProvider.addBookmarks(userData?['bookmarks'] ?? [], false);
+    profileProvider.addFavourites(userData?['bookmarks'] ?? [], false);
 
-    return DefaultTabController(
-      length: 2,
-      child: Scaffold(
-          appBar: AppBar(
-            title: const Text('Home'),
-            actions: [
-              IconButton(
-                icon: const Icon(Icons.search),
-                onPressed: () {
-                  showSearch(context: context, delegate: SearchPageDelegate());
-                },
+    return Scaffold(
+      appBar: MuhngaAppBar(displayTitles[currIndex]),
+      drawer: SideMenu(),
+      body: Container(
+        child: displays.elementAt(currIndex)(context, userData),
+        decoration: const BoxDecoration(
+            borderRadius: BorderRadius.vertical(top: Radius.circular(32)),
+            color: MuhngaColors.black),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.shifting,
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.favorite),
+              activeIcon: Icon(Icons.favorite, color: MuhngaColors.heartRed),
+              label: 'Favorites'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.account_circle),
+              activeIcon: Icon(
+                Icons.account_circle,
+                color: MuhngaColors.lightPink,
               ),
-            ],
-            bottom: const TabBar(tabs: [
-              Tab(child: Text('Home')),
-              Tab(child: Text('Bookmarks'))
-            ]),
-          ),
-          drawer: SideMenu(),
-          body: TabBarView(children: [
-            Landing(),
-            userData != null
-                ? Bookmarks()
-                : Center(
-                    child: TextButton(
-                    child: const Text(
-                      'Login to get access to bookmarks.',
-                      textAlign: TextAlign.center,
-                    ),
-                    onPressed: () {
-                      Navigator.pushNamed(context, LoginPage.routeName);
-                    },
-                  ))
-          ])),
+              label: 'Settings')
+        ],
+        fixedColor: MuhngaColors.neon,
+        unselectedItemColor: MuhngaColors.grey,
+        currentIndex: currIndex,
+        onTap: onIconTapped,
+      ),
+    );
+  }
+}
+
+class MuhngaAppBar extends StatelessWidget with PreferredSizeWidget {
+  const MuhngaAppBar(
+    this.title, {
+    Key? key,
+  }) : super(key: key);
+  final String title;
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+          horizontal: 18.0, vertical: (kToolbarHeight - 42) / 2),
+      child: AppBar(
+        title: Text(
+          title,
+          style: Theme.of(context).textTheme.titleMedium,
+        ),
+        leading: MuhngaIconButton(
+            const Icon(Icons.menu), () => Scaffold.of(context).openDrawer()),
+        actions: [
+          MuhngaIconButton(const Icon(Icons.search), () {
+            showSearch(context: context, delegate: SearchPageDelegate());
+          }),
+        ],
+      ),
     );
   }
 
-  List<Widget> _buildMangaGrid(orientation) {
-    List<Widget> mangaGrid = [
-      ...mangas.map((manga) {
-        return GestureDetector(
-            onTap: () {
-              Navigator.pushNamed(context, MangaPage.routeName,
-                  arguments: manga);
-            },
-            child: Card(
-              margin: EdgeInsets.all(0.025.sh),
-              clipBehavior: Clip.hardEdge,
-              child: Column(
-                children: [
-                  FutureBuilder(
-                    future:
-                        _storage.refFromURL(manga['cover']).getDownloadURL(),
-                    builder:
-                        (BuildContext context, AsyncSnapshot<String> snapshot) {
-                      if (snapshot.connectionState == ConnectionState.done &&
-                          snapshot.hasData) {
-                        return CachedNetworkImage(
-                          imageUrl: snapshot.data!,
-                          fit: BoxFit.cover,
-                          progressIndicatorBuilder:
-                              (context, url, downloadProgress) => Center(
-                                  child: CircularProgressIndicator(
-                                      value: downloadProgress.progress)),
-                          errorWidget: (context, url, error) =>
-                              const Icon(Icons.error),
-                          height: orientation == Orientation.portrait
-                              ? 180.h
-                              : 420.h,
-                          width: orientation == Orientation.portrait
-                              ? 180.w
-                              : 120.w,
-                          alignment: FractionalOffset.topCenter,
-                        );
-                      } else if (snapshot.connectionState ==
-                              ConnectionState.waiting ||
-                          !snapshot.hasData) {
-                        return const Center(child: CircularProgressIndicator());
-                      } else {
-                        return const Text('Error');
-                      }
-                    },
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 6.9, left: 1.69),
-                    child: Text(
-                      manga['title'],
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ),
-                  RatingBarIndicator(
-                    itemBuilder: (context, index) {
-                      return const Icon(
-                        Icons.star,
-                        color: Colors.amber,
-                      );
-                    },
-                    rating: manga['rating'],
-                    itemSize: orientation == Orientation.portrait ? 22.h : 11.w,
-                  ),
-                ],
-              ),
-            ));
-      }).toList()
-    ];
-
-    if (hasMore) {
-      mangaGrid.add(const Padding(
-        padding: EdgeInsets.symmetric(vertical: 32),
-        child: Center(child: CircularProgressIndicator()),
-      ));
-    }
-
-    return mangaGrid;
-  }
+  @override
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }

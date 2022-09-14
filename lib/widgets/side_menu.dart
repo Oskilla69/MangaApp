@@ -116,8 +116,8 @@ class SideMenu extends StatelessWidget {
           onTap: () {},
         ),
         ListTile(
-          leading: const Icon(Icons.bookmark),
-          title: const Text('Bookmarks'),
+          leading: const Icon(Icons.favorite),
+          title: const Text('Favorites'),
           onTap: () {},
         ),
         _buildAuthTile(context, profile),

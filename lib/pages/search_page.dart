@@ -9,7 +9,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mangaapp/components/firebase_image.dart';
 import 'package:mangaapp/components/search_list_item.dart';
 import 'package:mangaapp/main.dart';
-import 'package:mangaapp/pages/manga_page.dart';
+import 'package:mangaapp/manga_page/screens/manga_page.dart';
 import 'package:mangaapp/pages/search_extra.dart';
 // import 'package:mangaapp/pages/search_extra.dart';
 

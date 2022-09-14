@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import 'package:mangaapp/pages/manga_page.dart';
+import 'package:mangaapp/manga_page/screens/manga_page.dart';
 
 class InfiniteScrollGrid extends StatefulWidget {
   final String sortby;

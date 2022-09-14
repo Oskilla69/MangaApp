@@ -7,14 +7,13 @@ import 'package:mangaapp/pages/account_page_no_user.dart';
 import 'package:mangaapp/pages/comments_page.dart';
 import 'package:mangaapp/home_page/screens/home_page.dart';
 import 'package:mangaapp/pages/login_page.dart';
-import 'package:mangaapp/pages/manga_page.dart';
+import 'package:mangaapp/manga_page/screens/manga_page.dart';
 import 'package:mangaapp/pages/account_page.dart';
 import 'package:mangaapp/pages/account_settings_page.dart';
 import 'package:mangaapp/pages/display_manga.dart';
 import 'package:mangaapp/providers/profile_model.dart';
-import 'package:mangaapp/shared/hex_color.dart';
+import 'package:mangaapp/shared/muhnga_colors.dart';
 import 'package:provider/provider.dart';
-import 'helpers/appcolours.dart';
 
 class Application {
   static final Algolia algolia = Algolia.init(
@@ -44,8 +43,11 @@ class Home extends StatelessWidget {
       return MaterialApp(
         theme: ThemeData.dark().copyWith(
             cardTheme: const CardTheme(elevation: 0, color: Colors.transparent),
-            scaffoldBackgroundColor: HexColor.fromHex('#1a1a1a'),
-            bottomAppBarColor: HexColor.fromHex("#979797"),
+            appBarTheme: const AppBarTheme(
+                elevation: 0, backgroundColor: Colors.transparent),
+            scaffoldBackgroundColor: MuhngaColors.darkGrey,
+            bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+                backgroundColor: MuhngaColors.darkGrey),
             textTheme: const TextTheme(
                 titleSmall: TextStyle(
                     fontSize: 14,

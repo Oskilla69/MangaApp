@@ -4,7 +4,7 @@ class ProfileModel extends ChangeNotifier {
   String _username = '';
   String _profilePic = '';
   String _email = '';
-  final List<dynamic> _bookmarks = [];
+  final List<dynamic> _favourites = [];
 
   void setUsername(String username, bool notify) {
     _username = username;
@@ -27,22 +27,22 @@ class ProfileModel extends ChangeNotifier {
     }
   }
 
-  void addBookmark(String manga, bool notify) {
-    _bookmarks.add(manga);
+  void addFavourite(String manga, bool notify) {
+    _favourites.add(manga);
     if (notify) {
       notifyListeners();
     }
   }
 
-  void addBookmarks(List<dynamic> manga, bool notify) {
-    _bookmarks.addAll(manga);
+  void addFavourites(List<dynamic> manga, bool notify) {
+    _favourites.addAll(manga);
     if (notify) {
       notifyListeners();
     }
   }
 
-  void removeBookmark(String manga, bool notify) {
-    _bookmarks.remove(manga);
+  void removeFavourite(String manga, bool notify) {
+    _favourites.remove(manga);
     if (notify) {
       notifyListeners();
     }
@@ -69,5 +69,5 @@ class ProfileModel extends ChangeNotifier {
     return _profilePic;
   }
 
-  List<dynamic> get bookmarks => _bookmarks;
+  List<dynamic> get favourites => _favourites;
 }

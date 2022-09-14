@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:mangaapp/pages/display_manga.dart';
-import 'package:mangaapp/pages/manga_page.dart';
+import 'package:mangaapp/manga_page/screens/manga_page.dart';
 
 class CommentsPage extends StatefulWidget {
   const CommentsPage({Key? key, required this.mangaData}) : super(key: key);

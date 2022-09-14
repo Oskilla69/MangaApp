@@ -4,7 +4,7 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:http/http.dart' as http;
-import 'package:mangaapp/components/manga_summary.dart';
+import 'package:mangaapp/manga_page/screens/manga_summary.dart';
 import 'package:mangaapp/models/manga.dart';
 import 'package:mangaapp/providers/profile_model.dart';
 import 'package:provider/provider.dart';
@@ -25,13 +25,14 @@ class _MangaPageState extends State<MangaPage> {
   @override
   Widget build(BuildContext context) {
     final profileProvider = Provider.of<ProfileModel>(context, listen: true);
-    List<dynamic> bookmarks = profileProvider.bookmarks;
+    List<dynamic> favourites = profileProvider.favourites;
     return ScreenUtilInit(builder: ((context, child) {
       return Scaffold(
           appBar: AppBar(
-            title: Text(widget.mangaDetails['title']),
+            title: Text(widget.mangaDetails['title'],
+                style: Theme.of(context).textTheme.titleMedium),
             actions: [
-              bookmarks.contains(widget.mangaDetails['title'])
+              favourites.contains(widget.mangaDetails['title'])
                   ? IconButton(
                       onPressed: () async {
                         if (profileProvider.email.isNotEmpty) {
@@ -42,7 +43,7 @@ class _MangaPageState extends State<MangaPage> {
                             'bookmarks': FieldValue.arrayRemove(
                                 [widget.mangaDetails['title']])
                           });
-                          profileProvider.removeBookmark(
+                          profileProvider.removeFavourite(
                               widget.mangaDetails['title'], true);
                         }
                       },
@@ -57,14 +58,14 @@ class _MangaPageState extends State<MangaPage> {
                             'bookmarks': FieldValue.arrayUnion(
                                 [widget.mangaDetails['title']])
                           });
-                          profileProvider.addBookmark(
+                          profileProvider.addFavourite(
                               widget.mangaDetails['title'], true);
                         }
                       },
                       icon: const Icon(Icons.bookmark_add_outlined))
             ],
           ),
-          body: Stack(children: [MangaSummary(widget.mangaDetails)]));
+          body: MangaSummary(widget.mangaDetails));
     }));
   }
 }
