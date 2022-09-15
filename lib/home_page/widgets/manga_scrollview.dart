@@ -20,22 +20,18 @@ class MangaScrollView extends StatelessWidget {
         query: query,
         builder: (context, snapshot, _) {
           if (snapshot.isFetching) {
-            return const Center(child: CircularProgressIndicator());
+            return const SliverToBoxAdapter(
+                child: Center(child: CircularProgressIndicator()));
           } else if (snapshot.hasError) {
             print(snapshot.error);
-            return const Text('An error has occurred.');
+            return const SliverToBoxAdapter(
+                child: Text('An error has occurred.'));
           } else if (snapshot.docs.isEmpty) {
             return emptyResponse(context);
           }
-          return GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: (1.sw / width).round(),
-                  crossAxisSpacing: 16,
-                  mainAxisSpacing: 16,
-                  childAspectRatio: width / height),
-              itemCount: snapshot.docs.length,
-              padding: const EdgeInsets.all(16),
-              itemBuilder: (context, index) {
+          return SliverGrid(
+            delegate: SliverChildBuilderDelegate(
+              ((context, index) {
                 if (snapshot.hasMore && index + 1 == snapshot.docs.length) {
                   print(snapshot.docs.length);
                   snapshot.fetchMore();
@@ -48,7 +44,14 @@ class MangaScrollView extends StatelessWidget {
                   },
                   child: MangaCard(manga, width, height),
                 );
-              });
+              }),
+            ),
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: (1.sw / width).round(),
+                crossAxisSpacing: 16,
+                mainAxisSpacing: 16,
+                childAspectRatio: width / height),
+          );
         });
   }
 }

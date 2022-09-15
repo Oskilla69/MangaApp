@@ -57,6 +57,7 @@ dependencies:
   flutter_dotenv: ^5.0.2
   algolia: ^1.1.1
   supabase_flutter: ^0.3.3
+  carousel_slider: ^4.1.1
 
 dev_dependencies:
   flutter_test:
