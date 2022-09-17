@@ -17,8 +17,7 @@ class Chapters extends StatelessWidget {
         builder: ((context,
             AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
           if (snapshot.hasData) {
-            return Column(
-                // shrinkWrap: true,
+            return ListView(
                 children: snapshot.data!.docs.map((chapter) {
               return ListTile(
                 title: Text('Chapter ${chapter['chapter']}'),

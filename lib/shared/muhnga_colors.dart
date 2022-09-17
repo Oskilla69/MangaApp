@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class MuhngaColors {
+  static const primary = Color.fromARGB(255, 26, 26, 26);
+  static const secondary = Color.fromARGB(255, 56, 52, 52);
   static const grey = Color.fromARGB(255, 196, 194, 194);
   static const darkGrey = Color.fromARGB(255, 56, 52, 52);
   static const black = Color.fromARGB(255, 26, 26, 26);

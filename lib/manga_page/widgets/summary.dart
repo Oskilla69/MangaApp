@@ -15,7 +15,7 @@ class Summary extends StatelessWidget {
       child: Card(
         shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(20))),
-        color: Colors.red,
+        color: MuhngaColors.secondary,
         child: Padding(
           padding: const EdgeInsets.all(20.0),
           child: Column(children: [

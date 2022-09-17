@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mangaapp/shared/muhnga_app_bar.dart';
+import 'package:mangaapp/shared/muhnga_bottom_bar.dart';
 import 'package:mangaapp/helpers/app_constants.dart';
 import 'package:mangaapp/home_page/screens/favourites.dart';
 import 'package:mangaapp/home_page/screens/landing.dart';
@@ -238,67 +240,55 @@ class _HomePageState extends State<HomePage> {
     profileProvider.addFavourites(userData?['bookmarks'] ?? [], false);
 
     return Scaffold(
-      appBar: MuhngaAppBar(displayTitles[currIndex]),
       drawer: SideMenu(),
+      appBar: MuhngaAppBar(displayTitles[currIndex], Builder(
+        builder: ((context) {
+          return MuhngaIconButton(
+              const Icon(Icons.menu), () => Scaffold.of(context).openDrawer());
+        }),
+      ), [
+        MuhngaIconButton(const Icon(Icons.search), () {
+          showSearch(context: context, delegate: SearchPageDelegate());
+        }),
+      ]),
       body: Container(
         child: displays.elementAt(currIndex)(context, userData),
         decoration: const BoxDecoration(
             borderRadius: BorderRadius.vertical(top: Radius.circular(32)),
             color: MuhngaColors.black),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.shifting,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.favorite),
-              activeIcon: Icon(Icons.favorite, color: MuhngaColors.heartRed),
-              label: 'Favorites'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.account_circle),
-              activeIcon: Icon(
-                Icons.account_circle,
-                color: MuhngaColors.lightPink,
-              ),
-              label: 'Settings')
-        ],
-        fixedColor: MuhngaColors.neon,
-        unselectedItemColor: MuhngaColors.grey,
-        currentIndex: currIndex,
-        onTap: onIconTapped,
-      ),
+      bottomNavigationBar: MuhngaBottomBar(currIndex, onIconTapped),
     );
   }
 }
 
-class MuhngaAppBar extends StatelessWidget with PreferredSizeWidget {
-  const MuhngaAppBar(
-    this.title, {
-    Key? key,
-  }) : super(key: key);
-  final String title;
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(
-          horizontal: 18.0, vertical: (kToolbarHeight - 42) / 2),
-      child: AppBar(
-        title: Text(
-          title,
-          style: Theme.of(context).textTheme.titleMedium,
-        ),
-        leading: MuhngaIconButton(
-            const Icon(Icons.menu), () => Scaffold.of(context).openDrawer()),
-        actions: [
-          MuhngaIconButton(const Icon(Icons.search), () {
-            showSearch(context: context, delegate: SearchPageDelegate());
-          }),
-        ],
-      ),
-    );
-  }
+// class MuhngaAppBar extends StatelessWidget with PreferredSizeWidget {
+//   const MuhngaAppBar(
+//     this.title, {
+//     Key? key,
+//   }) : super(key: key);
+//   final String title;
+//   @override
+//   Widget build(BuildContext context) {
+//     return Padding(
+//       padding: const EdgeInsets.symmetric(
+//           horizontal: 18.0, vertical: (kToolbarHeight - 42) / 2),
+//       child: AppBar(
+//         title: Text(
+//           title,
+//           style: Theme.of(context).textTheme.titleMedium,
+//         ),
+//         leading: MuhngaIconButton(
+//             const Icon(Icons.menu), () => Scaffold.of(context).openDrawer()),
+//         actions: [
+//           MuhngaIconButton(const Icon(Icons.search), () {
+//             showSearch(context: context, delegate: SearchPageDelegate());
+//           }),
+//         ],
+//       ),
+//     );
+//   }
 
-  @override
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
-}
+//   @override
+//   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+// }
