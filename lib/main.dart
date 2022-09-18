@@ -60,7 +60,20 @@ class Home extends StatelessWidget {
                 titleLarge: TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.w600,
+                    fontFamily: "Poppins"),
+                bodySmall: TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w500,
+                    fontFamily: "Poppins"),
+                bodyMedium: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                    fontFamily: "Poppins"),
+                bodyLarge: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w500,
                     fontFamily: "Poppins"))),
+
         // theme: ThemeData(
         //     scaffoldBackgroundColor: Color.fromARGB(115, 72, 71, 71),
         //     primaryColor: BG,

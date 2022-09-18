@@ -2,8 +2,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mangaapp/manga_page/widgets/summary.dart';
 import 'package:mangaapp/pages/display_manga.dart';
 import 'package:mangaapp/shared/muhnga_colors.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -19,8 +19,6 @@ class MangaSummary extends StatefulWidget {
 }
 
 class _MangaSummaryState extends State<MangaSummary> {
-  final _storage = FirebaseStorage.instance;
-
   final _firestore = FirebaseFirestore.instance;
   bool dataSaver = false;
 
@@ -73,98 +71,210 @@ class _MangaSummaryState extends State<MangaSummary> {
   }
 
   Widget buildPortrait(BuildContext context, Map<String, dynamic> manga) {
-    return ListView(children: [
-      Stack(
-        clipBehavior: Clip.none,
-        alignment: Alignment.topCenter,
-        children: [
-          Positioned(
-            top: 150,
-            left: 0,
-            right: 0,
-            // bottom: 0,
-            child: Container(
-              height: 1.sh,
-              decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.vertical(top: Radius.circular(32)),
-                  color: MuhngaColors.black),
-            ),
+    return Column(children: [
+      SizedBox(
+        width: .9.sw,
+        child: Card(
+          shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(20))),
+          color: MuhngaColors.secondary,
+          child: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Column(children: [
+              Text(manga['title'],
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.titleMedium),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  RatingBarIndicator(
+                      itemBuilder: (context, index) {
+                        return const Icon(
+                          Icons.star,
+                          color: MuhngaColors.star,
+                        );
+                      },
+                      rating: manga['rating'],
+                      itemSize: 24),
+                  const SizedBox(
+                    width: 5,
+                  ),
+                  Text(manga['rating'].toString()),
+                  const SizedBox(
+                    width: 5,
+                  ),
+                  const Text('(need count)')
+                ],
+              ),
+              const Divider(
+                  color: MuhngaColors.grey, thickness: 0.25, height: 36),
+              Text(manga['synopsis']),
+              const Divider(
+                color: MuhngaColors.grey,
+                thickness: 0.25,
+                height: 36,
+              ),
+              buildMiscInformation(manga)
+            ]),
           ),
-          buildCover(manga)
-        ],
-      ),
-      Container(
-        color: MuhngaColors.black,
-        child: Column(
-          children: [Summary(manga), ...chapters],
         ),
-      )
+      ),
+      Padding(
+        padding: const EdgeInsets.symmetric(vertical: 16.0),
+        child: Row(
+          children: [
+            Material(
+              borderRadius: const BorderRadius.all(Radius.circular(16)),
+              color: MuhngaColors.secondary,
+              child: SizedBox(
+                height: 50.w,
+                width: 50.w,
+                child: IconButton(
+                    onPressed: () {
+                      print("favourite clicked");
+                    },
+                    icon: Icon(
+                      Icons.favorite,
+                      size: 25.0.w,
+                      color: MuhngaColors.heartRed,
+                    )),
+              ),
+            ),
+            const Spacer(),
+            Container(
+                height: 50.w,
+                padding: EdgeInsets.symmetric(horizontal: 16.0.w),
+                decoration: const BoxDecoration(
+                    color: MuhngaColors.secondary,
+                    borderRadius: BorderRadius.all(Radius.circular(16))),
+                child: Center(
+                  child: Text(
+                    "6 Chapters",
+                    style: Theme.of(context).textTheme.titleMedium,
+                  ),
+                )),
+            const Spacer(),
+            Material(
+              borderRadius: const BorderRadius.all(Radius.circular(16)),
+              color: MuhngaColors.contrast,
+              child: InkWell(
+                borderRadius: const BorderRadius.all(Radius.circular(16)),
+                onTap: () {
+                  print('read now clicked');
+                },
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20.0.w),
+                  child: SizedBox(
+                      height: 50.w,
+                      child: Center(
+                        child: Text(
+                          "Read Now",
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleMedium!
+                              .apply(color: MuhngaColors.black),
+                        ),
+                      )),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
     ]);
   }
 
-  Widget buildMangaContent(BuildContext context, Map<String, dynamic> manga) {
-    return CustomScrollView(
+  // Widget buildLandscape(BuildContext context, Map<String, dynamic> manga) {
+  //   return SafeArea(
+  //     child: Padding(
+  //       padding: EdgeInsets.only(top: 16.h),
+  //       child: Row(
+  //         children: [
+  //           SizedBox(
+  //             height: 0.8.sh,
+  //             child: buildCover(manga),
+  //           ),
+  //           SizedBox(width: 16.w),
+  //           Expanded(child: ListView(children: [Summary(manga), ...chapters]))
+  //         ],
+  //       ),
+  //     ),
+  //   );
+  // }
+
+  Widget buildMiscInformation(Map<String, dynamic> manga) {
+    return GridView.extent(
+      maxCrossAxisExtent: 300,
+      childAspectRatio: 300 / 100,
+      shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
-      slivers: [
-        const SliverToBoxAdapter(child: SizedBox(height: 300)),
-        SliverToBoxAdapter(child: Summary(manga)),
-        SliverList(
-            delegate: SliverChildBuilderDelegate((context, index) {
-          return chapters[index];
-        }, childCount: chapters.length))
+      crossAxisSpacing: 0,
+      mainAxisSpacing: 0,
+      children: [
+        Align(
+          alignment: Alignment.topLeft,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'AUTHOR',
+                style: Theme.of(context)
+                    .textTheme
+                    .titleSmall!
+                    .apply(color: MuhngaColors.grey),
+              ),
+              Text(manga['author'], textAlign: TextAlign.left),
+            ],
+          ),
+        ),
+        Align(
+          alignment: Alignment.topLeft,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'PUBLISHER',
+                style: Theme.of(context)
+                    .textTheme
+                    .titleSmall!
+                    .apply(color: MuhngaColors.grey),
+              ),
+              Text(manga['status'], textAlign: TextAlign.left),
+            ],
+          ),
+        ),
+        Align(
+          alignment: Alignment.topLeft,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'STATUS',
+                style: Theme.of(context)
+                    .textTheme
+                    .titleSmall!
+                    .apply(color: MuhngaColors.grey),
+                textAlign: TextAlign.left,
+              ),
+              buildStatusString(context, manga['status'])
+            ],
+          ),
+        ),
       ],
     );
   }
 
-  Widget buildLandscape(BuildContext context, Map<String, dynamic> manga) {
-    return SafeArea(
-      child: Padding(
-        padding: EdgeInsets.only(top: 16.h),
-        child: Row(
-          children: [
-            SizedBox(
-              height: 0.8.sh,
-              child: buildCover(manga),
-            ),
-            SizedBox(width: 16.w),
-            Expanded(child: ListView(children: [Summary(manga), ...chapters]))
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget buildCover(Map<String, dynamic> manga) {
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: 8.h),
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(20),
-              topRight: Radius.circular(20),
-              bottomLeft: Radius.circular(20),
-              bottomRight: Radius.circular(20)),
-          boxShadow: [
-            BoxShadow(
-              color: MuhngaColors.black.withOpacity(0.5),
-              spreadRadius: 6,
-              blurRadius: 4,
-            ),
-          ],
-        ),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(20),
-          child: CachedNetworkImage(
-              imageUrl: manga['cover'],
-              fit: BoxFit.contain,
-              progressIndicatorBuilder: (context, url, downloadProgress) =>
-                  Center(
-                      child: CircularProgressIndicator(
-                          value: downloadProgress.progress)),
-              errorWidget: (context, url, error) => const Icon(Icons.error),
-              height: 320.h),
-        ),
-      ),
-    );
+  Widget buildStatusString(BuildContext context, String status) {
+    if (status.toLowerCase() == "completed") {
+      return Text(
+        status,
+        style: const TextStyle(color: MuhngaColors.success),
+        // style: Theme.of(context)
+        //     .textTheme
+        //     .bodySmall!
+        //     .apply(color: MuhngaColors.success),
+      );
+    }
+    return Text(status);
   }
 }
