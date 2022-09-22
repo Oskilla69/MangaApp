@@ -7,13 +7,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:mangaapp/pages/account_page.dart';
+import 'package:mangaapp/premium_page/screens/premium_page.dart';
 import 'package:mangaapp/shared/muhnga_app_bar.dart';
 import 'package:mangaapp/shared/muhnga_bottom_bar.dart';
 import 'package:mangaapp/helpers/app_constants.dart';
 import 'package:mangaapp/home_page/screens/favourites.dart';
 import 'package:mangaapp/home_page/screens/landing.dart';
 import 'package:mangaapp/home_page/screens/user_settings.dart';
-import 'package:mangaapp/pages/search_page.dart';
+import 'package:mangaapp/search_page/screens/search_page.dart';
 import 'package:mangaapp/pages/login_page.dart';
 import 'package:mangaapp/providers/profile_model.dart';
 import 'package:mangaapp/shared/muhnga_colors.dart';
@@ -111,14 +114,14 @@ class _HomePageState extends State<HomePage> {
             ));
     },
     (context, userData) {
-      return const AccountSettings();
+      return const PremiumPage();
     }
   ];
   static final List<String> displayTitles = [
     'Home',
     'Search',
     'Favorites',
-    'Settings'
+    'Premium'
   ];
   int currIndex = 0;
   User? loggedInUser;
@@ -243,18 +246,37 @@ class _HomePageState extends State<HomePage> {
       drawer: SideMenu(),
       appBar: MuhngaAppBar(displayTitles[currIndex], Builder(
         builder: ((context) {
-          return MuhngaIconButton(
-              const Icon(Icons.menu), () => Scaffold.of(context).openDrawer());
+          return MuhngaIconButton(const Icon(Icons.account_circle),
+              () => Navigator.pushNamed(context, AccountPage.routeName));
         }),
       ), [
-        MuhngaIconButton(const Icon(Icons.search), () {
-          showSearch(context: context, delegate: SearchPageDelegate());
-        }),
+        // Padding(
+        //   padding: const EdgeInsets.symmetric(horizontal: 8.0),
+        //   child: MuhngaIconButton(const Icon(Icons.notifications), (() {
+        //     print('wassup');
+        //   })),
+        // ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          child: MuhngaIconButton(const Icon(Icons.history), (() {
+            print('history wassup');
+          })),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(left: 8.0),
+          child: MuhngaIconButton(
+              SvgPicture.asset(
+                'assets/icons/dice.svg',
+                height: 24.0,
+              ), () {
+            showSearch(context: context, delegate: SearchPageDelegate());
+          }),
+        ),
       ]),
       body: Container(
         child: displays.elementAt(currIndex)(context, userData),
         decoration: const BoxDecoration(
-            borderRadius: BorderRadius.vertical(top: Radius.circular(32)),
+            borderRadius: BorderRadius.vertical(top: Radius.circular(28)),
             color: MuhngaColors.black),
       ),
       bottomNavigationBar: MuhngaBottomBar(currIndex, onIconTapped),

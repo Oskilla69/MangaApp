@@ -58,6 +58,7 @@ dependencies:
   algolia: ^1.1.1
   supabase_flutter: ^0.3.3
   carousel_slider: ^4.1.1
+  flutter_svg: ^1.1.5
 
 dev_dependencies:
   flutter_test:
@@ -84,6 +85,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+    - assets/icons/
     - assets/images/
     - assets/manga_data.json
     - ./.env

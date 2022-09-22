@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class MuhngaIconButton extends StatelessWidget {
   const MuhngaIconButton(this.icon, this.onPressed, {Key? key})
       : super(key: key);
-  final Icon icon;
+  final Widget icon;
   final VoidCallback onPressed;
 
   @override

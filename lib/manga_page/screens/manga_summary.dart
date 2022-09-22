@@ -4,7 +4,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mangaapp/pages/display_manga.dart';
+import 'package:mangaapp/manga_reader_page/screens/manga_reader_page.dart';
 import 'package:mangaapp/shared/muhnga_colors.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -39,11 +39,10 @@ class _MangaSummaryState extends State<MangaSummary> {
               leading: const Icon(Icons.remove),
               title: Text('Chapter ${chapter['chapter']}'),
               onTap: () {
-                Navigator.pushNamed(context, DisplayManga.routeName,
-                    arguments: {
-                      'chapter': chapter.data(),
-                      'title': widget.manga['title']
-                    });
+                Navigator.pushNamed(context, MangaReader.routeName, arguments: {
+                  'chapter': chapter.data(),
+                  'title': widget.manga['title']
+                });
               },
             );
           }).toList();

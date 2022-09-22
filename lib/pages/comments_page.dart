@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:mangaapp/pages/display_manga.dart';
+import 'package:mangaapp/manga_reader_page/screens/manga_reader_page.dart';
 import 'package:mangaapp/manga_page/screens/manga_page.dart';
 
 class CommentsPage extends StatefulWidget {
@@ -46,7 +46,7 @@ class _CommentsPageState extends State<CommentsPage> {
                 TextButton(
                     onPressed: () {
                       Navigator.pushReplacementNamed(
-                          context, DisplayManga.routeName, arguments: {
+                          context, MangaReader.routeName, arguments: {
                         'chapter': nextChapter,
                         'title': widget.mangaData['manga']
                       });

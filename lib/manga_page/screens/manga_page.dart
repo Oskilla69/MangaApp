@@ -34,6 +34,7 @@ class _MangaPageState extends State<MangaPage> {
     List<dynamic> favourites = profileProvider.favourites;
     return ScreenUtilInit(builder: ((context, child) {
       return Scaffold(
+          resizeToAvoidBottomInset: true,
           appBar: MuhngaAppBar(
               widget.mangaDetails['title'],
               MuhngaIconButton(const Icon(Icons.arrow_back_ios_new), (() {

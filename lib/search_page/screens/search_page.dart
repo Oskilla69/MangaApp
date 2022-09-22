@@ -10,7 +10,7 @@ import 'package:mangaapp/components/firebase_image.dart';
 import 'package:mangaapp/components/search_list_item.dart';
 import 'package:mangaapp/main.dart';
 import 'package:mangaapp/manga_page/screens/manga_page.dart';
-import 'package:mangaapp/pages/search_extra.dart';
+import 'package:mangaapp/search_page/screens/search_extra.dart';
 // import 'package:mangaapp/pages/search_extra.dart';
 
 // maybe have history. Who knows

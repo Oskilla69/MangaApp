@@ -1,9 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mangaapp/manga_page/widgets/chapter_tile.dart';
+import 'package:mangaapp/manga_page/widgets/chapters.dart';
 import 'package:mangaapp/shared/muhnga_app_bar.dart';
 import 'package:mangaapp/shared/muhnga_colors.dart';
 
@@ -11,6 +13,9 @@ class MangaChapters extends StatelessWidget {
   MangaChapters(this.manga, {super.key});
   final Map<String, dynamic> manga;
   final _firestore = FirebaseFirestore.instance;
+  final scrollableThreshold = 6;
+  final tileHeight = 69.0;
+  String chapterFilter = "";
 
   @override
   Widget build(BuildContext context) {
@@ -42,15 +47,8 @@ class MangaChapters extends StatelessWidget {
                     AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>>
                         snapshot) {
                   if (snapshot.hasData) {
-                    return Column(
-                      children: snapshot.data!.docs.reversed.map((chapter) {
-                        return ChapterTile(chapter['chapter']);
-                        // return ListTile(
-                        //   tileColor: MuhngaColors.secondary,
-                        //   title: Text('Chapter ${chapter['chapter']}'),
-                        // );
-                      }).toList(),
-                    );
+                    return ChapterWidget(
+                        snapshot.data!.docs, scrollableThreshold, tileHeight);
                   }
                   return const Center(child: CircularProgressIndicator());
                 })),

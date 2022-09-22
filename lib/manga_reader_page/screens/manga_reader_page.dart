@@ -11,16 +11,16 @@ import 'package:mangaapp/home_page/screens/home_page.dart';
 import 'package:mangaapp/manga_page/screens/manga_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class DisplayManga extends StatefulWidget {
-  const DisplayManga({Key? key, required this.mangaData}) : super(key: key);
+class MangaReader extends StatefulWidget {
+  const MangaReader({Key? key, required this.mangaData}) : super(key: key);
   final Map<String, dynamic> mangaData;
   static const routeName = '${MangaPage.routeName}/display';
 
   @override
-  State<DisplayManga> createState() => _DisplayMangaState();
+  State<MangaReader> createState() => _MangaReaderState();
 }
 
-class _DisplayMangaState extends State<DisplayManga>
+class _MangaReaderState extends State<MangaReader>
     with SingleTickerProviderStateMixin {
   bool _showAppBar = false;
 

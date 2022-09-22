@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:mangaapp/shared/muhnga_colors.dart';
 
 class MuhngaBottomBar extends StatelessWidget {
@@ -6,6 +7,7 @@ class MuhngaBottomBar extends StatelessWidget {
       : super(key: key);
   int currIndex;
   final void Function(int) onIconTapped;
+  final double size = 24.0;
 
   @override
   Widget build(BuildContext context) {
@@ -18,24 +20,55 @@ class MuhngaBottomBar extends StatelessWidget {
           ),
           child: BottomNavigationBar(
             type: BottomNavigationBarType.shifting,
-            items: const <BottomNavigationBarItem>[
-              BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+            items: <BottomNavigationBarItem>[
               BottomNavigationBarItem(
-                  icon: Icon(Icons.search), label: 'Search'),
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.favorite),
-                  activeIcon:
-                      Icon(Icons.favorite, color: MuhngaColors.heartRed),
-                  label: 'Favorites'),
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.account_circle),
-                  activeIcon: Icon(
-                    Icons.account_circle,
-                    color: MuhngaColors.lightPink,
+                  icon: Icon(
+                    Icons.home,
+                    size: size,
                   ),
-                  label: 'Settings')
+                  label: 'Home'),
+              BottomNavigationBarItem(
+                  icon: Icon(
+                    Icons.search,
+                    size: size,
+                  ),
+                  label: 'Search'),
+              BottomNavigationBarItem(
+                  icon: Icon(
+                    Icons.favorite,
+                    size: size,
+                  ),
+                  activeIcon: Icon(
+                    Icons.favorite,
+                    color: MuhngaColors.heartRed,
+                    size: size,
+                  ),
+                  label: 'Favorites'),
+              // BottomNavigationBarItem(
+              //     icon: Icon(
+              //       Icons.account_circle,
+              //       size: size,
+              //     ),
+              //     activeIcon: Icon(
+              //       Icons.account_circle,
+              //       color: MuhngaColors.lightPink,
+              //       size: size,
+              //     ),
+              //     label: 'Settings'),
+              BottomNavigationBarItem(
+                  icon: SvgPicture.asset(
+                    'assets/icons/crown.svg',
+                    color: MuhngaColors.grey,
+                    height: size,
+                  ),
+                  activeIcon: SvgPicture.asset(
+                    'assets/icons/crown.svg',
+                    height: size,
+                    color: MuhngaColors.star,
+                  ),
+                  label: 'Premium'),
             ],
-            fixedColor: MuhngaColors.neon,
+            fixedColor: MuhngaColors.contrast,
             unselectedItemColor: MuhngaColors.grey,
             currentIndex: currIndex,
             onTap: onIconTapped,

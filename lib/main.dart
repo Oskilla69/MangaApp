@@ -10,7 +10,7 @@ import 'package:mangaapp/pages/login_page.dart';
 import 'package:mangaapp/manga_page/screens/manga_page.dart';
 import 'package:mangaapp/pages/account_page.dart';
 import 'package:mangaapp/pages/account_settings_page.dart';
-import 'package:mangaapp/pages/display_manga.dart';
+import 'package:mangaapp/manga_reader_page/screens/manga_reader_page.dart';
 import 'package:mangaapp/providers/profile_model.dart';
 import 'package:mangaapp/shared/muhnga_colors.dart';
 import 'package:provider/provider.dart';
@@ -108,9 +108,9 @@ class Home extends StatelessWidget {
             page = MangaPage(
               mangaDetails: data,
             );
-          } else if (settings.name == DisplayManga.routeName) {
+          } else if (settings.name == MangaReader.routeName) {
             var data = settings.arguments as Map<String, dynamic>;
-            page = DisplayManga(mangaData: data);
+            page = MangaReader(mangaData: data);
           } else if (settings.name == CommentsPage.routeName) {
             var data = settings.arguments as Map<String, dynamic>;
             page = CommentsPage(mangaData: data);
