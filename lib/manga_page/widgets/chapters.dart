@@ -70,7 +70,7 @@ class ChapterWidgetState extends State<ChapterWidget> {
               crossAxisCount: (1.sw / 400).round(),
               childAspectRatio: 400 / 80,
               children: visibleData.reversed.map((chapter) {
-                return ChapterTile(chapter['chapter']);
+                return ChapterTile(chapter);
               }).toList()),
           // child: GridView.builder(
           //     // crossAxisCount: (1.sw / 300).round(),

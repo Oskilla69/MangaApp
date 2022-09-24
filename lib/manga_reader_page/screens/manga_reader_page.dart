@@ -4,11 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mangaapp/components/sliding_app_bar.dart';
 import 'package:mangaapp/helpers/app_constants.dart';
+import 'package:mangaapp/manga_reader_page/screens/feedback_page.dart';
 import 'package:mangaapp/pages/account_settings_page.dart';
 import 'package:mangaapp/pages/comment_page.dart';
 import 'package:mangaapp/pages/comments_page.dart';
 import 'package:mangaapp/home_page/screens/home_page.dart';
 import 'package:mangaapp/manga_page/screens/manga_page.dart';
+import 'package:mangaapp/shared/muhnga_colors.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class MangaReader extends StatefulWidget {
@@ -56,37 +58,39 @@ class _MangaReaderState extends State<MangaReader>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // bottomNavigationBar: _showAppBar ? AppBar() : null,
-      body: Stack(children: [
-        GestureDetector(
-            onTap: () {
-              setState(() {
-                _showAppBar = !_showAppBar;
-              });
-            },
-            // onDoubleTap: () {
-            //   print('zoom in');
-            // },
-            child: verticalScroll
-                ? _buildVerticalScroll(widget.mangaData)
-                : _buildHorizontalScroll(widget.mangaData)),
-        SlidingAppBar(
-          controller: _controller,
-          visible: _showAppBar,
-          child: AppBar(
-            title: Text('Chapter ${widget.mangaData['chapter']['chapter']}'),
-            actions: [
-              IconButton(
-                  onPressed: () async {
-                    await Navigator.pushNamed(
-                        context, AccountSettingsPage.routeName);
-                    _loadPreferences();
-                  },
-                  icon: const Icon(Icons.settings))
-            ],
-          ),
-        ),
-      ]),
+      body: SafeArea(child: Center(child: FeedbackPage())),
+      // body: Stack(children: [
+      //   GestureDetector(
+      //       onTap: () {
+      //         setState(() {
+      //           _showAppBar = !_showAppBar;
+      //         });
+      //       },
+      //       // onDoubleTap: () {
+      //       //   print('zoom in');
+      //       // },
+      //       child: verticalScroll
+      //           ? _buildVerticalScroll(widget.mangaData)
+      //           : _buildHorizontalScroll(widget.mangaData)),
+      //   SlidingAppBar(
+      //     controller: _controller,
+      //     visible: _showAppBar,
+      //     child: AppBar(
+      //       // toolbarHeight: kToolbarHeight,
+      //       backgroundColor: MuhngaColors.secondary,
+      //       title: Text('Chapter ${widget.mangaData['chapter']['chapter']}'),
+      //       actions: [
+      //         IconButton(
+      //             onPressed: () async {
+      //               await Navigator.pushNamed(
+      //                   context, AccountSettingsPage.routeName);
+      //               _loadPreferences();
+      //             },
+      //             icon: const Icon(Icons.settings))
+      //       ],
+      //     ),
+      //   ),
+      // ]),
     );
   }
 
