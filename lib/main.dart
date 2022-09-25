@@ -3,8 +3,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mangaapp/comments_page/screens/comments_page.dart';
 import 'package:mangaapp/pages/account_page_no_user.dart';
-import 'package:mangaapp/pages/comments_page.dart';
 import 'package:mangaapp/home_page/screens/home_page.dart';
 import 'package:mangaapp/pages/login_page.dart';
 import 'package:mangaapp/manga_page/screens/manga_page.dart';
@@ -112,8 +112,9 @@ class Home extends StatelessWidget {
             var data = settings.arguments as Map<String, dynamic>;
             page = MangaReader(mangaData: data);
           } else if (settings.name == CommentsPage.routeName) {
-            var data = settings.arguments as Map<String, dynamic>;
-            page = CommentsPage(mangaData: data);
+            // var data = settings.arguments as Map<String, dynamic>;
+            // page = CommentsPage(mangaData: data);
+            page = CommentsPage();
           } else {
             throw Exception('Unknown Route ${settings.name}');
           }

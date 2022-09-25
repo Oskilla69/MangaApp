@@ -58,7 +58,12 @@ class _MangaReaderState extends State<MangaReader>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(child: Center(child: FeedbackPage())),
+      body: SafeArea(
+          child: Center(
+              child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 18.0),
+        child: FeedbackPage(),
+      ))),
       // body: Stack(children: [
       //   GestureDetector(
       //       onTap: () {

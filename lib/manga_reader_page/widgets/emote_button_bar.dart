@@ -16,10 +16,10 @@ class _EmoteButtonBarState extends State<EmoteButtonBar> {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-    return GridView.count(
+    return SliverGrid.count(
       crossAxisCount: width > 600 ? 6 : 3,
-      padding: const EdgeInsets.symmetric(horizontal: 10),
-      physics: const NeverScrollableScrollPhysics(),
+      // padding: const EdgeInsets.symmetric(horizontal: 10),
+      // physics: const NeverScrollableScrollPhysics(),
       children: [
         EmoteButton('assets/emotes/laff_${imgSize}x.webp', 'Funny', handleClick,
             iconOpacity, 123),
