@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:mangaapp/helpers/app_constants.dart';
+import 'package:mangaapp/shared/muhnga_constants.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mangaapp/search_page/screens/search_page.dart';
 import 'package:mangaapp/search_page/widgets/search_extra_genres.dart';

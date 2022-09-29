@@ -13,7 +13,8 @@ import 'package:mangaapp/providers/profile_model.dart';
 import 'package:mangaapp/shared/muhnga_app_bar.dart';
 import 'package:mangaapp/shared/muhnga_colors.dart';
 import 'package:mangaapp/shared/muhnga_icon_button.dart';
-import 'package:provider/provider.dart';
+import 'package:provider/provider.dart' as provider;
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class MangaPage extends StatefulWidget {
   const MangaPage({Key? key, required this.mangaDetails}) : super(key: key);
@@ -26,11 +27,10 @@ class MangaPage extends StatefulWidget {
 }
 
 class _MangaPageState extends State<MangaPage> {
-  final _firestore = FirebaseFirestore.instance;
-
   @override
   Widget build(BuildContext context) {
-    final profileProvider = Provider.of<ProfileModel>(context, listen: true);
+    final profileProvider =
+        provider.Provider.of<ProfileModel>(context, listen: true);
     List<dynamic> favourites = profileProvider.favourites;
     return ScreenUtilInit(builder: ((context, child) {
       return Scaffold(

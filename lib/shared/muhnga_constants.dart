@@ -91,3 +91,7 @@ extension Parse on SHARED_PREFERENCES {
     return toString().split('.').last;
   }
 }
+
+class MuhngaSpacing {
+  static const double horizontalPadding = 18.0;
+}

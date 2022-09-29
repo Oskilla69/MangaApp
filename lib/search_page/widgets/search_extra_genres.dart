@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mangaapp/helpers/app_constants.dart';
+import 'package:mangaapp/shared/muhnga_constants.dart';
 import 'package:mangaapp/shared/muhnga_colors.dart';
 
 class SearchExtraGenres extends StatefulWidget {

@@ -8,7 +8,7 @@ import 'package:mangaapp/manga_reader_page/screens/manga_reader_page.dart';
 import 'package:mangaapp/shared/muhnga_colors.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../helpers/app_constants.dart';
+import '../../shared/muhnga_constants.dart';
 
 class MangaSummary extends StatefulWidget {
   const MangaSummary(this.manga, {Key? key}) : super(key: key);

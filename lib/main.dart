@@ -13,7 +13,9 @@ import 'package:mangaapp/pages/account_settings_page.dart';
 import 'package:mangaapp/manga_reader_page/screens/manga_reader_page.dart';
 import 'package:mangaapp/providers/profile_model.dart';
 import 'package:mangaapp/shared/muhnga_colors.dart';
+import 'package:mangaapp/shared/supabase/supabase_constants.dart';
 import 'package:provider/provider.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class Application {
   static final Algolia algolia = Algolia.init(
@@ -25,6 +27,8 @@ class Application {
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  await Supabase.initialize(
+      url: SupabaseConstants.projectUrl, anonKey: SupabaseConstants.apiKey);
   await dotenv.load(fileName: '.env');
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(create: ((context) {

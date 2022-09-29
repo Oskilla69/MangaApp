@@ -3,7 +3,7 @@ import 'package:custom_refresh_indicator/custom_refresh_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mangaapp/components/sliding_app_bar.dart';
-import 'package:mangaapp/helpers/app_constants.dart';
+import 'package:mangaapp/shared/muhnga_constants.dart';
 import 'package:mangaapp/manga_reader_page/screens/feedback_page.dart';
 import 'package:mangaapp/pages/account_settings_page.dart';
 import 'package:mangaapp/pages/comment_page.dart';

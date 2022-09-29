@@ -7,6 +7,8 @@ import 'package:mangaapp/manga_reader_page/screens/comment_section.dart';
 import 'package:mangaapp/shared/comment_box.dart';
 import 'package:mangaapp/manga_reader_page/widgets/emote_button_bar.dart';
 import 'package:mangaapp/shared/muhnga_colors.dart';
+import 'package:mangaapp/shared/muhnga_constants.dart';
+import 'package:mangaapp/shared/supabase/supabasing.dart';
 
 class FeedbackPage extends StatelessWidget {
   const FeedbackPage({super.key});

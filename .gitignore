@@ -48,3 +48,6 @@ app.*.map.json
 
 *.env
 .env
+
+# supabase data
+lib/shared/supabase/supabase_constants.dart

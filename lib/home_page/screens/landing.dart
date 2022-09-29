@@ -1,21 +1,23 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutterfire_ui/firestore.dart';
 import 'package:mangaapp/home_page/screens/carousel_manga.dart';
 import 'package:mangaapp/home_page/widgets/manga_card.dart';
 import 'package:mangaapp/home_page/widgets/manga_scrollview.dart';
 import 'package:mangaapp/manga_page/screens/manga_page.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class Landing extends StatelessWidget {
   Landing({Key? key}) : super(key: key);
-  final _firestore = FirebaseFirestore.instance;
+  final _supabase = Supabase.instance.client;
 
   @override
   Widget build(BuildContext context) {
-    final query = _firestore
-        .collection('manga')
-        .orderBy('last_updated', descending: true);
+    final query = _supabase.from("manga_core").select('''
+      id,
+      title,
+      cover,
+      rating
+    ''').order("latest_update", ascending: false);
     const width = 180.0;
     const height = 304.0;
     return Padding(
