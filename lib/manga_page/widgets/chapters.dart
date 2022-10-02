@@ -8,7 +8,7 @@ import 'package:mangaapp/shared/muhnga_colors.dart';
 class ChapterWidget extends StatefulWidget {
   const ChapterWidget(this.data, this.scrollableThreshold, this.tileHeight,
       {super.key});
-  final List<QueryDocumentSnapshot<Map<String, dynamic>>> data;
+  final List<dynamic> data;
   final int scrollableThreshold;
   final double tileHeight;
 
@@ -17,7 +17,7 @@ class ChapterWidget extends StatefulWidget {
 }
 
 class ChapterWidgetState extends State<ChapterWidget> {
-  late List<QueryDocumentSnapshot<Map<String, dynamic>>> visibleData;
+  late List<dynamic> visibleData;
   @override
   void initState() {
     setState(() {
@@ -48,7 +48,7 @@ class ChapterWidgetState extends State<ChapterWidget> {
             setState(() {
               visibleData = widget.data
                   .where((element) =>
-                      element.data()['chapter'].toString().contains(value))
+                      element['chapter'].toString().contains(value))
                   .toList();
             });
           },

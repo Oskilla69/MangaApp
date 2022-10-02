@@ -2,7 +2,14 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:custom_refresh_indicator/custom_refresh_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mangaapp/components/sliding_app_bar.dart';
+import 'package:mangaapp/shared/sliding_app_bar.dart';
+import 'package:mangaapp/manga_reader_page/screens/comment_section.dart';
+import 'package:mangaapp/manga_reader_page/screens/manga.dart';
+import 'package:mangaapp/manga_reader_page/widgets/comment_card.dart';
+import 'package:mangaapp/manga_reader_page/widgets/emote_button.dart';
+import 'package:mangaapp/manga_reader_page/widgets/emote_button_bar.dart';
+import 'package:mangaapp/shared/comment_box.dart';
+import 'package:mangaapp/shared/muhnga_app_bar.dart';
 import 'package:mangaapp/shared/muhnga_constants.dart';
 import 'package:mangaapp/manga_reader_page/screens/feedback_page.dart';
 import 'package:mangaapp/pages/account_settings_page.dart';
@@ -11,7 +18,9 @@ import 'package:mangaapp/pages/comments_page.dart';
 import 'package:mangaapp/home_page/screens/home_page.dart';
 import 'package:mangaapp/manga_page/screens/manga_page.dart';
 import 'package:mangaapp/shared/muhnga_colors.dart';
+import 'package:mangaapp/shared/muhnga_icon_button.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class MangaReader extends StatefulWidget {
   const MangaReader({Key? key, required this.mangaData}) : super(key: key);
@@ -27,6 +36,7 @@ class _MangaReaderState extends State<MangaReader>
   bool _showAppBar = false;
 
   late final AnimationController _controller;
+  final _supabase = Supabase.instance.client;
   bool dataSaver = false;
   bool verticalScroll = true;
 
@@ -57,228 +67,157 @@ class _MangaReaderState extends State<MangaReader>
 
   @override
   Widget build(BuildContext context) {
+    Future<PostgrestResponse<dynamic>> future = _supabase
+        .from("chapter")
+        .select("pages")
+        .eq("id", widget.mangaData["chapter"]["id"])
+        .execute();
     return Scaffold(
-      body: SafeArea(
-          child: Center(
-              child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 18.0),
-        child: FeedbackPage(),
-      ))),
-      // body: Stack(children: [
-      //   GestureDetector(
-      //       onTap: () {
-      //         setState(() {
-      //           _showAppBar = !_showAppBar;
-      //         });
-      //       },
-      //       // onDoubleTap: () {
-      //       //   print('zoom in');
-      //       // },
-      //       child: verticalScroll
-      //           ? _buildVerticalScroll(widget.mangaData)
-      //           : _buildHorizontalScroll(widget.mangaData)),
-      //   SlidingAppBar(
-      //     controller: _controller,
-      //     visible: _showAppBar,
-      //     child: AppBar(
-      //       // toolbarHeight: kToolbarHeight,
-      //       backgroundColor: MuhngaColors.secondary,
-      //       title: Text('Chapter ${widget.mangaData['chapter']['chapter']}'),
-      //       actions: [
-      //         IconButton(
-      //             onPressed: () async {
-      //               await Navigator.pushNamed(
-      //                   context, AccountSettingsPage.routeName);
-      //               _loadPreferences();
-      //             },
-      //             icon: const Icon(Icons.settings))
-      //       ],
-      //     ),
-      //   ),
-      // ]),
-    );
+        body: Center(
+            child: FutureBuilder<PostgrestResponse<dynamic>>(
+      future: future,
+      builder: (context, snapshot) {
+        print('asd');
+        if (snapshot.hasData) {
+          if (snapshot.data!.data != null) {
+            List<Widget> commentSection = [
+              CommentBox(),
+              Center(
+                child: Text(
+                  '69 reactions',
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
+              ),
+              // const CommentSection(),
+              const EmoteButtonBar(),
+              CommentCard(),
+              CommentCard(),
+              CommentCard(),
+              CommentCard(),
+            ];
+            List<dynamic> pages = snapshot.data!.data[0]['pages'];
+            // return buildReader(pages, commentSection, verticalScroll);
+            return MangaPages(pages, commentSection, widget.mangaData);
+          }
+        } else if (snapshot.hasError) {
+          return const Center(
+            child: Text(
+                "There was an error with loading the chapter. Try reloading the chapter."),
+          );
+        }
+
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      },
+    )));
   }
 
-  Widget _buildHorizontalScroll(Map<String, dynamic> mangaData) {
-    Map<String, dynamic> mangaPages = mangaData['chapter'];
-    return CustomRefreshIndicator(
-      onRefresh: () async {
-        Navigator.pushReplacementNamed(context, CommentsPage.routeName,
-            arguments: {
-              'chapter': mangaPages['chapter'],
-              'manga': mangaData['title']
+  Widget buildReader(
+      List<dynamic> pages, List<Widget> commentSection, bool verticalScroll) {
+    return Stack(children: [
+      GestureDetector(
+          onTap: () {
+            setState(() {
+              _showAppBar = !_showAppBar;
             });
-      },
-      reversed: true,
-      builder: (
-        BuildContext context,
-        Widget child,
-        IndicatorController controller,
-      ) {
-        const height = 500.0;
-        const width = 100.0;
-        return AnimatedBuilder(
-            animation: controller,
-            builder: (context, _) {
-              final dx =
-                  controller.value.clamp(0.0, 16.9) * -(width - (width * 0.25));
-              return Stack(
-                children: [
-                  Transform.translate(
-                    offset: Offset(-dx, 0.0),
-                    child: child,
-                  ),
-                  Positioned(
-                    bottom: .1.sw,
-                    left: -width,
-                    width: width,
-                    height: height,
-                    child: Container(
-                      transform: Matrix4.translationValues(-dx, 0.0, 0.0),
-                      padding: const EdgeInsets.only(top: 30.0),
-                      constraints: const BoxConstraints.expand(),
-                      child: Column(
-                        children: [
-                          if (controller.isLoading)
-                            Container(
-                              margin: const EdgeInsets.only(bottom: 8.0),
-                              width: 16,
-                              height: 16,
-                              child: const CircularProgressIndicator(
-                                strokeWidth: 2,
-                              ),
-                            )
-                          else
-                            const Icon(
-                              Icons.keyboard_arrow_left,
-                            ),
-                          Text(
-                            controller.isLoading
-                                ? "Loading..."
-                                : "Pull to load next chapter.",
-                            textAlign: TextAlign.center,
-                            // style: const TextStyle(),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              );
-            });
-      },
-      child: ListView.builder(
-          reverse: true,
-          scrollDirection: Axis.horizontal,
-          itemCount: mangaPages['pages'].length,
-          itemBuilder: (context, index) {
-            String pageUrl = mangaPages['pages'][index];
-            return CachedNetworkImage(
-              width: 1.sw,
-              imageUrl: pageUrl,
-              placeholder: (context, url) =>
-                  const Center(child: CircularProgressIndicator()),
-              errorWidget: (context, url, error) =>
-                  const Center(child: Icon(Icons.error)),
-            );
+          },
+          // onDoubleTap: () {
+          //   print('zoom in');
+          // },
+          child: verticalScroll
+              ? buildVerticalScroll(pages, commentSection)
+              : buildHorizontalScroll(pages, commentSection)),
+      // child: buildPages(pages)),
+      SlidingAppBar(
+        controller: _controller,
+        visible: _showAppBar,
+        child: MuhngaAppBar(
+          'Chapter ${widget.mangaData['chapter']['chapter']}',
+          MuhngaIconButton(const Icon(Icons.arrow_back_ios_new), () {
+            Navigator.pop(context);
           }),
-    );
+          [
+            MuhngaIconButton(const Icon(Icons.settings), () async {
+              await Navigator.pushNamed(context, AccountSettingsPage.routeName);
+              _loadPreferences();
+            })
+          ],
+          appBarColor: MuhngaColors.secondary,
+        ),
+      ),
+    ]);
   }
 
-  Widget _buildImageViews(Map<String, dynamic> mangaPages) {
+  Widget buildPages(List<dynamic> pages) {
+    // return SliverGrid.count(
+    //     crossAxisCount: 1,
+    //     children: pages.map((pageUrl) {
+    //       return CachedNetworkImage(
+    //         width: 1.sw,
+    //         imageUrl: pageUrl,
+    //         placeholder: (context, url) =>
+    //             const Center(child: CircularProgressIndicator()),
+    //         errorWidget: (context, url, error) =>
+    //             const Center(child: Icon(Icons.error)),
+    //       );
+    //     }).toList());
     return SliverList(
-        delegate: SliverChildBuilderDelegate((context, index) {
+        delegate: SliverChildBuilderDelegate(childCount: pages.length,
+            (context, index) {
       return CachedNetworkImage(
-        imageUrl: mangaPages['pages'][index],
+        width: 1.sw,
+        imageUrl: pages[index],
         placeholder: (context, url) =>
             const Center(child: CircularProgressIndicator()),
         errorWidget: (context, url, error) =>
             const Center(child: Icon(Icons.error)),
       );
-    }, childCount: mangaPages['pages'].length));
+    }));
   }
 
-  Widget _buildVerticalScroll(Map<String, dynamic> mangaData) {
-    Map<String, dynamic> mangaPages = mangaData['chapter'];
-    return CustomRefreshIndicator(
-      onRefresh: () async {
-        Navigator.pushReplacementNamed(context, CommentsPage.routeName,
-            arguments: {
-              'chapter': mangaPages['chapter'],
-              'manga': mangaData['title']
-            });
-      },
-      reversed: true,
-      trailingScrollIndicatorVisible: false,
-      leadingScrollIndicatorVisible: true,
-      child: ListView.builder(
-          itemCount: mangaPages['pages'].length,
-          scrollDirection: Axis.vertical,
-          itemBuilder: (context, index) {
-            String pageUrl = mangaPages['pages'][index];
-            return CachedNetworkImage(
-              imageUrl: pageUrl,
-              placeholder: (context, url) =>
-                  const Center(child: CircularProgressIndicator()),
-              errorWidget: (context, url, error) =>
-                  const Center(child: Icon(Icons.error)),
-            );
-          }),
-      builder: (
-        BuildContext context,
-        Widget child,
-        IndicatorController controller,
-      ) {
-        const height = 200.0;
-        return AnimatedBuilder(
-            animation: controller,
-            builder: (context, _) {
-              final dy = controller.value.clamp(0.0, 1.25) *
-                  -(height - (height * 0.25));
-              return Stack(
-                children: [
-                  Transform.translate(
-                    offset: Offset(0.0, dy),
-                    child: child,
-                  ),
-                  Positioned(
-                    bottom: -height,
-                    left: 0,
-                    right: 0,
-                    height: height,
-                    child: Container(
-                      transform: Matrix4.translationValues(0.0, dy, 0.0),
-                      padding: const EdgeInsets.only(top: 30.0),
-                      constraints: const BoxConstraints.expand(),
-                      child: Column(
-                        children: [
-                          if (controller.isLoading)
-                            Container(
-                              margin: const EdgeInsets.only(bottom: 8.0),
-                              width: 16,
-                              height: 16,
-                              child: const CircularProgressIndicator(
-                                strokeWidth: 2,
-                              ),
-                            )
-                          else
-                            const Icon(
-                              Icons.keyboard_arrow_up,
-                            ),
-                          Text(
-                            controller.isLoading
-                                ? "Loading..."
-                                : "Pull to load next chapter.",
-                            // style: const TextStyle(),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              );
-            });
-      },
-    );
+  Widget buildVerticalScroll(List<dynamic> pages, List<Widget> commentSection) {
+    return CustomScrollView(scrollDirection: Axis.vertical, slivers: [
+      buildPages(pages),
+      SliverPadding(
+          padding: const EdgeInsets.fromLTRB(18.0, 28.0, 18.0, 0.0),
+          sliver: SliverList(
+            delegate: SliverChildBuilderDelegate(
+              childCount: commentSection.length,
+              (context, index) {
+                return commentSection[index];
+              },
+            ),
+          ))
+    ]);
+  }
+
+  Widget buildHorizontalScroll(
+      List<dynamic> pages, List<Widget> commentSection) {
+    return CustomScrollView(
+        reverse: true,
+        scrollDirection: Axis.horizontal,
+        slivers: [
+          buildPages(pages),
+          SliverToBoxAdapter(
+            child: Container(
+              width: 1.sw,
+              padding: const EdgeInsets.symmetric(horizontal: 18.0),
+              child: ListView.builder(
+                itemCount: commentSection.length,
+                itemBuilder: (context, index) {
+                  return commentSection[index];
+                },
+              ),
+            ),
+            // sliver: SliverList(
+            //     delegate: SliverChildBuilderDelegate(
+            //   childCount: commentSection.length,
+            //   (context, index) {
+            //     return commentSection[index];
+            //   },
+            // )),
+          )
+        ]);
   }
 }

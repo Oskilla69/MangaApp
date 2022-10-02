@@ -6,15 +6,31 @@ import 'package:mangaapp/manga_reader_page/screens/manga_reader_page.dart';
 import 'package:mangaapp/shared/muhnga_colors.dart';
 
 class ChapterTile extends StatelessWidget {
-  const ChapterTile(this.chapter, {super.key});
-  final QueryDocumentSnapshot<Map<String, dynamic>> chapter;
+  ChapterTile(this.chapter, {super.key});
+  final dynamic chapter;
+  final Map<String, String> monthStrings = {
+    "1": "Jan",
+    "2": "Feb",
+    "3": "March",
+    "4": "April",
+    "5": "May",
+    "6": "June",
+    "7": "July",
+    "8": "Aug",
+    "9": "Sept",
+    "10": "Oct",
+    "11": "Nov",
+    "12": "Dec"
+  };
   @override
   Widget build(BuildContext context) {
     int chapterNumber = chapter['chapter'];
+    DateTime date = DateTime.parse(chapter['upload_date']);
     return GestureDetector(
       onTap: () {
+        print(chapter);
         Navigator.pushNamed(context, MangaReader.routeName, arguments: {
-          'chapter': chapter.data(),
+          'chapter': chapter,
           // 'title': widget.manga['title']
         });
       },
@@ -38,7 +54,8 @@ class ChapterTile extends StatelessWidget {
                       ),
                       Align(
                         alignment: Alignment.bottomLeft,
-                        child: Text('20 Aug, 2022',
+                        child: Text(
+                            '${date.day} ${monthStrings[date.month.toString()]} ${date.year}',
                             style: Theme.of(context)
                                 .textTheme
                                 .bodySmall!

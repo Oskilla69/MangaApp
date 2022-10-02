@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mangaapp/shared/muhnga_colors.dart';
 import 'package:mangaapp/shared/muhnga_icon_button.dart';
 
 class MuhngaAppBar extends StatelessWidget with PreferredSizeWidget {
@@ -7,22 +8,27 @@ class MuhngaAppBar extends StatelessWidget with PreferredSizeWidget {
     this.leadingWidget,
     this.endingWidgets, {
     Key? key,
+    this.appBarColor = Colors.transparent,
   }) : super(key: key);
   final String title;
   final Widget? leadingWidget;
   final List<Widget>? endingWidgets;
+  final Color appBarColor;
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(
-          horizontal: 18.0, vertical: (kToolbarHeight - 42) / 2),
-      child: AppBar(
-        title: Text(
-          title,
-          style: Theme.of(context).textTheme.titleMedium,
+    return Container(
+      color: appBarColor,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+            horizontal: 18.0, vertical: (kToolbarHeight - 42) / 2),
+        child: AppBar(
+          title: Text(
+            title,
+            style: Theme.of(context).textTheme.titleMedium,
+          ),
+          leading: leadingWidget,
+          actions: endingWidgets,
         ),
-        leading: leadingWidget,
-        actions: endingWidgets,
       ),
     );
   }

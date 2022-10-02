@@ -36,7 +36,7 @@ class CarouselMangaCard extends StatelessWidget {
                       color: MuhngaColors.star,
                     );
                   },
-                  rating: manga['rating'].toDouble(),
+                  rating: manga['avg_ratings'].toDouble(),
                   itemSize: 24),
             ],
           ),

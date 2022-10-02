@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SlidingAppBar extends StatelessWidget implements PreferredSizeWidget {
-  SlidingAppBar({
+  const SlidingAppBar({
+    super.key,
     required this.child,
     required this.controller,
     required this.visible,
@@ -19,7 +20,7 @@ class SlidingAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     visible ? controller.reverse() : controller.forward();
     return SizedBox(
-      height: 104,
+      height: MediaQuery.of(context).padding.top + kToolbarHeight,
       child: SlideTransition(
         position:
             Tween<Offset>(begin: Offset.zero, end: const Offset(0, -1)).animate(

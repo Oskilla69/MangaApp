@@ -16,7 +16,8 @@ class Landing extends StatelessWidget {
       id,
       title,
       cover,
-      rating
+      avg_ratings,
+      num_ratings
     ''').order("latest_update", ascending: false);
     const width = 180.0;
     const height = 304.0;

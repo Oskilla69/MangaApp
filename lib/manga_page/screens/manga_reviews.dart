@@ -5,13 +5,17 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:mangaapp/manga_page/widgets/review_card.dart';
 import 'package:mangaapp/shared/muhnga_colors.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class MangaReviews extends StatelessWidget {
-  const MangaReviews(this.manga, {super.key});
+  MangaReviews(this.manga, {super.key});
+  final _supabase = Supabase.instance.client;
   final Map<String, dynamic> manga;
 
   @override
   Widget build(BuildContext context) {
+    Future<PostgrestResponse<dynamic>> future =
+        _supabase.from("reviews").select().eq("manga", manga['id']).execute();
     return Column(children: [
       Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12.0),
@@ -34,16 +38,16 @@ class MangaReviews extends StatelessWidget {
                             color: MuhngaColors.star,
                           );
                         },
-                        rating: manga['rating'],
+                        rating: manga['avg_ratings'].toDouble(),
                         itemSize: 24),
                     const SizedBox(
                       width: 5,
                     ),
-                    Text(manga['rating'].toString()),
+                    Text(manga['avg_ratings'].toString()),
                     const SizedBox(
                       width: 5,
                     ),
-                    const Text('(need count)')
+                    Text('(${manga["avg_ratings"]} reviews)')
                   ],
                 ),
               ],
@@ -57,15 +61,27 @@ class MangaReviews extends StatelessWidget {
       const SizedBox(
         height: 10.0,
       ),
-      SizedBox(
-        height: 108,
-        child: ListView(scrollDirection: Axis.horizontal, children: const [
-          ReviewCard(),
-          ReviewCard(),
-          ReviewCard(),
-          ReviewCard()
-        ]),
-      ),
+      FutureBuilder(
+          future: future,
+          builder: ((context, snapshot) {
+            if (snapshot.hasData) {
+              return SizedBox(
+                height: 108,
+                child: ListView(
+                    scrollDirection: Axis.horizontal,
+                    children: const [
+                      ReviewCard(),
+                      ReviewCard(),
+                      ReviewCard(),
+                      ReviewCard()
+                    ]),
+              );
+            }
+            return const SizedBox(
+              height: 108,
+              child: Center(child: CircularProgressIndicator()),
+            );
+          })),
       const SizedBox(
         height: 20.0,
       ),

@@ -49,7 +49,7 @@ class _CommentCardState extends State<CommentCard> {
             const VoteWidget()
           ],
         ),
-        const Divider(color: MuhngaColors.grey, thickness: 0.25),
+        const Divider(color: MuhngaColors.grey, thickness: 0.25)
       ],
     );
   }

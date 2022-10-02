@@ -1,12 +1,10 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mangaapp/manga_reader_page/screens/manga_reader_page.dart';
 import 'package:mangaapp/shared/muhnga_colors.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../shared/muhnga_constants.dart';
 
@@ -19,36 +17,12 @@ class MangaSummary extends StatefulWidget {
 }
 
 class _MangaSummaryState extends State<MangaSummary> {
-  final _firestore = FirebaseFirestore.instance;
+  final _supabase = Supabase.instance.client;
   bool dataSaver = false;
 
-  List<Widget> chapters = [];
   @override
   void initState() {
     super.initState();
-    _firestore
-        .collection('manga')
-        .doc(widget.manga['title'])
-        .collection('chapters')
-        .get()
-        .then(
-      (value) {
-        setState(() {
-          chapters = value.docs.map((chapter) {
-            return ListTile(
-              leading: const Icon(Icons.remove),
-              title: Text('Chapter ${chapter['chapter']}'),
-              onTap: () {
-                Navigator.pushNamed(context, MangaReader.routeName, arguments: {
-                  'chapter': chapter.data(),
-                  'title': widget.manga['title']
-                });
-              },
-            );
-          }).toList();
-        });
-      },
-    );
     _loadPreferences();
   }
 
@@ -61,7 +35,39 @@ class _MangaSummaryState extends State<MangaSummary> {
 
   @override
   Widget build(BuildContext context) {
-    return buildPortrait(context, widget.manga);
+    return FutureBuilder<PostgrestResponse<dynamic>>(
+      future: _supabase.from("manga_info").select('''
+          author, publisher, status, synopsis
+        ''').eq("id", widget.manga['id']).limit(1).execute(),
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          Map<String, dynamic> mangaData = snapshot.data!.data[0];
+          return buildPortrait(context, {
+            'title': widget.manga['title'],
+            'avg_ratings': widget.manga['avg_ratings'],
+            'num_ratings': widget.manga['num_ratings'],
+            'author': mangaData['author'],
+            'synopsis': mangaData['synopsis'],
+            'publisher': mangaData['publisher'],
+            'status': mangaData['status']
+          });
+        } else if (snapshot.hasError) {
+          return const Center(
+            child: Text("There has been an error"),
+          );
+        }
+        return SizedBox(
+            width: .9.sw,
+            height: 300,
+            child: const Card(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(20))),
+                color: MuhngaColors.secondary,
+                child: Center(
+                  child: CircularProgressIndicator(),
+                )));
+      },
+    );
     // body: OrientationBuilder(builder: ((context, orientation) {
     //   return orientation == Orientation.portrait
     //       ? buildPortrait(context, widget.manga)
@@ -93,16 +99,16 @@ class _MangaSummaryState extends State<MangaSummary> {
                           color: MuhngaColors.star,
                         );
                       },
-                      rating: manga['rating'],
+                      rating: manga['avg_ratings'].toDouble(),
                       itemSize: 24),
                   const SizedBox(
                     width: 5,
                   ),
-                  Text(manga['rating'].toString()),
+                  Text(manga['avg_ratings'].toString()),
                   const SizedBox(
                     width: 5,
                   ),
-                  const Text('(need count)')
+                  Text('(${manga["num_ratings"]} reviews)')
                 ],
               ),
               const Divider(
@@ -116,68 +122,6 @@ class _MangaSummaryState extends State<MangaSummary> {
               buildMiscInformation(manga)
             ]),
           ),
-        ),
-      ),
-      Padding(
-        padding: const EdgeInsets.symmetric(vertical: 16.0),
-        child: Row(
-          children: [
-            Material(
-              borderRadius: const BorderRadius.all(Radius.circular(16)),
-              color: MuhngaColors.secondary,
-              child: SizedBox(
-                height: 50.w,
-                width: 50.w,
-                child: IconButton(
-                    onPressed: () {
-                      print("favourite clicked");
-                    },
-                    icon: Icon(
-                      Icons.favorite,
-                      size: 25.0.w,
-                      color: MuhngaColors.heartRed,
-                    )),
-              ),
-            ),
-            const Spacer(),
-            Container(
-                height: 50.w,
-                padding: EdgeInsets.symmetric(horizontal: 16.0.w),
-                decoration: const BoxDecoration(
-                    color: MuhngaColors.secondary,
-                    borderRadius: BorderRadius.all(Radius.circular(16))),
-                child: Center(
-                  child: Text(
-                    "6 Chapters",
-                    style: Theme.of(context).textTheme.titleMedium,
-                  ),
-                )),
-            const Spacer(),
-            Material(
-              borderRadius: const BorderRadius.all(Radius.circular(16)),
-              color: MuhngaColors.contrast,
-              child: InkWell(
-                borderRadius: const BorderRadius.all(Radius.circular(16)),
-                onTap: () {
-                  print('read now clicked');
-                },
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20.0.w),
-                  child: SizedBox(
-                      height: 50.w,
-                      child: Center(
-                        child: Text(
-                          "Read Now",
-                          style: Theme.of(context)
-                              .textTheme
-                              .titleMedium!
-                              .apply(color: MuhngaColors.black),
-                        ),
-                      )),
-                ),
-              ),
-            ),
-          ],
         ),
       ),
     ]);
@@ -238,7 +182,7 @@ class _MangaSummaryState extends State<MangaSummary> {
                     .titleSmall!
                     .apply(color: MuhngaColors.grey),
               ),
-              Text(manga['status'], textAlign: TextAlign.left),
+              Text(manga['publisher'], textAlign: TextAlign.left),
             ],
           ),
         ),
@@ -272,6 +216,11 @@ class _MangaSummaryState extends State<MangaSummary> {
         //     .textTheme
         //     .bodySmall!
         //     .apply(color: MuhngaColors.success),
+      );
+    } else if (status.toLowerCase() == "hiatus") {
+      return Text(
+        status,
+        style: const TextStyle(color: MuhngaColors.heartRed),
       );
     }
     return Text(status);

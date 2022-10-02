@@ -9,7 +9,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:mangaapp/helpers/firebase_storage.dart';
 import 'package:mangaapp/providers/profile_model.dart';
 import 'package:provider/provider.dart';
 
@@ -186,41 +185,41 @@ class _AccountPageState extends State<AccountPage> {
         currUsername != usernameController.text) {
       checkDuplicate(usernameController.text).then((unique) {
         if (unique) {
-          handleUpload(
-              _storage, profile, currImage, usernameController.text, _firestore,
-              () {
-            setState(() {
-              changesMade = false;
-            });
-            profile.setProfilePic(currImage, true);
-            profile.setUsername(usernameController.text, true);
-            currProfilePic = currImage;
-            currUsername = usernameController.text;
+          //   handleUpload(
+          //       _storage, profile, currImage, usernameController.text, _firestore,
+          //       () {
+          //     setState(() {
+          //       changesMade = false;
+          //     });
+          //     profile.setProfilePic(currImage, true);
+          //     profile.setUsername(usernameController.text, true);
+          //     currProfilePic = currImage;
+          //     currUsername = usernameController.text;
 
-            Navigator.of(context).pop();
-          }, () {
-            Navigator.of(context).pop();
-          });
-        } else {
-          setState(() {
-            _exists = true;
-          });
+          //     Navigator.of(context).pop();
+          //   }, () {
+          //     Navigator.of(context).pop();
+          //   });
+          // } else {
+          //   setState(() {
+          //     _exists = true;
+          //   });
 
-          Navigator.of(context).pop();
+          //   Navigator.of(context).pop();
         }
       });
     } else if (currProfilePic != currImage) {
-      handleUpload(_storage, profile, currImage, null, _firestore, () {
-        profile.setProfilePic(currImage, true);
-        currProfilePic = currImage;
-        setState(() {
-          changesMade = false;
-        });
+      // handleUpload(_storage, profile, currImage, null, _firestore, () {
+      //   profile.setProfilePic(currImage, true);
+      //   currProfilePic = currImage;
+      //   setState(() {
+      //     changesMade = false;
+      //   });
 
-        Navigator.of(context).pop();
-      }, () {
-        Navigator.of(context).pop();
-      });
+      //   Navigator.of(context).pop();
+      // }, () {
+      //   Navigator.of(context).pop();
+      // });
     } else if (currUsername != usernameController.text) {
       checkDuplicate(usernameController.text).then((unique) {
         if (unique) {

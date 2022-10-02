@@ -63,35 +63,32 @@ class _CommentsPageState extends State<CommentsPage> {
             reversed: true,
             trailingScrollIndicatorVisible: false,
             leadingScrollIndicatorVisible: true,
-            child: CustomScrollView(
-                // controller: ,
-                slivers: [
-                  SliverToBoxAdapter(
-                      child: TextField(
-                          controller: commentController,
-                          decoration: InputDecoration(
-                              hintText: "Enter a comment",
-                              border: const OutlineInputBorder(),
-                              fillColor: MuhngaColors.secondary,
-                              filled: true,
-                              suffixIcon: IconButton(
-                                  icon: const Icon(Icons.send),
-                                  onPressed: (() {
-                                    setState(() {
-                                      comments = <Widget>[
-                                            Center(
-                                                child: Text(
-                                                    commentController.text))
-                                          ] +
-                                          comments;
-                                    });
-                                  }))),
-                          maxLength: 500,
-                          maxLines: 4)),
-                  SliverList(
-                    delegate: SliverChildListDelegate(comments),
-                  )
-                ]),
+            child: CustomScrollView(slivers: [
+              SliverToBoxAdapter(
+                  child: TextField(
+                      controller: commentController,
+                      decoration: InputDecoration(
+                          hintText: "Enter a comment",
+                          border: const OutlineInputBorder(),
+                          fillColor: MuhngaColors.secondary,
+                          filled: true,
+                          suffixIcon: IconButton(
+                              icon: const Icon(Icons.send),
+                              onPressed: (() {
+                                setState(() {
+                                  comments = <Widget>[
+                                        Center(
+                                            child: Text(commentController.text))
+                                      ] +
+                                      comments;
+                                });
+                              }))),
+                      maxLength: 500,
+                      maxLines: 4)),
+              SliverList(
+                delegate: SliverChildListDelegate(comments),
+              )
+            ]),
             builder: (
               BuildContext context,
               Widget child,

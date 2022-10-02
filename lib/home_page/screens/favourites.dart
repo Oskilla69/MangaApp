@@ -28,7 +28,8 @@ class Favourites extends StatelessWidget {
       id,
       title,
       cover,
-      rating
+      avg_ratings,
+      num_ratings
     ''')
         .eq("title", profileProvider.favourites)
         .order("latest_update", ascending: false);
