@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:mangaapp/shared/muhnga_colors.dart';
-import 'package:mangaapp/shared/muhnga_rating_bar.dart';
+import '../../shared/muhnga_colors.dart';
+import '../../shared/muhnga_rating_bar.dart';
 
 class ReviewCard extends StatelessWidget {
   const ReviewCard({super.key});

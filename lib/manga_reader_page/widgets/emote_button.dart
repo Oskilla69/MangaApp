@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:mangaapp/shared/muhnga_colors.dart';
+import '../../shared/muhnga_colors.dart';
 
 class EmoteButton extends StatefulWidget {
   const EmoteButton(this.emote, this.emoteTitle, this.handleClick,

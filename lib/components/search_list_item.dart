@@ -1,10 +1,6 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:mangaapp/manga_page/screens/manga_page.dart';
-import 'package:mangaapp/widgets/read_more.dart';
+import '../manga_page/screens/manga_page.dart';
 
 class SearchListItem extends StatefulWidget {
   SearchListItem({

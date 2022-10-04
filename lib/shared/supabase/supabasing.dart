@@ -1,10 +1,7 @@
 import 'dart:convert';
 import 'dart:math';
-
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/services.dart';
-import 'package:mangaapp/shared/supabase/supabase_constants.dart';
-import 'package:supabase/supabase.dart';
+import 'supabase_constants.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class Supabasing {

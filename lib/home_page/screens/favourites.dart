@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mangaapp/home_page/widgets/manga_scrollview.dart';
-import 'package:mangaapp/providers/profile_model.dart';
+import '../widgets/manga_scrollview.dart';
+import '../../providers/profile_model.dart';
 import 'package:provider/provider.dart' as provider;
 import 'package:supabase_flutter/supabase_flutter.dart';
 

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mangaapp/manga_reader_page/screens/manga_reader_page.dart';
-import 'package:mangaapp/shared/muhnga_colors.dart';
+import '../../shared/muhnga_colors.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 

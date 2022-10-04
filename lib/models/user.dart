@@ -1,5 +1,5 @@
-import 'package:mangaapp/models/chapter.dart';
-import 'package:mangaapp/models/manga.dart';
+import 'chapter.dart';
+import 'manga.dart';
 
 class User {
   String? id;

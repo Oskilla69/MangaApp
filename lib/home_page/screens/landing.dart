@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mangaapp/home_page/screens/carousel_manga.dart';
-import 'package:mangaapp/home_page/widgets/manga_card.dart';
-import 'package:mangaapp/home_page/widgets/manga_scrollview.dart';
-import 'package:mangaapp/manga_page/screens/manga_page.dart';
+import 'carousel_manga.dart';
+import '../widgets/manga_scrollview.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class Landing extends StatelessWidget {

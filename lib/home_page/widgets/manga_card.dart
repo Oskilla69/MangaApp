@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:mangaapp/shared/muhnga_colors.dart';
+import '../../shared/muhnga_colors.dart';
 
 class MangaCard extends StatelessWidget {
   const MangaCard(this.manga, this.width, this.height, {Key? key})

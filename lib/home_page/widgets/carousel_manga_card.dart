@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:mangaapp/manga_page/screens/manga_page.dart';
-import 'package:mangaapp/shared/muhnga_colors.dart';
+import '../../manga_page/screens/manga_page.dart';
+import '../../shared/muhnga_colors.dart';
 
 class CarouselMangaCard extends StatelessWidget {
   const CarouselMangaCard(this.manga, this.width, this.height, {Key? key})

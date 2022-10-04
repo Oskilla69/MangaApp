@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:mangaapp/shared/muhnga_colors.dart';
+import 'muhnga_colors.dart';
 
 class MuhngaRatingBar extends StatelessWidget {
   const MuhngaRatingBar(this.rating, this.size, {super.key});

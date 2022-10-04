@@ -1,10 +1,7 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:mangaapp/manga_page/widgets/review_card.dart';
-import 'package:mangaapp/shared/muhnga_colors.dart';
+import '../widgets/review_card.dart';
+import '../../shared/muhnga_colors.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class MangaReviews extends StatelessWidget {

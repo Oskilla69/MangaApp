@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mangaapp/shared/muhnga_colors.dart';
+import 'muhnga_colors.dart';
 
 class CommentBox extends StatelessWidget {
   CommentBox({super.key});

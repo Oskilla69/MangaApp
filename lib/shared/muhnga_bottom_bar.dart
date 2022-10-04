@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:mangaapp/shared/muhnga_colors.dart';
+import 'muhnga_colors.dart';
 
 class MuhngaBottomBar extends StatelessWidget {
   MuhngaBottomBar(this.currIndex, this.onIconTapped, {Key? key})

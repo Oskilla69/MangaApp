@@ -1,4 +1,4 @@
-import 'package:mangaapp/models/manga.dart';
+import 'manga.dart';
 
 class Genres {
   String? genre;

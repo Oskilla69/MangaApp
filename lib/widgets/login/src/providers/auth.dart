@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:mangaapp/widgets/login/flutter_login.dart';
+import '../../flutter_login.dart';
 
 enum AuthMode { signup, login }
 

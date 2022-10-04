@@ -1,4 +1,4 @@
-import 'package:mangaapp/models/manga.dart';
+import 'models/manga.dart';
 
 List mangas = [
   Manga(

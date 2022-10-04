@@ -1,9 +1,6 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:mangaapp/manga_reader_page/screens/manga_reader_page.dart';
-import 'package:mangaapp/shared/muhnga_colors.dart';
+import '../../manga_reader_page/screens/manga_reader_page.dart';
+import '../../shared/muhnga_colors.dart';
 
 class ChapterTile extends StatelessWidget {
   ChapterTile(this.chapter, {super.key});

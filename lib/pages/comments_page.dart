@@ -1,9 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:mangaapp/manga_reader_page/screens/manga_reader_page.dart';
-import 'package:mangaapp/manga_page/screens/manga_page.dart';
+import '../manga_reader_page/screens/manga_reader_page.dart';
+import '../manga_page/screens/manga_page.dart';
 
 class CommentsPage extends StatefulWidget {
   const CommentsPage({Key? key, required this.mangaData}) : super(key: key);

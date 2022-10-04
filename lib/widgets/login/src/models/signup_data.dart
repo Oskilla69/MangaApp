@@ -1,4 +1,4 @@
-import 'package:mangaapp/widgets/login/src/models/term_of_service.dart';
+import 'term_of_service.dart';
 import 'package:quiver/core.dart';
 
 class SignupData {

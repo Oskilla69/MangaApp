@@ -1,14 +1,10 @@
 import 'package:custom_refresh_indicator/custom_refresh_indicator.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:mangaapp/comments_page/widgets/comment_page_card.dart';
-import 'package:mangaapp/manga_page/screens/manga_page.dart';
-import 'package:mangaapp/manga_reader_page/widgets/comment_card.dart';
-import 'package:mangaapp/shared/comment_box.dart';
-import 'package:mangaapp/shared/muhnga_app_bar.dart';
-import 'package:mangaapp/shared/muhnga_colors.dart';
-import 'package:mangaapp/shared/muhnga_icon_button.dart';
+import '../widgets/comment_page_card.dart';
+import '../../manga_page/screens/manga_page.dart';
+import '../../shared/muhnga_app_bar.dart';
+import '../../shared/muhnga_colors.dart';
+import '../../shared/muhnga_icon_button.dart';
 
 class CommentsPage extends StatefulWidget {
   CommentsPage({super.key});

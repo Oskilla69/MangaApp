@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:mangaapp/comments_page/screens/comments_page.dart';
-import 'package:mangaapp/manga_reader_page/widgets/vote_widget.dart';
-import 'package:mangaapp/shared/muhnga_colors.dart';
+import '../../manga_reader_page/widgets/vote_widget.dart';
+import '../../shared/muhnga_colors.dart';
 
 class CommentPageCard extends StatefulWidget {
   const CommentPageCard({super.key});

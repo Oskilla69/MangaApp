@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:mangaapp/manga_reader_page/widgets/emote_button.dart';
+import 'emote_button.dart';
 
 class EmoteButtonBar extends StatefulWidget {
   const EmoteButtonBar({super.key});

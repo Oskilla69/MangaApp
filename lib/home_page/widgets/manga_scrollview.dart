@@ -1,10 +1,8 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutterfire_ui/firestore.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import 'package:mangaapp/home_page/widgets/manga_card.dart';
-import 'package:mangaapp/manga_page/screens/manga_page.dart';
+import 'manga_card.dart';
+import '../../manga_page/screens/manga_page.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class MangaScrollView extends StatefulWidget {

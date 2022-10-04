@@ -1,20 +1,15 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:http/http.dart' as http;
-import 'package:mangaapp/manga_page/screens/manga_chapters.dart';
-import 'package:mangaapp/manga_page/screens/manga_reviews.dart';
-import 'package:mangaapp/manga_page/screens/manga_summary.dart';
-import 'package:mangaapp/models/manga.dart';
-import 'package:mangaapp/providers/profile_model.dart';
-import 'package:mangaapp/shared/muhnga_app_bar.dart';
-import 'package:mangaapp/shared/muhnga_colors.dart';
-import 'package:mangaapp/shared/muhnga_icon_button.dart';
 import 'package:provider/provider.dart' as provider;
-import 'package:supabase_flutter/supabase_flutter.dart';
+
+import '../../providers/profile_model.dart';
+import '../../shared/muhnga_app_bar.dart';
+import '../../shared/muhnga_colors.dart';
+import '../../shared/muhnga_icon_button.dart';
+import 'manga_chapters.dart';
+import 'manga_reviews.dart';
+import 'manga_summary.dart';
 
 class MangaPage extends StatefulWidget {
   const MangaPage({Key? key, required this.mangaDetails}) : super(key: key);

@@ -2,12 +2,12 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:custom_refresh_indicator/custom_refresh_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mangaapp/shared/sliding_app_bar.dart';
-import 'package:mangaapp/pages/account_settings_page.dart';
-import 'package:mangaapp/shared/muhnga_app_bar.dart';
-import 'package:mangaapp/shared/muhnga_colors.dart';
-import 'package:mangaapp/shared/muhnga_constants.dart';
-import 'package:mangaapp/shared/muhnga_icon_button.dart';
+import '../../shared/sliding_app_bar.dart';
+import '../../pages/account_settings_page.dart';
+import '../../shared/muhnga_app_bar.dart';
+import '../../shared/muhnga_colors.dart';
+import '../../shared/muhnga_constants.dart';
+import '../../shared/muhnga_icon_button.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class MangaPages extends StatefulWidget {

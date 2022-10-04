@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:mangaapp/manga_reader_page/widgets/comment_card.dart';
-import 'package:mangaapp/shared/muhnga_colors.dart';
+import '../widgets/comment_card.dart';
 
 class CommentSection extends StatelessWidget {
   const CommentSection({super.key});

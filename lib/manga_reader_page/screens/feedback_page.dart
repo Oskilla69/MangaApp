@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:mangaapp/manga_reader_page/screens/comment_section.dart';
-import 'package:mangaapp/shared/comment_box.dart';
-import 'package:mangaapp/manga_reader_page/widgets/emote_button_bar.dart';
+import 'comment_section.dart';
+import '../../shared/comment_box.dart';
+import '../widgets/emote_button_bar.dart';
 
 class FeedbackPage extends StatelessWidget {
   const FeedbackPage({super.key});

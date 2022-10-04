@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mangaapp/manga_page/widgets/chapters.dart';
-import 'package:mangaapp/shared/muhnga_colors.dart';
+import '../widgets/chapters.dart';
+import '../../shared/muhnga_colors.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class MangaChapters extends StatelessWidget {

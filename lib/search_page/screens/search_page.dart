@@ -1,15 +1,11 @@
 import 'dart:typed_data';
 
 import 'package:algolia/algolia.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:mangaapp/components/search_list_item.dart';
-import 'package:mangaapp/main.dart';
-import 'package:mangaapp/manga_page/screens/manga_page.dart';
-import 'package:mangaapp/search_page/screens/search_extra.dart';
+import '../../components/search_list_item.dart';
+import '../../main.dart';
+import 'search_extra.dart';
 // import 'package:mangaapp/pages/search_extra.dart';
 
 // maybe have history. Who knows
