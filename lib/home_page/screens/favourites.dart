@@ -35,7 +35,8 @@ class Favourites extends StatelessWidget {
         .order("latest_update", ascending: false);
     const width = 180.0;
     const height = 304.0;
-    return MangaScrollView(query, width, height, buildEmptyFavourites);
+    return CustomScrollView(
+        slivers: [MangaScrollView(query, width, height, buildEmptyFavourites)]);
   }
 
   Widget buildEmptyFavourites(BuildContext context) {

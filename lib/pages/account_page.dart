@@ -2,15 +2,15 @@ import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mangaapp/providers/profile_model.dart';
-import 'package:provider/provider.dart';
+import 'package:mangaapp/shared/supabase/auth_required.dart';
+import 'package:provider/provider.dart' as provider;
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class AccountPage extends StatefulWidget {
   const AccountPage({Key? key}) : super(key: key);
@@ -20,13 +20,12 @@ class AccountPage extends StatefulWidget {
   State<AccountPage> createState() => _AccountPageState();
 }
 
-class _AccountPageState extends State<AccountPage> {
+class _AccountPageState extends AuthRequiredState<AccountPage> {
   final ImagePicker _imagePicker = ImagePicker();
-  final _storage = FirebaseStorage.instance;
   final _firestore = FirebaseFirestore.instance;
-  final _auth = FirebaseAuth.instance;
-  late TextEditingController usernameController =
-      TextEditingController(text: Provider.of<ProfileModel>(context).username);
+  final _auth = Supabase.instance.client.auth;
+  late TextEditingController usernameController = TextEditingController(
+      text: provider.Provider.of<ProfileModel>(context).username);
 
   // late String currImage = Provider.of<ProfileModel>(context).profilePic;
   late String currImage = 'assets/images/black.jpeg';
@@ -51,7 +50,7 @@ class _AccountPageState extends State<AccountPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<ProfileModel>(builder: (context, profile, child) {
+    return provider.Consumer<ProfileModel>(builder: (context, profile, child) {
       String currUsername = profile.username;
       String currProfilePic = profile.profilePic;
       return WillPopScope(

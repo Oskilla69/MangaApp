@@ -6,7 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mangaapp/comments_page/screens/comments_page.dart';
 import 'package:mangaapp/pages/account_page_no_user.dart';
 import 'package:mangaapp/home_page/screens/home_page.dart';
-import 'package:mangaapp/pages/login_page.dart';
+import 'package:mangaapp/login_page/screens/login_page.dart';
 import 'package:mangaapp/manga_page/screens/manga_page.dart';
 import 'package:mangaapp/pages/account_page.dart';
 import 'package:mangaapp/pages/account_settings_page.dart';

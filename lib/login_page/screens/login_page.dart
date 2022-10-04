@@ -3,7 +3,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mangaapp/home_page/screens/home_page.dart';
+import 'package:mangaapp/shared/supabase/auth.dart';
 import 'package:mangaapp/widgets/login/flutter_login.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 // stateful for setting email variable
 class LoginPage extends StatefulWidget {
@@ -15,10 +17,10 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final _auth = Supabase.instance.client.auth;
+  final _supabase = Supabase.instance.client;
   @override
   Widget build(BuildContext context) {
-    final _auth = FirebaseAuth.instance;
-    final _firestore = FirebaseFirestore.instance;
     String email = '';
     return Stack(
       clipBehavior: Clip.hardEdge,
@@ -29,7 +31,7 @@ class _LoginPageState extends State<LoginPage> {
           navigateBackAfterRecovery: true,
           onLogin: ((loginData) async {
             try {
-              final user = await _auth.signInWithEmailAndPassword(
+              final user = await _auth.signIn(
                   email: loginData.name, password: loginData.password);
               print(user);
             } catch (error) {
@@ -42,17 +44,19 @@ class _LoginPageState extends State<LoginPage> {
           },
           onSignup: ((signupData) async {
             email = signupData.name!;
-            _firestore.collection('profile').doc(email).set({
-              'bookmarks': [""],
-              'email': email,
-              'profile_image': null,
-              "username": email
-            });
             var currError = null;
 
             try {
-              await _auth.createUserWithEmailAndPassword(
-                  email: signupData.name!, password: signupData.password!);
+              var response = await _auth.signUp(
+                signupData.name!,
+                signupData.password!,
+              );
+              if (response.user != null) {
+                await _supabase.from("users").insert({
+                  "id": response.user!.id,
+                  "username": signupData.name,
+                }).execute();
+              }
             } catch (error) {
               print(error);
               return Future<String>.value(error.toString().split('] ').last);

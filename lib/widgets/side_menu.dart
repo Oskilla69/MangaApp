@@ -1,19 +1,19 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mangaapp/pages/account_page_no_user.dart';
-import 'package:mangaapp/pages/login_page.dart';
+import 'package:mangaapp/login_page/screens/login_page.dart';
 import 'package:mangaapp/pages/account_page.dart';
 import 'package:mangaapp/pages/account_settings_page.dart';
 import 'package:mangaapp/pages/subscribe_page.dart';
 import 'package:mangaapp/providers/profile_model.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class SideMenu extends StatelessWidget {
   SideMenu({Key? key}) : super(key: key);
-  final _auth = FirebaseAuth.instance;
+  final _auth = Supabase.instance.client.auth;
   final _firestore = FirebaseFirestore.instance;
 
   @override

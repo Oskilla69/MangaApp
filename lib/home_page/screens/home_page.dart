@@ -1,9 +1,6 @@
 import 'dart:convert';
 import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart' as fb_auth;
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
@@ -18,7 +15,7 @@ import 'package:mangaapp/home_page/screens/favourites.dart';
 import 'package:mangaapp/home_page/screens/landing.dart';
 import 'package:mangaapp/home_page/screens/user_settings.dart';
 import 'package:mangaapp/search_page/screens/search_page.dart';
-import 'package:mangaapp/pages/login_page.dart';
+import 'package:mangaapp/login_page/screens/login_page.dart';
 import 'package:mangaapp/providers/profile_model.dart';
 import 'package:mangaapp/shared/muhnga_colors.dart';
 import 'package:mangaapp/shared/muhnga_icon_button.dart';
@@ -36,10 +33,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final _auth = FirebaseAuth.instance;
+  final _auth = Supabase.instance.client.auth;
   final _firestore = FirebaseFirestore.instance;
   final _supabase = Supabase.instance.client;
-  final _storage = FirebaseStorage.instance;
   bool hasMore = true;
   final int limit = 10;
   bool dataSaver = false;
@@ -118,7 +114,7 @@ class _HomePageState extends State<HomePage> {
     'Premium'
   ];
   int currIndex = 0;
-  fb_auth.User? loggedInUser;
+  User? loggedInUser;
 
   Future<void> _loadPreferences() async {
     final prefs = await SharedPreferences.getInstance();

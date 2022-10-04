@@ -40,12 +40,14 @@ class _MangaScrollViewState extends State<MangaScrollView> {
 
   void _fetchMore(int page) {
     widget.query.range(page, page + limit).execute().then((res) {
-      if (res.data != null) {
-        var newMangas = res.data;
-        if (newMangas.length < limit) {
-          _pagingController.appendLastPage(newMangas);
-        } else {
-          _pagingController.appendPage(newMangas, page + limit);
+      if (mounted) {
+        if (res.data != null) {
+          var newMangas = res.data;
+          if (newMangas.length < limit) {
+            _pagingController.appendLastPage(newMangas);
+          } else {
+            _pagingController.appendPage(newMangas, page + limit);
+          }
         }
       }
     });
@@ -59,9 +61,10 @@ class _MangaScrollViewState extends State<MangaScrollView> {
           PagedChildBuilderDelegate(noItemsFoundIndicatorBuilder: (context) {
         return Column(
           children: [
+            SizedBox(height: .32.sh),
             Text(
               'There are no manga!',
-              style: Theme.of(context).textTheme.bodyText2,
+              style: Theme.of(context).textTheme.titleLarge,
             ),
           ],
         );
