@@ -1,17 +1,15 @@
-import 'dart:typed_data';
-
-import 'package:algolia/algolia.dart';
-import 'package:firebase_storage/firebase_storage.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:mangaapp/shared/muhnga_constants.dart';
+import 'package:mangaapp/shared/muhnga_icon_button.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../components/search_list_item.dart';
-import '../../main.dart';
 import 'search_extra.dart';
 // import 'package:mangaapp/pages/search_extra.dart';
 
 // maybe have history. Who knows
 class SearchPageDelegate extends SearchDelegate<int?> {
-  var test = 0;
-  final _storage = FirebaseStorage.instance;
+  final _supabase = Supabase.instance.client;
 
   Map<String, dynamic> filters = {
     'genres': [],
@@ -29,47 +27,80 @@ class SearchPageDelegate extends SearchDelegate<int?> {
     }
   }
 
-  Future<AlgoliaQuerySnapshot> getSearchResults(String searchQuery) async {
-    Algolia algolia = Application.algolia;
-    List<String> algoliaFilters = buildAlgoliaFilters(filters['genres']);
-    AlgoliaQuery query = algolia.instance
-        .index('manga')
-        .query(searchQuery)
-        .facetFilter(algoliaFilters);
-    AlgoliaQuerySnapshot snap = await query.getObjects();
-    return snap;
+  String buildSupaGenreFilter(List genres) {
+    return genres.map((genre) => '$genre').join(',');
+  }
+
+  String buildSupaQuery(String query) {
+    return query.split(" ").map((e) => "$e:*").join(" | ");
+  }
+
+  Future<PostgrestResponse<dynamic>> getSearchResults(
+      String searchQuery) async {
+    PostgrestFilterBuilder searchFilter;
+    if (searchQuery.length < 3) {
+      searchFilter = _supabase
+          .from("manga_search")
+          .select("id, cover, synopsis, title, avg_ratings, num_ratings");
+    } else {
+      searchFilter = _supabase
+          .from("manga_search")
+          .select("id, cover, synopsis, title, avg_ratings, num_ratings")
+          .textSearch("fts", buildSupaQuery(searchQuery.trim()));
+    }
+    if (filters["genres"].length > 0) {
+      searchFilter = searchFilter.overlaps(
+          'genres', "{${filters['genres'].map((genre) => genre).join(',')}}");
+    }
+    if (filters['sort'] == SearchSettings.BEST_MATCH) {
+      print("BEST MATCH");
+    } else if (filters['sort'] == SearchSettings.TOTAL_VIEWS) {
+      print("total views");
+    } else if (filters['sort'] == SearchSettings.UPDATE_DATE) {
+      print("update date");
+    } else if (filters['sort'] == SearchSettings.FAVOURITES) {
+      print("favourites");
+    } else if (filters['sort'] == SearchSettings.RATING) {
+      searchFilter.order('avg_ratings', ascending: !filters['descending']);
+    }
+    Future<PostgrestResponse<dynamic>> searchResults = searchFilter.execute();
+    return searchResults;
   }
 
   @override
   List<Widget>? buildActions(BuildContext context) {
     return [
-      IconButton(
-        icon: const Icon(Icons.clear),
-        onPressed: () {
-          query = '';
+      MuhngaIconButton(const Icon(Icons.clear), () {
+        query = '';
+      }),
+      const SizedBox(
+        width: 18,
+      ),
+      MuhngaIconButton(
+        const Icon(Icons.filter_list_rounded),
+        () {
+          // showFilterDialog(context);
+          Navigator.push<int>(context, SearchExtra(filters: filters))
+              .then((value) {
+            if (value == 1) {
+              query = query;
+            }
+          });
         },
       ),
-      IconButton(
-          onPressed: () {
-            // showFilterDialog(context);
-            Navigator.push<int>(context, SearchExtra(filters: filters))
-                .then((value) {
-              if (value == 1) {
-                query = query;
-              }
-            });
-          },
-          icon: const Icon(Icons.filter_list_rounded)),
+      const SizedBox(
+        width: 18,
+      ),
     ];
   }
 
   @override
   Widget? buildLeading(BuildContext context) {
-    return IconButton(
-      icon: const BackButtonIcon(),
-      onPressed: () {
+    return Padding(
+      padding: const EdgeInsets.only(left: 18.0),
+      child: MuhngaIconButton(const Icon(Icons.arrow_back_ios_new), () {
         Navigator.pop(context);
-      },
+      }),
     );
   }
 
@@ -80,10 +111,9 @@ class SearchPageDelegate extends SearchDelegate<int?> {
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    return FutureBuilder(
+    return FutureBuilder<PostgrestResponse<dynamic>>(
         future: getSearchResults(query),
-        builder: (BuildContext context,
-            AsyncSnapshot<AlgoliaQuerySnapshot> snapshot) {
+        builder: (BuildContext context, snapshot) {
           switch (snapshot.connectionState) {
             case ConnectionState.none:
               return const ListTile(title: Text('None'));
@@ -92,55 +122,34 @@ class SearchPageDelegate extends SearchDelegate<int?> {
             case ConnectionState.active:
               return const ListTile(title: Text('Active..'));
             case ConnectionState.done:
-              List<Widget> results = snapshot.data!.hits.map((element) {
-                return FutureBuilder(
-                  future: _storage
-                      .refFromURL(element.data['cover'])
-                      .getData(1028 * 1028),
-                  builder: (BuildContext context,
-                      AsyncSnapshot<Uint8List?> snapshot) {
-                    Widget leadingWidget;
-                    if (snapshot.connectionState == ConnectionState.done &&
-                        snapshot.hasData) {
-                      leadingWidget = Image.memory(
-                        snapshot.data!,
-                        fit: BoxFit.fill,
-                        height: 120,
-                        width: 80,
-                      );
-                      // leadingWidget = CachedNetworkImage(
-                      //   imageUrl: snapshot.data!,
-                      //   fit: BoxFit.fill,
-                      //   height: 120,
-                      //   width: 80,
-                      //   progressIndicatorBuilder:
-                      //       (context, url, downloadProgress) => Center(
-                      //           child: CircularProgressIndicator(
-                      //               value: downloadProgress.progress)),
-                      //   errorWidget: (context, url, error) =>
-                      //       const Icon(Icons.error),
-                      //   alignment: FractionalOffset.topCenter,
-                      // );
-                    } else if (snapshot.connectionState ==
-                            ConnectionState.waiting ||
-                        !snapshot.hasData) {
-                      leadingWidget =
-                          const Center(child: CircularProgressIndicator());
-                    } else {
-                      leadingWidget = const Text('Error');
-                    }
-                    return SearchListItem(
-                      title: element.data['title'],
-                      leading: leadingWidget,
-                      synopsis: element.data['synopsis'],
-                      onClick: () {
-                        close(context, 0);
-                      },
-                    );
-                  },
-                );
-              }).toList();
-              return ListView(children: results);
+              if (snapshot.data!.data != null) {
+                final setData = {...List.from(snapshot.data!.data)};
+                List<Widget> results = setData.map<Widget>((element) {
+                  return SearchListItem(
+                    manga: element,
+                    leading: Expanded(
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(12),
+                        child: CachedNetworkImage(
+                            imageUrl: element['cover'],
+                            fit: BoxFit.cover,
+                            progressIndicatorBuilder:
+                                (context, url, downloadProgress) => Center(
+                                    child: CircularProgressIndicator(
+                                        value: downloadProgress.progress)),
+                            errorWidget: (context, url, error) =>
+                                const Icon(Icons.error)),
+                      ),
+                    ),
+                    synopsis: element["synopsis"],
+                    onClick: () => {close(context, 0)},
+                  );
+                }).toList();
+                return ListView(children: results);
+              } else {
+                return ListTile(
+                    title: Text('Error: ${snapshot.data!.error!.message}'));
+              }
           }
         });
   }

@@ -29,7 +29,7 @@ class _LoginPageState extends State<LoginPage> {
             try {
               final user = await _auth.signIn(
                   email: loginData.name, password: loginData.password);
-              print(user);
+              // print(user);
             } catch (error) {
               print(error);
               return Future<String>.value('Not a valid username/password');

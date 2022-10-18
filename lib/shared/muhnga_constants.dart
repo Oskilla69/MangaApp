@@ -95,3 +95,5 @@ extension Parse on SHARED_PREFERENCES {
 class MuhngaSpacing {
   static const double horizontalPadding = 18.0;
 }
+
+enum SearchSettings { BEST_MATCH, TOTAL_VIEWS, UPDATE_DATE, FAVOURITES, RATING }

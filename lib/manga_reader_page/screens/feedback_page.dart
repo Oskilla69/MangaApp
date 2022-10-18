@@ -25,7 +25,7 @@ class FeedbackPage extends StatelessWidget {
             style: Theme.of(context).textTheme.titleMedium,
           ),
         ),
-        const EmoteButtonBar(),
+        // EmoteButtonBar(),
         const CommentSection(),
       ],
     );

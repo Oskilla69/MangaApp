@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mangaapp/manga_reader_page/models/reactions_model.dart';
+import 'package:provider/provider.dart';
 import '../../shared/sliding_app_bar.dart';
 import 'manga.dart';
 import '../widgets/comment_card.dart';
@@ -75,14 +77,9 @@ class _MangaReaderState extends State<MangaReader>
           if (snapshot.data!.data != null) {
             List<Widget> commentSection = [
               CommentBox(),
-              Center(
-                child: Text(
-                  '69 reactions',
-                  style: Theme.of(context).textTheme.titleMedium,
-                ),
-              ),
-              // const CommentSection(),
-              const EmoteButtonBar(),
+              ChangeNotifierProvider(
+                  create: (context) => ReactionsModel(),
+                  child: EmoteButtonBar()),
               CommentCard(),
               CommentCard(),
               CommentCard(),

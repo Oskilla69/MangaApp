@@ -1,28 +1,35 @@
 import 'package:flutter/material.dart';
 import '../../shared/muhnga_colors.dart';
 
+class EmoteCounter {
+  static Map<String, Color> highlightColor = {
+    "background": MuhngaColors.neon,
+    "text": MuhngaColors.primary
+  };
+
+  static Map<String, Color> defaultColor = {
+    "background": MuhngaColors.secondary,
+    "text": Colors.white
+  };
+}
+
 class EmoteButton extends StatefulWidget {
   const EmoteButton(this.emote, this.emoteTitle, this.handleClick,
-      this.iconOpacity, this.reactionCount,
+      this.iconOpacity, this.reactionCount, this.selected,
       {super.key});
   final String emote;
   final String emoteTitle;
   final VoidCallback handleClick;
   final double iconOpacity;
   final int reactionCount;
+  final bool selected;
   @override
   State<EmoteButton> createState() => _EmoteButtonState();
 }
 
 class _EmoteButtonState extends State<EmoteButton> {
-  Color countBackground = MuhngaColors.secondary;
-  Color textColor = Colors.white;
   @override
   Widget build(BuildContext context) {
-    if (widget.iconOpacity == 1.0) {
-      countBackground = MuhngaColors.secondary;
-      textColor = Colors.white;
-    }
     return GestureDetector(
       child: Column(
         children: [
@@ -37,15 +44,18 @@ class _EmoteButtonState extends State<EmoteButton> {
                   top: 5,
                   child: Container(
                       decoration: BoxDecoration(
-                          color: countBackground,
+                          color: widget.selected
+                              ? EmoteCounter.highlightColor["background"]
+                              : EmoteCounter.defaultColor["background"],
                           borderRadius: BorderRadius.circular(50)),
                       padding: const EdgeInsets.all(5),
                       child: Text(
                         widget.reactionCount.toString(),
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyMedium!
-                            .apply(color: textColor),
+                        style: Theme.of(context).textTheme.bodyMedium!.apply(
+                              color: widget.selected
+                                  ? EmoteCounter.highlightColor["text"]
+                                  : EmoteCounter.defaultColor["text"],
+                            ),
                       )))
           ]),
           const SizedBox(height: 10),
@@ -58,8 +68,6 @@ class _EmoteButtonState extends State<EmoteButton> {
         ],
       ),
       onTap: () {
-        countBackground = MuhngaColors.neon;
-        textColor = MuhngaColors.primary;
         widget.handleClick();
       },
     );

@@ -1,17 +1,16 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import '../manga_page/screens/manga_page.dart';
 
 class SearchListItem extends StatefulWidget {
-  SearchListItem({
+  const SearchListItem({
     Key? key,
-    required this.title,
+    required this.manga,
     required this.leading,
     required this.synopsis,
     required this.onClick,
   }) : super(key: key);
 
-  final String title;
+  final Map<String, dynamic> manga;
   final Widget leading;
   final Function onClick;
   final String? synopsis;
@@ -21,17 +20,13 @@ class SearchListItem extends StatefulWidget {
 }
 
 class _SearchListItemState extends State<SearchListItem> {
-  final _firestore = FirebaseFirestore.instance;
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        _firestore.collection('manga').doc(widget.title).get().then((manga) {
-          widget.onClick();
-          Navigator.pushNamed(context, MangaPage.routeName,
-              arguments: manga.data());
-        });
+        widget.onClick();
+        Navigator.pushNamed(context, MangaPage.routeName,
+            arguments: widget.manga);
       },
       child: Padding(
         padding: const EdgeInsets.fromLTRB(5, 5, 5, 0),
@@ -57,7 +52,7 @@ class _SearchListItemState extends State<SearchListItem> {
           SizedBox(
             width: MediaQuery.of(context).size.width * 0.69,
             child: Text(
-              widget.title,
+              widget.manga["title"],
               style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 18,

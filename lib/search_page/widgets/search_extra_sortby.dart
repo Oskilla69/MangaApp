@@ -19,47 +19,47 @@ class _SearchExtraSortByState extends State<SearchExtraSortBy> {
   final Map<String, dynamic> data = {
     "Best Match": {
       "order": "descending",
-      "value": "Best Match",
+      "value": SearchSettings.BEST_MATCH,
       "display": "Best Match"
     },
     "Most Views": {
       "order": "descending",
-      "value": "Total Views",
+      "value": SearchSettings.TOTAL_VIEWS,
       "display": "Most Views",
     },
     "Least Views": {
       "order": "ascending",
-      "value": "Total Views",
+      "value": SearchSettings.TOTAL_VIEWS,
       "display": "Least Views",
     },
     "Latest Update": {
       "order": "descending",
-      "value": "Update Date",
+      "value": SearchSettings.UPDATE_DATE,
       "display": "Latest Update"
     },
     "Oldest Update": {
       "order": "ascending",
-      "value": "Update Date",
+      "value": SearchSettings.UPDATE_DATE,
       "display": "Oldest Update"
     },
     "Most Favorites": {
       "order": "descending",
-      "value": "Favorites",
+      "value": SearchSettings.FAVOURITES,
       "display": "Most Favorites"
     },
     "Least Favorites": {
       "order": "ascending",
-      "value": "Favorites",
+      "value": SearchSettings.FAVOURITES,
       "display": "Least Favorites"
     },
     "Highest Rating": {
       "order": "descending",
-      "value": "Rating",
+      "value": SearchSettings.RATING,
       "display": "Highest Rating"
     },
     "Lowest Rating": {
       "order": "descending",
-      "value": "Rating",
+      "value": SearchSettings.RATING,
       "display": "Lowest Rating"
     }
   };

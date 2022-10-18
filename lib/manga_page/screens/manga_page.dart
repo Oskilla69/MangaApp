@@ -24,6 +24,7 @@ class MangaPage extends StatefulWidget {
 class _MangaPageState extends State<MangaPage> {
   @override
   Widget build(BuildContext context) {
+    print(widget.mangaDetails);
     final profileProvider =
         provider.Provider.of<ProfileModel>(context, listen: true);
     List<dynamic> favourites = profileProvider.favourites;
