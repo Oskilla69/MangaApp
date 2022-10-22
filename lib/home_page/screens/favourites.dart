@@ -1,6 +1,7 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mangaapp/home_page/widgets/manga_card.dart';
+import 'package:mangaapp/manga_page/screens/manga_page.dart';
 import '../widgets/manga_scrollview.dart';
 import '../../providers/profile_model.dart';
 import 'package:provider/provider.dart' as provider;
@@ -8,8 +9,8 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 class Favourites extends StatelessWidget {
   Favourites({Key? key}) : super(key: key);
-  final _firestore = FirebaseFirestore.instance;
   final _supabase = Supabase.instance.client;
+  final mangaDataLocation = "manga_core";
 
   @override
   Widget build(BuildContext context) {
@@ -23,20 +24,46 @@ class Favourites extends StatelessWidget {
     //     .where("title", whereIn: profileProvider.favourites)
     //     .orderBy('last_updated', descending: true);
     final query = _supabase
-        .from("manga_core")
+        .from("favourites")
         .select('''
+      $mangaDataLocation(
       id,
       title,
       cover,
       avg_ratings,
-      num_ratings
+      num_ratings)
     ''')
-        .eq("title", profileProvider.favourites)
-        .order("latest_update", ascending: false);
+        .eq("user", _supabase.auth.currentUser!.id)
+        .order("latest_update",
+            ascending: false, foreignTable: mangaDataLocation);
     const width = 180.0;
     const height = 304.0;
-    return CustomScrollView(
-        slivers: [MangaScrollView(query, width, height, buildEmptyFavourites)]);
+    return Padding(
+      padding: const EdgeInsets.only(top: 28.0),
+      child: CustomScrollView(slivers: [
+        SliverToBoxAdapter(
+          child: Center(
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 24.0),
+              child: Text(
+                "Favorites",
+                style: Theme.of(context).textTheme.titleLarge,
+              ),
+            ),
+          ),
+        ),
+        MangaScrollView(query, width, height, buildEmptyFavourites,
+            (context, dynamic manga, index) {
+          return GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(context, MangaPage.routeName,
+                  arguments: manga[mangaDataLocation]);
+            },
+            child: MangaCard(manga[mangaDataLocation], width, height),
+          );
+        })
+      ]),
+    );
   }
 
   Widget buildEmptyFavourites(BuildContext context) {

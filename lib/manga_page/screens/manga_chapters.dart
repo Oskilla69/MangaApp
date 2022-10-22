@@ -1,56 +1,62 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mangaapp/manga_page/widgets/favourite_button.dart';
 import '../widgets/chapters.dart';
 import '../../shared/muhnga_colors.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-class MangaChapters extends StatelessWidget {
-  MangaChapters(this.manga, {super.key});
+class MangaChapters extends StatefulWidget {
+  const MangaChapters(this.manga, {super.key});
   final Map<String, dynamic> manga;
-  final _supabase = Supabase.instance.client;
-  final scrollableThreshold = 6;
-  final tileHeight = 69.0;
-  String chapterFilter = "";
 
   @override
-  Widget build(BuildContext context) {
-    Future<PostgrestResponse<dynamic>> query = _supabase
+  State<MangaChapters> createState() => _MangaChaptersState();
+}
+
+class _MangaChaptersState extends State<MangaChapters> {
+  final _supabase = Supabase.instance.client;
+
+  final scrollableThreshold = 6;
+
+  final tileHeight = 69.0;
+
+  String chapterFilter = "";
+  late Future<PostgrestResponse<dynamic>> query;
+  List<Future<PostgrestResponse<dynamic>>> queries = [];
+
+  @override
+  void initState() {
+    super.initState();
+    query = _supabase
         .from("chapter")
         .select('''
           id, upload_date, chapter
         ''')
-        .eq('manga', manga['id'])
+        .eq('manga', widget.manga['id'])
         .order('chapter', ascending: true)
         .execute();
-    return FutureBuilder<PostgrestResponse<dynamic>>(
-        future: query,
+    queries.add(query);
+    queries.add(_supabase.from("favourites").select().match({
+      'manga': widget.manga['id'],
+      'user': _supabase.auth.currentUser!.id
+    }).execute());
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder<List<PostgrestResponse<dynamic>>>(
+        future: Future.wait(queries),
         builder: ((context, snapshot) {
           if (snapshot.hasData) {
-            List<dynamic> manga = snapshot.data!.data;
+            List<dynamic> mangaResponse = snapshot.data![0].data;
+            List<dynamic> favouritesData = snapshot.data![1].data;
             return Column(
               children: [
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 16.0),
                   child: Row(
                     children: [
-                      Material(
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(16)),
-                        color: MuhngaColors.secondary,
-                        child: SizedBox(
-                          height: 50.w,
-                          width: 50.w,
-                          child: IconButton(
-                              onPressed: () {
-                                print("favourite clicked");
-                              },
-                              icon: Icon(
-                                Icons.favorite,
-                                size: 25.0.w,
-                                color: MuhngaColors.heartRed,
-                              )),
-                        ),
-                      ),
+                      FavouriteButton(favouritesData, widget.manga['id']),
                       const Spacer(),
                       Container(
                           height: 50.w,
@@ -61,7 +67,7 @@ class MangaChapters extends StatelessWidget {
                                   BorderRadius.all(Radius.circular(16))),
                           child: Center(
                             child: Text(
-                              "${manga.length} Chapters",
+                              "${mangaResponse.length} Chapters",
                               style: Theme.of(context).textTheme.titleMedium,
                             ),
                           )),
@@ -115,8 +121,8 @@ class MangaChapters extends StatelessWidget {
                             color: MuhngaColors.grey,
                             thickness: 0.25,
                             height: 36),
-                        ChapterWidget(snapshot.data!.data, scrollableThreshold,
-                            tileHeight)
+                        ChapterWidget(
+                            mangaResponse, scrollableThreshold, tileHeight)
                       ],
                     ),
                   ),

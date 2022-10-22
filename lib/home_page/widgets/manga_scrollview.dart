@@ -6,12 +6,15 @@ import '../../manga_page/screens/manga_page.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class MangaScrollView extends StatefulWidget {
-  const MangaScrollView(this.query, this.width, this.height, this.emptyResponse,
+  const MangaScrollView(
+      this.query, this.width, this.height, this.emptyResponse, this.itemBuilder,
       {Key? key})
       : super(key: key);
   final PostgrestTransformBuilder query;
   final double width;
   final double height;
+  final Widget Function(BuildContext context, dynamic manga, int index)
+      itemBuilder;
   final Widget Function(BuildContext context) emptyResponse;
 
   @override
@@ -38,6 +41,8 @@ class _MangaScrollViewState extends State<MangaScrollView> {
 
   void _fetchMore(int page) {
     widget.query.range(page, page + limit).execute().then((res) {
+      print(res.data);
+      print(res.error);
       if (mounted) {
         if (res.data != null) {
           var newMangas = res.data;
@@ -55,25 +60,29 @@ class _MangaScrollViewState extends State<MangaScrollView> {
   Widget build(BuildContext context) {
     return PagedSliverGrid(
       pagingController: _pagingController,
-      builderDelegate:
-          PagedChildBuilderDelegate(noItemsFoundIndicatorBuilder: (context) {
-        return Column(
-          children: [
-            SizedBox(height: .32.sh),
-            Text(
-              'There are no manga!',
-              style: Theme.of(context).textTheme.titleLarge,
-            ),
-          ],
-        );
-      }, itemBuilder: ((context, dynamic manga, index) {
-        return GestureDetector(
-          onTap: () {
-            Navigator.pushNamed(context, MangaPage.routeName, arguments: manga);
+      builderDelegate: PagedChildBuilderDelegate(
+          noItemsFoundIndicatorBuilder: (context) {
+            return Column(
+              children: [
+                SizedBox(height: .32.sh),
+                Text(
+                  'There are no manga!',
+                  style: Theme.of(context).textTheme.titleLarge,
+                ),
+              ],
+            );
           },
-          child: MangaCard(manga, widget.width, widget.height),
-        );
-      })),
+          itemBuilder: ((context, manga, index) =>
+              widget.itemBuilder(context, manga, index))
+          // itemBuilder: ((context, dynamic manga, index) {
+          //   return GestureDetector(
+          //     onTap: () {
+          //       Navigator.pushNamed(context, MangaPage.routeName, arguments: manga);
+          //     },
+          //     child: MangaCard(manga, widget.width, widget.height),
+          //   );
+          // })
+          ),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: (1.sw / widget.width).round(),
           crossAxisSpacing: 16,
