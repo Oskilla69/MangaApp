@@ -21,7 +21,7 @@ class _FavouriteButtonState extends State<FavouriteButton> {
   void initState() {
     super.initState();
     if (widget.favouritesData.isNotEmpty) {
-      favouriteBackground = favouriteBackground;
+      favouriteBackground = favouritedColor;
     } else {
       favouriteBackground = unfavouritedColor;
     }
@@ -29,7 +29,6 @@ class _FavouriteButtonState extends State<FavouriteButton> {
 
   @override
   Widget build(BuildContext context) {
-    print('building again lol');
     return Material(
         borderRadius: const BorderRadius.all(Radius.circular(16)),
         color: favouriteBackground,

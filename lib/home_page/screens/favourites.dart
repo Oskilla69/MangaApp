@@ -12,6 +12,9 @@ class Favourites extends StatelessWidget {
   final _supabase = Supabase.instance.client;
   final mangaDataLocation = "manga_core";
 
+  final width = 180.0;
+  final height = 304.0;
+
   @override
   Widget build(BuildContext context) {
     final profileProvider =
@@ -23,6 +26,7 @@ class Favourites extends StatelessWidget {
     //     .collection('manga')
     //     .where("title", whereIn: profileProvider.favourites)
     //     .orderBy('last_updated', descending: true);
+    print('asd');
     final query = _supabase
         .from("favourites")
         .select('''
@@ -36,8 +40,6 @@ class Favourites extends StatelessWidget {
         .eq("user", _supabase.auth.currentUser!.id)
         .order("latest_update",
             ascending: false, foreignTable: mangaDataLocation);
-    const width = 180.0;
-    const height = 304.0;
     return Padding(
       padding: const EdgeInsets.only(top: 28.0),
       child: CustomScrollView(slivers: [
