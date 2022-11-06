@@ -36,10 +36,12 @@ class _MangaChaptersState extends State<MangaChapters> {
         .order('chapter', ascending: true)
         .execute();
     queries.add(query);
-    queries.add(_supabase.from("favourites").select().match({
-      'manga': widget.manga['id'],
-      'user': _supabase.auth.currentUser!.id
-    }).execute());
+    if (_supabase.auth.currentUser != null) {
+      queries.add(_supabase.from("favourites").select().match({
+        'manga': widget.manga['id'],
+        'user': _supabase.auth.currentUser!.id
+      }).execute());
+    }
   }
 
   @override
@@ -49,7 +51,8 @@ class _MangaChaptersState extends State<MangaChapters> {
         builder: ((context, snapshot) {
           if (snapshot.hasData) {
             List<dynamic> mangaResponse = snapshot.data![0].data;
-            List<dynamic> favouritesData = snapshot.data![1].data;
+            List<dynamic> favouritesData =
+                snapshot.data!.length > 1 ? snapshot.data![1].data : [];
             return Column(
               children: [
                 Padding(
@@ -130,7 +133,7 @@ class _MangaChaptersState extends State<MangaChapters> {
               ],
             );
           }
-          var display;
+          Widget display;
           if (snapshot.hasError) {
             display = const Center(
               child: Text("There is an error."),

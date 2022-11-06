@@ -67,40 +67,45 @@ class _MangaReaderState extends State<MangaReader>
         .select("pages")
         .eq("id", widget.mangaData["chapter"]["id"])
         .execute();
-    return Scaffold(
-        body: Center(
-            child: FutureBuilder<PostgrestResponse<dynamic>>(
-      future: future,
-      builder: (context, snapshot) {
-        print('asd');
-        if (snapshot.hasData) {
-          if (snapshot.data!.data != null) {
-            List<Widget> commentSection = [
-              CommentBox(),
-              ChangeNotifierProvider(
-                  create: (context) => ReactionsModel(),
-                  child: EmoteButtonBar()),
-              CommentCard(),
-              CommentCard(),
-              CommentCard(),
-              CommentCard(),
-            ];
-            List<dynamic> pages = snapshot.data!.data[0]['pages'];
-            // return buildReader(pages, commentSection, verticalScroll);
-            return MangaPages(pages, commentSection, widget.mangaData);
+    return GestureDetector(
+      onTap: (() {
+        print("working");
+        FocusScope.of(context).unfocus();
+      }),
+      child: Scaffold(
+          body: Center(
+              child: FutureBuilder<PostgrestResponse<dynamic>>(
+        future: future,
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            if (snapshot.data!.data != null) {
+              List<Widget> commentSection = [
+                CommentBox(),
+                ChangeNotifierProvider(
+                    create: (context) => ReactionsModel(),
+                    child: EmoteButtonBar()),
+                CommentCard(),
+                CommentCard(),
+                CommentCard(),
+                CommentCard(),
+              ];
+              List<dynamic> pages = snapshot.data!.data[0]['pages'];
+              // return buildReader(pages, commentSection, verticalScroll);
+              return MangaPages(pages, commentSection, widget.mangaData);
+            }
+          } else if (snapshot.hasError) {
+            return const Center(
+              child: Text(
+                  "There was an error with loading the chapter. Try reloading the chapter."),
+            );
           }
-        } else if (snapshot.hasError) {
-          return const Center(
-            child: Text(
-                "There was an error with loading the chapter. Try reloading the chapter."),
-          );
-        }
 
-        return const Center(
-          child: CircularProgressIndicator(),
-        );
-      },
-    )));
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        },
+      ))),
+    );
   }
 
   Widget buildReader(

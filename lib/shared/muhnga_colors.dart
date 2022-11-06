@@ -14,4 +14,5 @@ class MuhngaColors {
   static const neon = Color.fromARGB(255, 68, 215, 182);
   static const lightPink = Color.fromARGB(255, 229, 195, 209);
   static const star = Colors.amber;
+  static const danger = Colors.red;
 }

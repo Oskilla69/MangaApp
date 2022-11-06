@@ -124,7 +124,19 @@ class Home extends StatelessWidget {
           }
 
           return MaterialPageRoute(
-              builder: (context) => page, settings: settings);
+              builder: (context) => GestureDetector(
+                  onHorizontalDragEnd: (details) {
+                    String? currRoute = ModalRoute.of(context)!.settings.name;
+                    if (details.primaryVelocity != null &&
+                        details.primaryVelocity! >= 320 &&
+                        currRoute != HomePage.routeName &&
+                        currRoute != MangaReader.routeName) {
+                      print("swiping back");
+                      Navigator.pop(context);
+                    }
+                  },
+                  child: page),
+              settings: settings);
         },
       );
     });

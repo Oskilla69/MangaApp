@@ -7,7 +7,7 @@ import '../../shared/muhnga_colors.dart';
 import '../../shared/muhnga_icon_button.dart';
 
 class CommentsPage extends StatefulWidget {
-  CommentsPage({super.key});
+  const CommentsPage({super.key});
   static const String routeName = '${MangaPage.routeName}/comments';
 
   @override
@@ -22,10 +22,10 @@ class _CommentsPageState extends State<CommentsPage> {
   void initState() {
     super.initState();
     comments.addAll([
-      CommentPageCard(),
-      CommentPageCard(),
-      CommentPageCard(),
-      CommentPageCard()
+      const CommentPageCard(),
+      const CommentPageCard(),
+      const CommentPageCard(),
+      const CommentPageCard()
     ]);
   }
 
@@ -43,17 +43,17 @@ class _CommentsPageState extends State<CommentsPage> {
           MuhngaIconButton(const Icon(Icons.arrow_back_ios_new), (() {
             Navigator.pop(context);
           })),
-          []),
+          const []),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 18.0),
           child: CustomRefreshIndicator(
             onRefresh: () async {
               comments.addAll([
-                CommentPageCard(),
-                CommentPageCard(),
-                CommentPageCard(),
-                CommentPageCard(),
+                const CommentPageCard(),
+                const CommentPageCard(),
+                const CommentPageCard(),
+                const CommentPageCard(),
               ]);
             },
             reversed: true,
