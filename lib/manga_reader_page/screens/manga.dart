@@ -296,22 +296,49 @@ class MangaPagesState extends State<MangaPages>
     //         )
     //       ]),
     //     ));
-    return GestureDetector(
-      onTap: () {
-        setState(() {
-          _showAppBar = !_showAppBar;
-        });
-      },
-      // child: CachedNetworkImage(
-      //   width: 1.sw,
-      //   fit: BoxFit.contain,
-      //   imageUrl: pages[index],
-      //   placeholder: (context, url) =>
-      //       const Center(child: CircularProgressIndicator()),
-      //   errorWidget: (context, url, error) =>
-      //       const Center(child: Icon(Icons.error)),
-      // ),
-      child: MangaImage(pages),
+    // return NestedScrollView(
+    //   headerSliverBuilder: (context, innerBoxIsScrolled) {
+    //     return [
+    //       SliverList(
+    //           delegate: SliverChildBuilderDelegate((context, index) {
+    //         return widget.commentSection[index];
+    //       }, childCount: widget.commentSection.length))
+    //     ];
+    //   },
+    //   reverse: true,
+    //   body: PageView.builder(
+    //     scrollDirection: Axis.vertical,
+    //     itemBuilder: (context, index) {
+    //       return GestureDetector(
+    //         onTap: () {
+    //           setState(() {
+    //             _showAppBar = !_showAppBar;
+    //           });
+    //         },
+    //         child: MangaImage(pages[index]),
+    //       );
+    //     },
+    //     itemCount: pages.length,
+    //   ),
+    // );
+    return CustomScrollView(
+      slivers: [
+        ...pages.map((e) => SliverToBoxAdapter(
+              child: GestureDetector(
+                onTap: () {
+                  setState(() {
+                    _showAppBar = !_showAppBar;
+                  });
+                },
+                child: MangaImage(e),
+              ),
+            )),
+        ...widget.commentSection
+            .map((e) => SliverToBoxAdapter(
+                  child: e,
+                ))
+            .toList()
+      ],
     );
     return GestureDetector(
       onTap: () => setState(() {
