@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -16,8 +17,13 @@ class _MangaImageState extends State<MangaImage>
     with SingleTickerProviderStateMixin {
   late TransformationController controller;
   late AnimationController animationController;
+  // Animation<double>? animation;
   Animation<Matrix4>? animation;
   TapDownDetails? tapDownDetails;
+  final GlobalKey<ExtendedImageGestureState> gestureKey =
+      GlobalKey<ExtendedImageGestureState>();
+  late void Function() animationListener;
+  List<double> doubleTapScales = <double>[1.0, 2.0];
 
   @override
   void initState() {
@@ -39,11 +45,64 @@ class _MangaImageState extends State<MangaImage>
 
   @override
   Widget build(BuildContext context) {
+    // return ExtendedImage.network(
+    //   widget.url,
+    //   cache: true,
+    //   mode: ExtendedImageMode.gesture,
+    //   initGestureConfigHandler: (state) {
+    //     return GestureConfig(
+    //       minScale: 1.0,
+    //       animationMinScale: 0.7,
+    //       maxScale: 3.0,
+    //       animationMaxScale: 3.5,
+    //       speed: 1.0,
+    //       inertialSpeed: 100.0,
+    //       initialScale: 1.0,
+    //       inPageView: true,
+    //       initialAlignment: InitialAlignment.center,
+    //     );
+    //   },
+    //   extendedImageGestureKey: gestureKey,
+    //   onDoubleTap: (ExtendedImageGestureState state) {
+    //     ///you can use define pointerDownPosition as you can,
+    //     ///default value is double tap pointer down postion.
+    //     var pointerDownPosition = state.pointerDownPosition;
+    //     double? begin = state.gestureDetails?.totalScale;
+    //     double end;
+
+    //     //remove old
+    //     animation?.removeListener(animationListener);
+
+    //     //stop pre
+    //     animationController.stop();
+
+    //     //reset to use
+    //     animationController.reset();
+
+    //     if (begin == doubleTapScales[0]) {
+    //       end = doubleTapScales[1];
+    //     } else {
+    //       end = doubleTapScales[0];
+    //     }
+
+    //     animationListener = () {
+    //       //print(animation.value);
+    //       state.handleDoubleTap(
+    //           scale: animation!.value, doubleTapPosition: pointerDownPosition);
+    //     };
+    //     animation =
+    //         animationController.drive(Tween<double>(begin: begin, end: end));
+
+    //     animation!.addListener(animationListener);
+
+    //     animationController.forward();
+    //   },
+    // );
     return InteractiveViewer(
         // clipBehavior: Clip.none,
         transformationController: controller,
         minScale: 1.0,
-        maxScale: 4.0,
+        maxScale: 3.0,
         constrained: false,
         child: GestureDetector(
           onDoubleTapDown: (details) {
@@ -51,7 +110,7 @@ class _MangaImageState extends State<MangaImage>
           },
           onDoubleTap: () {
             final position = tapDownDetails!.localPosition;
-            const double scale = 3;
+            const double scale = 2;
             final x = -position.dx * (scale - 1);
             final y = -position.dy * (scale - 1);
             final zoomed = Matrix4.identity()
@@ -66,7 +125,7 @@ class _MangaImageState extends State<MangaImage>
           },
           child: CachedNetworkImage(
             width: 1.sw,
-            fit: BoxFit.contain,
+            // fit: BoxFit.contain,
             imageUrl: widget.url,
             placeholder: (context, url) =>
                 const Center(child: CircularProgressIndicator()),

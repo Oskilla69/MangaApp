@@ -1,16 +1,12 @@
 import 'package:another_flushbar/flushbar.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:custom_refresh_indicator/custom_refresh_indicator.dart';
+import 'package:extended_image/extended_image.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mangaapp/manga_reader_page/screens/manga_reader_page.dart';
-import 'package:mangaapp/manga_reader_page/widgets/load_chapter_wheel.dart';
 import 'package:mangaapp/manga_reader_page/widgets/manga_image.dart';
 import 'package:mangaapp/manga_reader_page/widgets/manga_page_loaders.dart';
-import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:zoom_widget/zoom_widget.dart';
 import '../../shared/sliding_app_bar.dart';
 import '../../pages/account_settings_page.dart';
 import '../../shared/muhnga_app_bar.dart';
@@ -34,7 +30,10 @@ class MangaPagesState extends State<MangaPages>
   late final AnimationController animationController;
   final supabase = Supabase.instance.client;
   late final ScrollController commentController;
-  late final PageController photoPageController;
+  late final PageController photoGalleryController;
+
+  late ScrollController activeScrollController;
+  Drag? drag;
 
   @override
   void initState() {
@@ -44,7 +43,7 @@ class MangaPagesState extends State<MangaPages>
       duration: const Duration(milliseconds: 250),
     );
     _loadPreferences();
-    photoPageController = PageController(initialPage: 9);
+    photoGalleryController = PageController();
     commentController = ScrollController();
   }
 
@@ -65,8 +64,9 @@ class MangaPagesState extends State<MangaPages>
   void dispose() {
     super.dispose();
     animationController.dispose();
-    photoPageController.dispose();
+    photoGalleryController.dispose();
     commentController.dispose();
+    // activeScrollController.dispose();
   }
 
   @override
@@ -93,64 +93,6 @@ class MangaPagesState extends State<MangaPages>
         ),
       ),
     ]);
-  }
-
-  Widget buildPages(List<dynamic> pages) {
-    // return SliverToBoxAdapter(
-    //   child: SizedBox(
-    //     height: 1.sh,
-    //     child: PhotoViewGallery.builder(
-    //         scrollDirection: Axis.vertical,
-    //         itemCount: pages.length,
-    //         builder: ((context, index) {
-    //           return PhotoViewGalleryPageOptions(
-    //             imageProvider: CachedNetworkImageProvider(pages[index]),
-    //             initialScale: PhotoViewComputedScale.contained,
-    //             minScale: PhotoViewComputedScale.contained,
-    //             maxScale: PhotoViewComputedScale.covered * 1.1,
-    //           );
-    //         })),
-    //   ),
-    // );
-    // return SliverList(
-    //     delegate: SliverChildBuilderDelegate(childCount: pages.length,
-    //         (context, index) {
-    //   return SizedBox(
-    //     child: PhotoView(
-    //       minScale: 1.0,
-    //       imageProvider: CachedNetworkImageProvider(pages[index],
-    //           maxHeight: 1.sh.toInt(), maxWidth: 1.sw.toInt()),
-    //       // fit: BoxFit.contain,
-    //       // imageUrl: pages[index],
-    //       // placeholder: (context, url) =>
-    //       //     const Center(child: CircularProgressIndicator()),
-    //       // errorWidget: (context, url, error) =>
-    //       //     const Center(child: Icon(Icons.error)),
-    //     ),
-    //   );
-    // }));
-
-    return SliverList(
-        delegate: SliverChildBuilderDelegate(childCount: pages.length,
-            (context, index) {
-      return GestureDetector(
-        onTap: () {
-          setState(() {
-            _showAppBar = !_showAppBar;
-          });
-        },
-        // child: CachedNetworkImage(
-        //   width: 1.sw,
-        //   fit: BoxFit.contain,
-        //   imageUrl: pages[index],
-        //   placeholder: (context, url) =>
-        //       const Center(child: CircularProgressIndicator()),
-        //   errorWidget: (context, url, error) =>
-        //       const Center(child: Icon(Icons.error)),
-        // ),
-        child: MangaImage(pages[index]),
-      );
-    }));
   }
 
   Future<void> loadChapter(bool prev) async {
@@ -198,246 +140,122 @@ class MangaPagesState extends State<MangaPages>
   }
 
   Widget buildGallery(List<dynamic> pages, {required bool vertical}) {
-    // return LayoutBuilder(
-    //     builder: (BuildContext context, BoxConstraints constraints) {
-    // });
-    // children: pages
-    //     .map((e) => PhotoView(
-    //         backgroundDecoration:
-    //             const BoxDecoration(color: MuhngaColors.secondaryShade),
-    //         imageProvider: CachedNetworkImageProvider(e)))
-    //     .toList()
-    // ));
-    // return PageView.builder(
-    //     scrollDirection: vertical ? Axis.vertical : Axis.horizontal,
-    //     reverse: vertical ? false : true,
-    //     controller: PageController(viewportFraction: 1),
-    //     itemCount: pages.length + 1,
-    //     itemBuilder: ((context, index) {
-    //       if (index == pages.length) {
-    //         return SafeArea(
-    //           child: Container(
-    //             width: 1.sw,
-    //             padding: const EdgeInsets.only(
-    //                 left: 18.0, right: 18.0, top: kToolbarHeight),
-    //             child: ListView.builder(
-    //               itemCount: widget.commentSection.length,
-    //               itemBuilder: (context, index) {
-    //                 return widget.commentSection[index];
-    //               },
-    //             ),
-    //             // child: CustomScrollView(
-    //             //   slivers: [
-    //             //     SliverList(
-    //             //         delegate: SliverChildBuilderDelegate(
-    //             //       childCount: widget.commentSection.length,
-    //             //       (context, index) {
-    //             //         return widget.commentSection[index];
-    //             //       },
-    //             //     ))
-    //             //   ],
-    //             // )
-    //           ),
-    //         );
-    //       } else {
-    //         return GestureDetector(
-    //             onTap: () {
-    //               setState(() {
-    //                 _showAppBar = !_showAppBar;
-    //               });
-    //             },
-    //             // child: MangaImage(pages[index]),
-    //             child: PhotoView(
-    //               initialScale: PhotoViewComputedScale.contained,
-    //               minScale: PhotoViewComputedScale.contained,
-    //               maxScale: PhotoViewComputedScale.covered * 4,
-    //               backgroundDecoration:
-    //                   const BoxDecoration(color: MuhngaColors.secondaryShade),
-    //               imageProvider: CachedNetworkImageProvider(pages[index]),
-    //             ));
-    //       }
-    //     }));
-    // PhotoViewController photoViewController = PhotoViewController();
-    // PhotoViewScaleStateController scaleStateController =
-    //     PhotoViewScaleStateController();
-    // return PhotoView.customChild(
-    //     initialScale: PhotoViewComputedScale.contained,
-    //     minScale: PhotoViewComputedScale.contained,
-    //     maxScale: PhotoViewComputedScale.covered * 4,
-    //     scaleStateController: scaleStateController,
-    //     scaleStateCycle: (actual) {
-    //       print("hey");
-    //       switch (actual) {
-    //         case PhotoViewScaleState.initial:
-    //           print("initial");
-    //           return PhotoViewScaleState.covering;
-    //         case PhotoViewScaleState.covering:
-    //           print("covering");
-    //           return PhotoViewScaleState.originalSize;
-    //         case PhotoViewScaleState.originalSize:
-    //           print("original");
-    //           return PhotoViewScaleState.initial;
-    //         default:
-    //           print("default");
-    //           return PhotoViewScaleState.initial;
-    //       }
-    //     },
-    //     child: SingleChildScrollView(
-    //       child: Column(children: [
-    //         ...pages.map((e) => CachedNetworkImage(imageUrl: e)).toList(),
-    //         SafeArea(
-    //           child: Container(
-    //             width: 1.sw,
-    //             padding: const EdgeInsets.only(
-    //                 left: 18.0, right: 18.0, top: kToolbarHeight),
-    //             child: Column(children: widget.commentSection),
-    //             // child: Column(children: widget.commentSection),
-    //           ),
-    //         )
-    //       ]),
-    //     ));
-    // return NestedScrollView(
-    //   headerSliverBuilder: (context, innerBoxIsScrolled) {
-    //     return [
-    //       SliverList(
-    //           delegate: SliverChildBuilderDelegate((context, index) {
-    //         return widget.commentSection[index];
-    //       }, childCount: widget.commentSection.length))
-    //     ];
-    //   },
-    //   reverse: true,
-    //   body: PageView.builder(
-    //     scrollDirection: Axis.vertical,
-    //     itemBuilder: (context, index) {
-    //       return GestureDetector(
-    //         onTap: () {
-    //           setState(() {
-    //             _showAppBar = !_showAppBar;
-    //           });
-    //         },
-    //         child: MangaImage(pages[index]),
-    //       );
-    //     },
-    //     itemCount: pages.length,
-    //   ),
-    // );
-    return CustomScrollView(
-      slivers: [
-        ...pages.map((e) => SliverToBoxAdapter(
-              child: GestureDetector(
-                onTap: () {
-                  setState(() {
-                    _showAppBar = !_showAppBar;
-                  });
-                },
-                child: MangaImage(e),
-              ),
-            )),
-        ...widget.commentSection
-            .map((e) => SliverToBoxAdapter(
-                  child: e,
-                ))
-            .toList()
-      ],
-    );
-    return GestureDetector(
-      onTap: () => setState(() {
-        _showAppBar = !_showAppBar;
-      }),
+    return RawGestureDetector(
+      gestures: <Type, GestureRecognizerFactory>{
+        VerticalDragGestureRecognizer:
+            GestureRecognizerFactoryWithHandlers<VerticalDragGestureRecognizer>(
+                () => VerticalDragGestureRecognizer(),
+                (VerticalDragGestureRecognizer instance) {
+          instance
+            ..onStart = _handleDragStart
+            ..onUpdate = _handleDragUpdate
+            ..onEnd = _handleDragEnd
+            ..onCancel = _handleDragCancel;
+        })
+      },
+      behavior: HitTestBehavior.opaque,
       child: PhotoViewGallery.builder(
-          pageController: photoPageController,
-          scrollDirection: vertical ? Axis.vertical : Axis.horizontal,
-          reverse: vertical ? false : true,
-          itemCount: pages.length + 1,
-          backgroundDecoration:
-              const BoxDecoration(color: MuhngaColors.secondaryShade),
-          builder: ((context, index) {
-            if (index == pages.length) {
-              return PhotoViewGalleryPageOptions.customChild(
-                  onTapDown: (context, details, controllerValue) {
-                    FocusScope.of(context).unfocus();
-                  },
+        backgroundDecoration:
+            const BoxDecoration(color: MuhngaColors.secondaryShade),
+        scrollDirection: verticalScroll ? Axis.vertical : Axis.horizontal,
+        pageController: photoGalleryController,
+        itemCount: pages.length + 1,
+        scrollPhysics: const NeverScrollableScrollPhysics(),
+        builder: (context, index) {
+          if (index == pages.length) {
+            return PhotoViewGalleryPageOptions.customChild(
+              disableGestures: true,
+              child: SingleChildScrollView(
+                  controller: commentController,
+                  physics: const NeverScrollableScrollPhysics(),
                   child: SafeArea(
-                    child: Container(
-                      width: 1.sw,
-                      padding: const EdgeInsets.only(
-                          left: 18.0, right: 18.0, top: kToolbarHeight),
-                      child: ListView.builder(
-                        controller: commentController,
-                        itemCount: widget.commentSection.length,
-                        itemBuilder: (context, index) {
-                          return widget.commentSection[index];
-                        },
-                      ),
-                      // child: Column(children: widget.commentSection),
-                    ),
-                  ));
-            }
-            return PhotoViewGalleryPageOptions(
-              imageProvider: CachedNetworkImageProvider(pages[index]),
-              initialScale: PhotoViewComputedScale.contained,
-              minScale: PhotoViewComputedScale.contained,
-              maxScale: PhotoViewComputedScale.covered * 4,
+                      child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 18.0),
+                    child: Column(children: widget.commentSection),
+                  ))),
             );
-          })),
+          }
+          return PhotoViewGalleryPageOptions(
+              onTapUp: (context, details, controllerValue) {
+                setState(() {
+                  _showAppBar = !_showAppBar;
+                });
+              },
+              initialScale: 1.0,
+              minScale: 1.0,
+              maxScale: 3.2,
+              imageProvider:
+                  ExtendedNetworkImageProvider(pages[index], cache: true));
+        },
+      ),
     );
   }
 
   Widget buildVerticalScroll(List<dynamic> pages, List<Widget> commentSection) {
     return MangaPageLoaders(loadChapter,
-            vertical: true, child: buildGallery(pages, vertical: true))
-        // child: CustomScrollView(scrollDirection: Axis.vertical, slivers: [
-        //   buildPages(pages),
-        //   SliverSafeArea(
-        //     sliver: SliverPadding(
-        //         padding: const EdgeInsets.fromLTRB(18.0, 28.0, 18.0, 0.0),
-        //         sliver: SliverList(
-        //           delegate: SliverChildBuilderDelegate(
-        //             childCount: commentSection.length,
-        //             (context, index) {
-        //               return commentSection[index];
-        //             },
-        //           ),
-        //         )),
-        //   )
-        // ]),
-        ;
+        vertical: true, child: buildGallery(pages, vertical: true));
   }
 
   Widget buildHorizontalScroll(
       List<dynamic> pages, List<Widget> commentSection) {
     return MangaPageLoaders(loadChapter,
-            vertical: false, child: buildGallery(pages, vertical: false))
-        // child: PageView.builder(
-        //     reverse: true,
-        //     controller: PageController(viewportFraction: 1),
-        //     itemCount: pages.length + 1,
-        //     itemBuilder: ((context, index) {
-        //       if (index == pages.length) {
-        //         return SafeArea(
-        //           child: Container(
-        //             width: 1.sw,
-        //             padding: const EdgeInsets.only(
-        //                 left: 18.0, right: 18.0, top: kToolbarHeight),
-        //             child: ListView.builder(
-        //               itemCount: commentSection.length,
-        //               itemBuilder: (context, index) {
-        //                 return commentSection[index];
-        //               },
-        //             ),
-        //           ),
-        //         );
-        //       } else {
-        //         return GestureDetector(
-        //           onTap: () {
-        //             setState(() {
-        //               _showAppBar = !_showAppBar;
-        //             });
-        //           },
-        //           child: MangaImage(pages[index]),
-        //         );
-        //       }
-        //     })),
-        ;
+        vertical: false, child: buildGallery(pages, vertical: false));
+  }
+
+  void _handleDragStart(DragStartDetails details) {
+    if (commentController.hasClients &&
+        commentController.position.context.storageContext != null) {
+      final RenderBox renderBox =
+          commentController.position.context.storageContext.findRenderObject()
+              as RenderBox;
+      if (renderBox.paintBounds
+          .shift(renderBox.localToGlobal(Offset.zero))
+          .contains(details.globalPosition)) {
+        activeScrollController = commentController;
+        drag = activeScrollController.position.drag(details, _disposeDrag);
+        return;
+      }
+    }
+    activeScrollController = photoGalleryController;
+    drag = photoGalleryController.position.drag(details, _disposeDrag);
+  }
+
+  void _handleDragUpdate(DragUpdateDetails details) {
+    if (activeScrollController == commentController &&
+        details.primaryDelta! < 0 &&
+        activeScrollController.position.pixels ==
+            activeScrollController.position.maxScrollExtent) {
+      activeScrollController = photoGalleryController;
+      drag?.cancel();
+      drag = photoGalleryController.position.drag(
+          DragStartDetails(
+              globalPosition: details.globalPosition,
+              localPosition: details.localPosition),
+          _disposeDrag);
+    } else if (activeScrollController == commentController &&
+        details.primaryDelta! > 0 &&
+        (activeScrollController.position.pixels ==
+            activeScrollController.position.minScrollExtent)) {
+      activeScrollController = photoGalleryController;
+      drag?.cancel();
+      drag = photoGalleryController.position.drag(
+          DragStartDetails(
+              globalPosition: details.globalPosition,
+              localPosition: details.localPosition),
+          _disposeDrag);
+    }
+    drag?.update(details);
+  }
+
+  void _handleDragEnd(DragEndDetails details) {
+    drag?.end(details);
+  }
+
+  void _handleDragCancel() {
+    drag?.cancel();
+  }
+
+  void _disposeDrag() {
+    drag = null;
   }
 }

@@ -67,14 +67,9 @@ class _MangaReaderState extends State<MangaReader>
         .select("pages")
         .eq("id", widget.mangaData["chapter"]["id"])
         .execute();
-    return GestureDetector(
-      onTap: (() {
-        print("working");
-        FocusScope.of(context).unfocus();
-      }),
-      child: Scaffold(
-          body: Center(
-              child: FutureBuilder<PostgrestResponse<dynamic>>(
+    return Scaffold(
+      body: Center(
+          child: FutureBuilder<PostgrestResponse<dynamic>>(
         future: future,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
@@ -104,7 +99,7 @@ class _MangaReaderState extends State<MangaReader>
             child: CircularProgressIndicator(),
           );
         },
-      ))),
+      )),
     );
   }
 
