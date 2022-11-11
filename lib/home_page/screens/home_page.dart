@@ -121,15 +121,12 @@ class _HomePageState extends State<HomePage> {
   Future<void> getCurrentUser() async {
     try {
       final user = _auth.currentUser;
+      print(user);
       if (user != null) {
-        // setState(() async {
-        //   loggedInUser = user;
-        //   userData = await _firestore
-        //       .collection('profile')
-        //       .doc(loggedInUser?.email)
-        //       .get();
-        // });
-        loggedInUser = user;
+        setState(() async {
+          loggedInUser = user;
+        });
+        // loggedInUser = user;
         _firestore
             .collection('profile')
             .doc(loggedInUser?.email)

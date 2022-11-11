@@ -3,8 +3,8 @@ import 'package:extended_image/extended_image.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:mangaapp/manga_reader_page/screens/manga_reader_page.dart';
-import 'package:mangaapp/manga_reader_page/widgets/manga_image.dart';
 import 'package:mangaapp/manga_reader_page/widgets/manga_page_loaders.dart';
+import 'package:mangaapp/manga_reader_page/widgets/vertical_scroll.dart';
 import 'package:photo_view/photo_view_gallery.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../shared/sliding_app_bar.dart';
@@ -29,11 +29,6 @@ class MangaPagesState extends State<MangaPages>
     with SingleTickerProviderStateMixin {
   late final AnimationController animationController;
   final supabase = Supabase.instance.client;
-  late final ScrollController commentController;
-  late final PageController photoGalleryController;
-
-  late ScrollController activeScrollController;
-  Drag? drag;
 
   @override
   void initState() {
@@ -43,8 +38,6 @@ class MangaPagesState extends State<MangaPages>
       duration: const Duration(milliseconds: 250),
     );
     _loadPreferences();
-    photoGalleryController = PageController();
-    commentController = ScrollController();
   }
 
   bool dataSaver = false;
@@ -64,8 +57,6 @@ class MangaPagesState extends State<MangaPages>
   void dispose() {
     super.dispose();
     animationController.dispose();
-    photoGalleryController.dispose();
-    commentController.dispose();
     // activeScrollController.dispose();
   }
 
@@ -96,7 +87,6 @@ class MangaPagesState extends State<MangaPages>
   }
 
   Future<void> loadChapter(bool prev) async {
-    print("???");
     num nextNum = prev ? -1 : 1;
     // get manga of chapter and see if it is equivalent
     PostgrestResponse<dynamic> mangaId =
@@ -136,51 +126,51 @@ class MangaPagesState extends State<MangaPages>
         }
       });
     }
-    //
   }
 
-  Widget buildGallery(List<dynamic> pages, {required bool vertical}) {
-    return RawGestureDetector(
-      gestures: <Type, GestureRecognizerFactory>{
-        VerticalDragGestureRecognizer:
-            GestureRecognizerFactoryWithHandlers<VerticalDragGestureRecognizer>(
-                () => VerticalDragGestureRecognizer(),
-                (VerticalDragGestureRecognizer instance) {
-          instance
-            ..onStart = _handleDragStart
-            ..onUpdate = _handleDragUpdate
-            ..onEnd = _handleDragEnd
-            ..onCancel = _handleDragCancel;
-        })
-      },
-      behavior: HitTestBehavior.opaque,
+  Widget buildVerticalScroll(List<dynamic> pages, List<Widget> commentSection) {
+    return MangaPageLoaders(loadChapter,
+        vertical: true,
+        child: VerticalScroll(
+          commentSection: widget.commentSection,
+          pageUrls: pages,
+          pageTapCallback: (context, tapUpDetails, photoViewControllerValue) {
+            setState(() {
+              _showAppBar = !_showAppBar;
+            });
+          },
+        ));
+  }
+
+  Widget buildHorizontalScroll(
+      List<dynamic> pages, List<Widget> commentSection) {
+    return MangaPageLoaders(
+      loadChapter,
+      vertical: false,
       child: PhotoViewGallery.builder(
         backgroundDecoration:
             const BoxDecoration(color: MuhngaColors.secondaryShade),
-        scrollDirection: verticalScroll ? Axis.vertical : Axis.horizontal,
-        pageController: photoGalleryController,
+        scrollDirection: Axis.horizontal,
+        reverse: true,
         itemCount: pages.length + 1,
-        scrollPhysics: const NeverScrollableScrollPhysics(),
         builder: (context, index) {
           if (index == pages.length) {
             return PhotoViewGalleryPageOptions.customChild(
               disableGestures: true,
               child: SingleChildScrollView(
-                  controller: commentController,
-                  physics: const NeverScrollableScrollPhysics(),
                   child: SafeArea(
                       child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 18.0),
-                    child: Column(children: widget.commentSection),
-                  ))),
+                padding: const EdgeInsets.symmetric(horizontal: 18.0),
+                child: Column(children: widget.commentSection),
+              ))),
             );
           }
           return PhotoViewGalleryPageOptions(
-              onTapUp: (context, details, controllerValue) {
+              onTapUp: ((context, details, controllerValue) {
                 setState(() {
                   _showAppBar = !_showAppBar;
                 });
-              },
+              }),
               initialScale: 1.0,
               minScale: 1.0,
               maxScale: 3.2,
@@ -189,73 +179,5 @@ class MangaPagesState extends State<MangaPages>
         },
       ),
     );
-  }
-
-  Widget buildVerticalScroll(List<dynamic> pages, List<Widget> commentSection) {
-    return MangaPageLoaders(loadChapter,
-        vertical: true, child: buildGallery(pages, vertical: true));
-  }
-
-  Widget buildHorizontalScroll(
-      List<dynamic> pages, List<Widget> commentSection) {
-    return MangaPageLoaders(loadChapter,
-        vertical: false, child: buildGallery(pages, vertical: false));
-  }
-
-  void _handleDragStart(DragStartDetails details) {
-    if (commentController.hasClients &&
-        commentController.position.context.storageContext != null) {
-      final RenderBox renderBox =
-          commentController.position.context.storageContext.findRenderObject()
-              as RenderBox;
-      if (renderBox.paintBounds
-          .shift(renderBox.localToGlobal(Offset.zero))
-          .contains(details.globalPosition)) {
-        activeScrollController = commentController;
-        drag = activeScrollController.position.drag(details, _disposeDrag);
-        return;
-      }
-    }
-    activeScrollController = photoGalleryController;
-    drag = photoGalleryController.position.drag(details, _disposeDrag);
-  }
-
-  void _handleDragUpdate(DragUpdateDetails details) {
-    if (activeScrollController == commentController &&
-        details.primaryDelta! < 0 &&
-        activeScrollController.position.pixels ==
-            activeScrollController.position.maxScrollExtent) {
-      activeScrollController = photoGalleryController;
-      drag?.cancel();
-      drag = photoGalleryController.position.drag(
-          DragStartDetails(
-              globalPosition: details.globalPosition,
-              localPosition: details.localPosition),
-          _disposeDrag);
-    } else if (activeScrollController == commentController &&
-        details.primaryDelta! > 0 &&
-        (activeScrollController.position.pixels ==
-            activeScrollController.position.minScrollExtent)) {
-      activeScrollController = photoGalleryController;
-      drag?.cancel();
-      drag = photoGalleryController.position.drag(
-          DragStartDetails(
-              globalPosition: details.globalPosition,
-              localPosition: details.localPosition),
-          _disposeDrag);
-    }
-    drag?.update(details);
-  }
-
-  void _handleDragEnd(DragEndDetails details) {
-    drag?.end(details);
-  }
-
-  void _handleDragCancel() {
-    drag?.cancel();
-  }
-
-  void _disposeDrag() {
-    drag = null;
   }
 }
