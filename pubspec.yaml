@@ -54,9 +54,8 @@ dependencies:
   flutterfire_ui: ^0.4.1+2
   image_picker: ^0.8.5+3
   custom_refresh_indicator: ^1.2.1
-  flutter_dotenv: ^5.0.2
-  algolia: ^1.1.1
-  supabase_flutter: ^0.3.3
+  # supabase_flutter: ^0.3.3
+  supabase_flutter: ^1.1.0
   carousel_slider: ^4.1.1
   flutter_svg: ^1.1.5
   photo_view: ^0.14.0
@@ -93,7 +92,6 @@ flutter:
     - assets/emotes/
     - assets/images/
     - assets/manga_data.json
-    - ./.env
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

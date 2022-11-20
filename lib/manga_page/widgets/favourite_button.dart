@@ -41,31 +41,31 @@ class _FavouriteButtonState extends State<FavouriteButton> {
                   Navigator.of(context).pushNamed('/login');
                 } else {
                   if (favouriteBackground == favouritedColor) {
-                    PostgrestResponse<dynamic> response =
-                        await _supabase.from("favourites").delete().match({
-                      'manga': widget.favouritesData[0]['manga'],
-                      'user': _supabase.auth.currentUser!.id
-                    }).execute();
-                    if (response.hasError) {
-                      print(response.error);
-                    } else {
+                    try {
+                      PostgrestResponse<dynamic> response =
+                          await _supabase.from("favourites").delete().match({
+                        'manga': widget.favouritesData[0]['manga'],
+                        'user': _supabase.auth.currentUser!.id
+                      });
                       setState(() {
                         favouriteBackground = unfavouritedColor;
                       });
+                    } catch (e) {
+                      print(e);
                     }
                   } else {
-                    PostgrestResponse<dynamic> response = await _supabase
-                        .from("favourites")
-                        .insert({
-                      'manga': widget.mangaId,
-                      'user': _supabase.auth.currentUser!.id
-                    }).execute();
-                    if (response.hasError)
-                      print(response.error);
-                    else {
+                    try {
+                      PostgrestResponse<dynamic> response = await _supabase
+                          .from("favourites")
+                          .insert({
+                        'manga': widget.mangaId,
+                        'user': _supabase.auth.currentUser!.id
+                      });
                       setState(() {
                         favouriteBackground = favouritedColor;
                       });
+                    } catch (e) {
+                      print(e);
                     }
                   }
                 }

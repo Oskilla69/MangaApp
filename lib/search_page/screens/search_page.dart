@@ -122,33 +122,36 @@ class SearchPageDelegate extends SearchDelegate<int?> {
             case ConnectionState.active:
               return const ListTile(title: Text('Active..'));
             case ConnectionState.done:
-              if (snapshot.data!.data != null) {
-                final setData = {...List.from(snapshot.data!.data)};
-                List<Widget> results = setData.map<Widget>((element) {
-                  return SearchListItem(
-                    manga: element,
-                    leading: Expanded(
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(12),
-                        child: CachedNetworkImage(
-                            imageUrl: element['cover'],
-                            fit: BoxFit.cover,
-                            progressIndicatorBuilder:
-                                (context, url, downloadProgress) => Center(
-                                    child: CircularProgressIndicator(
-                                        value: downloadProgress.progress)),
-                            errorWidget: (context, url, error) =>
-                                const Icon(Icons.error)),
+              try {
+                if (snapshot.data!.data != null) {
+                  final setData = {...List.from(snapshot.data!.data)};
+                  List<Widget> results = setData.map<Widget>((element) {
+                    return SearchListItem(
+                      manga: element,
+                      leading: Expanded(
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(12),
+                          child: CachedNetworkImage(
+                              imageUrl: element['cover'],
+                              fit: BoxFit.cover,
+                              progressIndicatorBuilder:
+                                  (context, url, downloadProgress) => Center(
+                                      child: CircularProgressIndicator(
+                                          value: downloadProgress.progress)),
+                              errorWidget: (context, url, error) =>
+                                  const Icon(Icons.error)),
+                        ),
                       ),
-                    ),
-                    synopsis: element["synopsis"],
-                    onClick: () => {close(context, 0)},
-                  );
-                }).toList();
-                return ListView(children: results);
-              } else {
-                return ListTile(
-                    title: Text('Error: ${snapshot.data!.error!.message}'));
+                      synopsis: element["synopsis"],
+                      onClick: () => {close(context, 0)},
+                    );
+                  }).toList();
+                  return ListView(children: results);
+                } else {
+                  return const ListTile(title: Text('Error'));
+                }
+              } catch (e) {
+                return ListTile(title: Text('Error: $e'));
               }
           }
         });

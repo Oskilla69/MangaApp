@@ -1,7 +1,5 @@
-import 'package:algolia/algolia.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'comments_page/screens/comments_page.dart';
 import 'pages/account_page_no_user.dart';
@@ -17,19 +15,11 @@ import 'shared/supabase/supabase_constants.dart';
 import 'package:provider/provider.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-class Application {
-  static final Algolia algolia = Algolia.init(
-    applicationId: dotenv.env['ALGOLIA_APP_ID']!,
-    apiKey: dotenv.env['ALGOLIA_SEARCH_API_KEY']!,
-  );
-}
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   await Supabase.initialize(
       url: SupabaseConstants.projectUrl, anonKey: SupabaseConstants.apiKey);
-  await dotenv.load(fileName: '.env');
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(create: ((context) {
       ProfileModel pfModel = ProfileModel();

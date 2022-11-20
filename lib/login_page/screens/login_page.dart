@@ -27,7 +27,7 @@ class _LoginPageState extends State<LoginPage> {
           navigateBackAfterRecovery: true,
           onLogin: ((loginData) async {
             try {
-              final user = await _auth.signIn(
+              final user = await _auth.signInWithPassword(
                   email: loginData.name, password: loginData.password);
               // print(user);
             } catch (error) {
@@ -44,14 +44,14 @@ class _LoginPageState extends State<LoginPage> {
 
             try {
               var response = await _auth.signUp(
-                signupData.name!,
-                signupData.password!,
+                email: signupData.name!,
+                password: signupData.password!,
               );
               if (response.user != null) {
                 await _supabase.from("users").insert({
                   "id": response.user!.id,
                   "username": signupData.name,
-                }).execute();
+                });
               }
             } catch (error) {
               print(error);

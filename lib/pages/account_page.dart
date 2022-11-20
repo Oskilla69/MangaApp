@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import '../providers/profile_model.dart';
-import '../shared/supabase/auth_required.dart';
 import 'package:provider/provider.dart' as provider;
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -17,7 +16,7 @@ class AccountPage extends StatefulWidget {
   State<AccountPage> createState() => _AccountPageState();
 }
 
-class _AccountPageState extends AuthRequiredState<AccountPage> {
+class _AccountPageState extends State<AccountPage> {
   final ImagePicker _imagePicker = ImagePicker();
   final _firestore = FirebaseFirestore.instance;
   final _auth = Supabase.instance.client.auth;

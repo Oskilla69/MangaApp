@@ -92,32 +92,41 @@ class MangaPagesState extends State<MangaPages>
     PostgrestResponse<dynamic> mangaId =
         await supabase.from("chapter").select('''
       manga
-    ''').eq('id', widget.chapter['chapter']['id']).execute();
+    ''').eq('id', widget.chapter['chapter']['id']);
     PostgrestResponse<dynamic> response = await supabase
         .from("chapter")
         .select('''
       id, chapter
     ''')
         .eq('manga', mangaId.data[0]['manga'])
-        .eq('chapter', widget.chapter['chapter']['chapter'] + nextNum)
-        .execute();
-    if (response.hasError || response.data == null || response.data.isEmpty) {
-      Flushbar(
-        message: prev
-            ? "This is the first chapter available"
-            : "This is the latest chapter available",
-        icon: const Icon(
-          Icons.error,
-          size: 28.0,
-          color: Colors.white,
-        ),
-        duration: const Duration(seconds: 4),
-        backgroundGradient: LinearGradient(
-          colors: [MuhngaColors.danger[600]!, MuhngaColors.danger[400]!],
-        ),
-        onTap: (flushbar) => flushbar.dismiss(),
-      )..show(context);
-    } else {
+        .eq('chapter', widget.chapter['chapter']['chapter'] + nextNum);
+    try {
+      if (response.data == null || response.data.isEmpty) {
+        Flushbar(
+          message: prev
+              ? "This is the first chapter available"
+              : "This is the latest chapter available",
+          icon: const Icon(
+            Icons.error,
+            size: 28.0,
+            color: Colors.white,
+          ),
+          duration: const Duration(seconds: 4),
+          backgroundGradient: LinearGradient(
+            colors: [MuhngaColors.danger[600]!, MuhngaColors.danger[400]!],
+          ),
+          onTap: (flushbar) => flushbar.dismiss(),
+        )..show(context);
+      } else {
+        Navigator.of(context)
+            .pushReplacementNamed(MangaReader.routeName, arguments: {
+          "chapter": {
+            "chapter": response.data[0]['chapter'],
+            "id": response.data[0]['id']
+          }
+        });
+      }
+    } catch (e) {
       Navigator.of(context)
           .pushReplacementNamed(MangaReader.routeName, arguments: {
         "chapter": {

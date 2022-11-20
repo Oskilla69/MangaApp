@@ -40,9 +40,8 @@ class _MangaScrollViewState extends State<MangaScrollView> {
   }
 
   void _fetchMore(int page) {
-    widget.query.range(page, page + limit).execute().then((res) {
+    widget.query.range(page, page + limit).then((res) {
       print(res.data);
-      print(res.error);
       if (mounted) {
         if (res.data != null) {
           var newMangas = res.data;
